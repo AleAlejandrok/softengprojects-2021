@@ -91,7 +91,12 @@ class Vector3DTest {
 
 	@Test
 	void testEqualsVector3D() {
-		fail("Not yet implemented"); // TODO
+		Vector3D testVector = new Vector3D(2,4,8);
+		Vector3D testVector2 = new Vector3D(2.0000001,4,8);
+		if(testVector.equals(testVector2))
+			return;
+		else
+			fail("Failed equal operation");
 	}
 
 }
