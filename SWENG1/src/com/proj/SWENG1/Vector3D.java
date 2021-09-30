@@ -1,3 +1,4 @@
+package com.proj.SWENG1;
 /*a constructor that takes the x, y, and z coordinates, which should be doubles.
 Vector3D scale(double f); which should multiply x, y, and z by a common factor f.
 Vector3D add(Vector3D v); which takes one Vector3D as an argument adds the corresponding coordinates to its own and produces a new Vector3D ( {x0, y0, z0} + {x1, y1, z1} = {x0+x1, y0+y1, z0+z1}, where x0, y0, and z0 are "this" object's coordinates and x1, y1, and z1 are the argument v's coordinates) .
@@ -10,7 +11,6 @@ Provide an implementation of equals. Remember that float and double arithmetic i
 */
 
 import static java.lang.Math.sqrt;
-import static java.lang.Math.floor;
 
 public class Vector3D {
 double x;
