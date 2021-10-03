@@ -69,14 +69,7 @@ double z;
 	//Provide an implementation of equals. Remember that float and double arithmetic is not exact. Thus, you must allow for a tolerance.
 	public boolean equals (Vector3D v)
 	{
-		/*
-		This is a little lengthy, but it just takes the floor of the vectors components * 100 then divides by 100 to kinda-sorta do a truncation.
-		(for negative numbers it will behave a little differently because of the way floors work with negative numbers, but it still creates 
-		a reasonable tolerance due to the magnitude in which double math is off)
 		
-		If someone thinks this is won't be acceptable, I won't be offended if you change it :-)
-		-Billy 
-		*/
 		if (((Math.floor(this.x * 100) / 100)==(Math.floor(v.x * 100) / 100)) && ((Math.floor(this.y * 100) / 100)==(Math.floor(v.y * 100) / 100)) && ((Math.floor(this.z * 100) / 100)==(Math.floor(v.z * 100) / 100)))
 		{
 			return true;
