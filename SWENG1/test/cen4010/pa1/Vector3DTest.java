@@ -18,8 +18,9 @@ class Vector3DTest {
 	@Test
 	void testScale() {
 		Vector3D testVector = new Vector3D(1,1,1);
+		Vector3D testVector2 = new Vector3D(2,2,2);
 		testVector = testVector.scale(2);
-		if(testVector.x == 2 && testVector.y == 2 &&testVector.z == 2) {
+		if(testVector.equals(testVector2)) {
 			return;
 		}else
 			fail("Failed scaling operation");
@@ -94,8 +95,12 @@ class Vector3DTest {
 	void testEqualsVector3D() {
 		Vector3D testVector = new Vector3D(2,4,8);
 		Vector3D testVector2 = new Vector3D(2.0000001,4,8);
+		Vector3D testVector3 = new Vector3D(3,4,8);
 		if(testVector.equals(testVector2))
-			return;
+			if(!testVector.equals(testVector3))
+				return;
+			else
+				fail("Failed equal operation");
 		else
 			fail("Failed equal operation");
 	}
