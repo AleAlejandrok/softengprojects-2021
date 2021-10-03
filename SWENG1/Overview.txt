@@ -1,1 +1,15 @@
-OVERVIEW GOES HERE
+Names:
+Alejandro Katz - N01362083
+William Shaw - N01401127
+Jonathan Shih - N01447401
+Marat Shukurov - N01427331
+
+Relationships:
+
+Design approach:
+
+Things that gave us trouble:
+
+Contributions:
+
+Time spent: ~2 hours total
