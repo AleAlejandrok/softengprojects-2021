@@ -1,15 +1,30 @@
+Programming Assignment 1 - CEN4010 Kanewala
+Overview.txt
+10/3/2021 
+
 Names:
 Alejandro Katz - N01362083
 William Shaw - N01401127
 Jonathan Shih - N01447401
 Marat Shukurov - N01427331
 
-Relationships:
-
 Design approach:
+-Test-driven development
+-Wrote test cases first
+-Wrote methods to ensure all tests passed
+-3DVector.equals method had to be written first to ensure testEquals was working as intended  
 
 Things that gave us trouble:
+-Getting acquainted with the GitHub environment and procedures for pulling, staging files, and pushing commits.
+-Integrating Eclipse IDE and the JUnit and GitHub plug-ins by downloading the latest versions of Eclipse and JDK16.
+-Generating personalized access tokens to enable importing the online Git repository.
+-Resolving merging conflicts by manually clearing out local files in the destination directory for the GitHub smart import.  
+-Ensuring project meets specifications .
 
 Contributions:
+-Manage Git Repository, Set up test suite - Alejandro (90 mins)
+-Main driver code - William (120 mins)
+-Code review + support, Overview.txt - Jonathan (60 mins)
+-Code review + support - Marat (60 mins)
 
-Time spent: ~2 hours total
+Time spent: ~3 hours total, work was completed concurrently
