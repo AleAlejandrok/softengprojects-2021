@@ -16,7 +16,7 @@ public GUI() {
 	p1.setPreferredSize(new Dimension(400, 400));
 	
 	
-	p1.setLayout(new GridLayout(b.n,b.m));
+	p1.setLayout(new GridLayout(b.n,b.m,10,10));
 	for (int i = 0; i<b.n; i++) {
 		for (int j = 0; j<b.m;j++) {
 			buttons[i][j]=new JButton();
