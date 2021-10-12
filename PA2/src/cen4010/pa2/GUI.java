@@ -1,10 +1,11 @@
 package cen4010.pa2;
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.plaf.DimensionUIResource;
+import java.awt.event.*;
 
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 
 public class GUI extends JFrame {
@@ -23,7 +24,7 @@ public GUI() {
 	JButton [][] buttons= new JButton[b.n][b.m];
 	
 	//this is the array of buttons that makes the visualization of the board 
-	JPanel p1 = new JPanel();
+	JPanel TopPanel = new JPanel();
 	
 	//this sets the frames orientation... 2 rows, 1 column hence (2,1)
 	f.setLayout(new GridLayout(2, 1));
@@ -31,23 +32,78 @@ public GUI() {
 	//sets a grid layout of the panel
 	//a panel is like a small window in a window
 	//set it to mxn size, with small padding in between the buttons
-	p1.setLayout(new GridLayout(b.n,b.m,5,5));
+	TopPanel.setLayout(new GridLayout(b.n,b.m,5,5));
 	
 	//insets buttons into mxn array and puts them in the panel 
 	for (int i = 0; i<b.n; i++) {
 		for (int j = 0; j<b.m;j++) {
 			buttons[i][j]=new JButton();
-			p1.add(buttons[i][j]);	
+			TopPanel.add(buttons[i][j]);
 			
-		}
+			//variables are reassigned to fix scope issue
+			int o=i;
+			int l=j;
+			//button action placeholder
+			ActionListener AL=new ActionListener() {
+		         public void actionPerformed(ActionEvent e) {
+		        	 //if turn is odd, place an x
+		        	 if (b.turn_number%2==1) {
+		        		 buttons[o][l].setText("x");
+		        		 b.boardarray[o][l]='x';
+		        	 }
+		        	 else {
+		         	buttons[o][l].setText("o");
+		         	b.boardarray[o][l]='o';
+		        	 }
+		         	b.turn_number++;
+		          }
+		       };
+			buttons[i][j].addActionListener(AL);
+	}
 	}
 	//sets border so there is padding at the top and around the sides
-	Border border = p1.getBorder();
+	Border border = TopPanel.getBorder();
 	Border margin = new EmptyBorder(50,10,10,10);
-	p1.setBorder(new CompoundBorder(border, margin));
+	TopPanel.setBorder(new CompoundBorder(border, margin));
 	
 	//panel for timer and other accessories
-	JPanel p2 = new JPanel();
+	JPanel BottomPanel = new JPanel();
+	BottomPanel.setLayout(new GridLayout(2, 1));
+	
+	Border border2 = BottomPanel.getBorder();
+	Border margin2 = new EmptyBorder(10,150,150,150);
+	BottomPanel.setBorder(new CompoundBorder(border2, margin2));
+	
+	
+	JPanel StartGamePanel = new JPanel();
+	StartGamePanel.setLayout(new GridLayout(1, 3, 150,10));
+	
+	JComboBox player1type= new JComboBox();
+	StartGamePanel.add(player1type);
+	
+	JButton StartGameButton= new JButton("Start Game");
+	StartGamePanel.add(StartGameButton);
+	
+	JComboBox player2type= new JComboBox();
+	StartGamePanel.add(player2type);
+	
+	BottomPanel.add(StartGamePanel);
+	
+	
+	//timer panel
+	JPanel TimerPanel = new JPanel();
+	TimerPanel.setLayout(new GridLayout(1, 2,50,10));
+	
+	
+	
+	
+	
+	
+	
+	BottomPanel.add(TimerPanel);
+	
+	
+	
 	
 	
 	
@@ -59,11 +115,15 @@ public GUI() {
 	
 	
 	//sets panels to be visible
-	p1.setVisible(true);
-	p2.setVisible(true);
+	TopPanel.setVisible(true);
+	BottomPanel.setVisible(true);
+	StartGamePanel.setVisible(true);
+	TimerPanel.setVisible(true);
 	//adds them to main window, and allows them to take up the whole spot that was allocated to them in f's grid layout
-	f.add(p1,BorderLayout.CENTER);
-	f.add(p2,BorderLayout.CENTER);
+	f.add(TopPanel,BorderLayout.CENTER);
+	f.add(BottomPanel,BorderLayout.CENTER);
+	
+	
 	
 	//sets size = to 75% of screen size
 	f.setSize((int)(width*.75),(int)(height*.75));
@@ -73,9 +133,18 @@ public GUI() {
 	//making the frame visible  	
 	
 	f.setVisible(true);
+	
+	
+	f.addWindowListener(new WindowAdapter() {
+        public void windowClosing(WindowEvent windowEvent){
+           System.exit(0);
+        }
+	});
+
 	}
 
 
 	  
 }
+
 
