@@ -1,0 +1,8 @@
+****GUI rework branch****
+1. Create function to get all board information (like board size) and build board using buttons
+2. Use action listener on buttons and change content of the button
+3. Change background color to green if horizontal, vertical, diagonal buttons contain same value
+4. Add two dropboxes and start button to Bottom panel
+5. Add two labes (X and O) below or above dropboxes to identify which players to Bottom panel
+6. Add two timers to count amout if time left for player's turn to Bottom panel
+7. Add set timer button with pop up window to set timer for both players (at the bottom panel)
