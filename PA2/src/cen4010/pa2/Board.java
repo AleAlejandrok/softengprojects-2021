@@ -76,7 +76,7 @@ public class Board {
 	public static boolean gameDraw() { // checks for draws
 	    for (int i = 0; i < size; i++) {
 	        for (int j = 0; j < size; j++) {
-	            if (gameboard[i][j] == 0) {
+	            if (gameboard[i][j] == 0) { // since char is primitive type can't check for null, instead check if value is zero
 	                return false;
 	            }
 	        }
