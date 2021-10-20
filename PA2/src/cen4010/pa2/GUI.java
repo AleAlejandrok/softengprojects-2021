@@ -2,8 +2,6 @@ package cen4010.pa2;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.event.*;
-
-
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -11,13 +9,45 @@ import java.awt.event.ActionListener;
 public class GUI extends JFrame {
 
 JFrame f;
+JLabel timeDisplay1;
+JLabel timeDisplay2;
+String StartingTime="60";
+
+//add timer instantiation 
+	ActionListener gameEnderAL1 = new ActionListener() {
+      public void actionPerformed(ActionEvent evt) {
+          //end the game
+
+          
+      }
+	  };
+	  ActionListener gameEnderAL2 = new ActionListener() {
+	        public void actionPerformed(ActionEvent evt) {
+	            //end the game
+
+	            
+	        }
+		  };
+	  
+	  
+
+Timer timer1 = new Timer(Integer.parseInt(StartingTime) , gameEnderAL1);
+
+
+
+
+Timer timer2 = new Timer(Integer.parseInt(StartingTime) , gameEnderAL2);
+
+
+
+
 public GUI() {
 	//the window
 	f=new JFrame();
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
 	int height = screenSize.height;
 	int width = screenSize.width;
-	//instantiation of the board object
+	//instantiation of the board object (MxN)
 	Board b=new Board(3,3);
 	
 	//array of buttons that will be used to place x's and o's
@@ -44,23 +74,38 @@ public GUI() {
 			int o=i;
 			int l=j;
 			//defines a new function that will be performed when the button is pressed
-			ActionListener AL=new ActionListener() {
+			ActionListener ButtonAL=new ActionListener() {
 		         public void actionPerformed(ActionEvent e) {
 		        	 //if turn is odd, place an x
 		        	 if (b.turn_number%2==1) {
 		        		 buttons[o][l].setText("x");
 		        		 b.boardarray[o][l]='x';
+		        		 
+		        		 
+		        		 
+		        		 timer1.stop();
+		        		 timer2.start();
+		        		 
+		        		 
 		        	 }
 		        	 else {
 		         	buttons[o][l].setText("o");
 		         	b.boardarray[o][l]='o';
+		         	
+		         	
+		         	 timer2.stop();
+	        		 timer1.start();
+		         	
+		         	
+		         	
+		         	
 		        	 }
 		        	 //turn incrementer
 		         	b.turn_number++;
 		          }
 		       };
 		    //associates the function with the current button in the array 
-			buttons[i][j].addActionListener(AL);
+			buttons[i][j].addActionListener(ButtonAL);
 	}
 	}
 	//sets border so there is padding at the top and around the sides
@@ -70,7 +115,8 @@ public GUI() {
 	
 	//panel for timer and other accessories
 	JPanel BottomPanel = new JPanel();
-	BottomPanel.setLayout(new GridLayout(2, 1));
+	BottomPanel.setLayout(new GridLayout(2, 1,50,50));
+	
 	//creates border spacing
 	Border border2 = BottomPanel.getBorder();
 	Border margin2 = new EmptyBorder(10,150,150,150);
@@ -84,9 +130,22 @@ public GUI() {
 	JComboBox player1type= new JComboBox();
 	StartGamePanel.add(player1type);
 	
-	//used to start timer (maybe?)
-	JButton StartGameButton= new JButton("Start Game");
+	
+	
+	
+	//used to start timer and reset the board
+	JButton StartGameButton= new JButton("Start Game");	
 	StartGamePanel.add(StartGameButton);
+	 ActionListener StartGameAL = new ActionListener() {
+	        public void actionPerformed(ActionEvent evt) {
+	        	 timer1.start();
+
+	            
+	        }
+		  };
+	
+	
+	
 	
 	//player select 2
 	JComboBox player2type= new JComboBox();
@@ -96,20 +155,41 @@ public GUI() {
 	BottomPanel.add(StartGamePanel);
 	
 	
-	//timer panel
-	JPanel TimerPanel = new JPanel();
-	TimerPanel.setLayout(new GridLayout(1, 2,50,10));
-	
-	
-	//add timer logic
 	
 	
 	
+
 	
 	
 	
-	//add the bottom of the second half to the screen
-	BottomPanel.add(TimerPanel);
+	//add the timer displays to bottom of the second half to the screen
+	//text boxes?
+    
+  //timer panel
+  	JPanel TimerPanel = new JPanel();
+  	TimerPanel.setLayout(new GridLayout(1, 2,50,10));
+  	
+    timeDisplay1=new JLabel(StartingTime+" Seconds");
+   
+    timeDisplay1.setHorizontalAlignment(SwingConstants.CENTER);
+    timeDisplay1.setFont(new Font("DIALOG", Font.BOLD, 28));
+    timeDisplay1.setBorder(BorderFactory.createRaisedBevelBorder());
+    
+    timeDisplay2=new JLabel(StartingTime+" Seconds");
+    
+    timeDisplay2.setHorizontalAlignment(SwingConstants.CENTER);
+    timeDisplay2.setFont(new Font("DIALOG", Font.BOLD, 28));
+    timeDisplay2.setBorder(BorderFactory.createRaisedBevelBorder());
+
+    
+    
+    
+    
+    
+    
+    TimerPanel.add(timeDisplay1);
+    TimerPanel.add(timeDisplay2);
+    BottomPanel.add(TimerPanel);
 	
 	
 	

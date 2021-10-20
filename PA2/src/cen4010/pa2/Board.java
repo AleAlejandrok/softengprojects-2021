@@ -14,6 +14,7 @@ public class Board {
 		this.row = size;
 		this.col = size;
 	}
+<<<<<<< HEAD
 	
 	public static boolean playerWin(char[][] board, int[] move, char c) { // checks for winning combinations
 
@@ -72,6 +73,8 @@ public class Board {
 
 	    return i == size;
 	}
+=======
+>>>>>>> branch 'main' of https://github.com/UNF-CEN4010/T4
 
 	public static boolean gameDraw() { // checks for draws
 	    for (int i = 0; i < size; i++) {
