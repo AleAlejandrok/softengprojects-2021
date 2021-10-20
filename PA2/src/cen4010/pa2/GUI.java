@@ -2,8 +2,6 @@ package cen4010.pa2;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.event.*;
-
-
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -13,13 +11,43 @@ public class GUI extends JFrame {
 JFrame f;
 JLabel timeDisplay1;
 JLabel timeDisplay2;
+String StartingTime="60";
+
+//add timer instantiation 
+	ActionListener gameEnderAL1 = new ActionListener() {
+      public void actionPerformed(ActionEvent evt) {
+          //end the game
+
+          
+      }
+	  };
+	  ActionListener gameEnderAL2 = new ActionListener() {
+	        public void actionPerformed(ActionEvent evt) {
+	            //end the game
+
+	            
+	        }
+		  };
+	  
+	  
+
+Timer timer1 = new Timer(Integer.parseInt(StartingTime) , gameEnderAL1);
+
+
+
+
+Timer timer2 = new Timer(Integer.parseInt(StartingTime) , gameEnderAL2);
+
+
+
+
 public GUI() {
 	//the window
 	f=new JFrame();
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
 	int height = screenSize.height;
 	int width = screenSize.width;
-	//instantiation of the board object
+	//instantiation of the board object (MxN)
 	Board b=new Board(3,3);
 	
 	//array of buttons that will be used to place x's and o's
@@ -55,7 +83,8 @@ public GUI() {
 		        		 
 		        		 
 		        		 
-		        		 
+		        		 timer1.stop();
+		        		 timer2.start();
 		        		 
 		        		 
 		        	 }
@@ -64,7 +93,8 @@ public GUI() {
 		         	b.boardarray[o][l]='o';
 		         	
 		         	
-		         	
+		         	 timer2.stop();
+	        		 timer1.start();
 		         	
 		         	
 		         	
@@ -106,6 +136,15 @@ public GUI() {
 	//used to start timer and reset the board
 	JButton StartGameButton= new JButton("Start Game");	
 	StartGamePanel.add(StartGameButton);
+	 ActionListener StartGameAL = new ActionListener() {
+	        public void actionPerformed(ActionEvent evt) {
+	        	 timer1.start();
+
+	            
+	        }
+		  };
+	
+	
 	
 	
 	//player select 2
@@ -118,32 +157,8 @@ public GUI() {
 	
 	
 	
-	//add timer instantiation 
-	ActionListener gameEnderAL1 = new ActionListener() {
-        public void actionPerformed(ActionEvent evt) {
-            //end the game
-
-            
-        }
-	  };
-	  ActionListener gameEnderAL2 = new ActionListener() {
-	        public void actionPerformed(ActionEvent evt) {
-	            //end the game
-
-	            
-	        }
-		  };
-	  
-	  
-	Timer timer1 = new Timer(100 , gameEnderAL1);
-    timer1.setRepeats(false);
-    timer1.start();
 	
-    
-    Timer timer2 = new Timer(100 , gameEnderAL2);
-    timer2.setRepeats(false);
-    timer2.start();
-	
+
 	
 	
 	
@@ -154,18 +169,24 @@ public GUI() {
   	JPanel TimerPanel = new JPanel();
   	TimerPanel.setLayout(new GridLayout(1, 2,50,10));
   	
-    timeDisplay1=new JLabel("1");
+    timeDisplay1=new JLabel(StartingTime+" Seconds");
    
     timeDisplay1.setHorizontalAlignment(SwingConstants.CENTER);
     timeDisplay1.setFont(new Font("DIALOG", Font.BOLD, 28));
-    timeDisplay1.setBorder(BorderFactory.createLineBorder(Color.black));
+    timeDisplay1.setBorder(BorderFactory.createRaisedBevelBorder());
     
-    timeDisplay2=new JLabel("1");
+    timeDisplay2=new JLabel(StartingTime+" Seconds");
     
     timeDisplay2.setHorizontalAlignment(SwingConstants.CENTER);
     timeDisplay2.setFont(new Font("DIALOG", Font.BOLD, 28));
-    timeDisplay2.setBorder(BorderFactory.createLineBorder(Color.black));
+    timeDisplay2.setBorder(BorderFactory.createRaisedBevelBorder());
 
+    
+    
+    
+    
+    
+    
     TimerPanel.add(timeDisplay1);
     TimerPanel.add(timeDisplay2);
     BottomPanel.add(TimerPanel);
