@@ -16,6 +16,7 @@ public class GUI extends JFrame {
 JFrame Frame;
 JLabel timeDisplay1;
 JLabel timeDisplay2;
+Boolean game_started=false;
 public static int StartingTime=60;
 public static int player1time=StartingTime;
 public static int player2time=StartingTime;
@@ -112,7 +113,7 @@ public GUI() {
 			ActionListener ButtonAL=new ActionListener() {
 		         public void actionPerformed(ActionEvent e) {
 		        	 //if turn is odd, place an x
-		        	 if (b.gameboard[o][l]==0) {
+		        	 if (b.gameboard[o][l]==0 && game_started) {
 		        	 if (b.turn_number%2==1) {
 		        		 buttons[o][l].setText("X");
 		        		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
@@ -171,7 +172,7 @@ public GUI() {
 	 ActionListener StartGameAL = new ActionListener() {
 	        public void actionPerformed(ActionEvent evt) {
 	        	 timer1.start();
-	        	 
+	        	 game_started=true;
 	            
 	        }
 		  };
