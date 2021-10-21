@@ -4,6 +4,11 @@ import javax.swing.border.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Date;
 
 
 public class GUI extends JFrame {
@@ -11,16 +16,18 @@ public class GUI extends JFrame {
 JFrame Frame;
 JLabel timeDisplay1;
 JLabel timeDisplay2;
-String StartingTime="60";
-
+public static int StartingTime=60;
+public static int player1time=StartingTime;
+public static int player2time=StartingTime;
+Instant start = Instant.now();
+//long start = System.nanoTime();
 //add timer instantiation 
-	ActionListener gameEnderAL1 = new ActionListener() {
-      public void actionPerformed(ActionEvent evt) {
-          //end the game
-
-          
-      }
-	  };
+	
+	
+	
+	
+	
+	
 	  ActionListener gameEnderAL2 = new ActionListener() {
 	        public void actionPerformed(ActionEvent evt) {
 	            //end the game
@@ -30,11 +37,42 @@ String StartingTime="60";
 		  };
 	  
 	  
-
-Timer timer1 = new Timer(Integer.parseInt(StartingTime) , gameEnderAL1);
-Timer timer2 = new Timer(Integer.parseInt(StartingTime) , gameEnderAL2);
-
-
+		  
+		  Timer timer1 = new Timer(1000, new ActionListener() {
+		      @Override
+		      public void actionPerformed(ActionEvent e) {
+		    	  if (player1time>0)
+		          {
+		      
+		    		  player1time--;
+			          timeDisplay1.setText(player1time+"");
+			          repaint();
+		    	  }
+		    	  // time passes      
+		    	
+		          //timeDisplay1.setText((StartingTime-(int)elapsedTimeInSecond+1)+"");
+		         
+		      }
+		  });
+		  
+		  
+		  
+		  Timer timer2 = new Timer(1000, new ActionListener() {
+		      @Override
+		      public void actionPerformed(ActionEvent e) {
+		    	  if (player2time>0)
+		          {
+		      
+		    		  player2time--;
+			          timeDisplay2.setText(player2time+"");
+			          repaint();
+		    	  }
+		    	  // time passes      
+		    	
+		          //timeDisplay1.setText((StartingTime-(int)elapsedTimeInSecond+1)+"");
+		         
+		      }
+		  });
 
 
 public GUI() {
@@ -141,7 +179,7 @@ public GUI() {
 	 ActionListener StartGameAL = new ActionListener() {
 	        public void actionPerformed(ActionEvent evt) {
 	        	 timer1.start();
-
+	        	 
 	            
 	        }
 		  };
@@ -158,7 +196,7 @@ public GUI() {
   	TimerPanel.setLayout(new GridLayout(1, 2,50,10));
   	
   	//Time display for player 1
-    timeDisplay1=new JLabel(StartingTime);
+    timeDisplay1=new JLabel(StartingTime+"");
    
     timeDisplay1.setHorizontalAlignment(SwingConstants.CENTER);
     timeDisplay1.setFont(new Font("DIALOG", Font.BOLD, 28));
@@ -166,7 +204,7 @@ public GUI() {
     timeDisplay1.setOpaque(true);
     
     //Time display for player 2
-    timeDisplay2=new JLabel(StartingTime);
+    timeDisplay2=new JLabel(StartingTime+"");
     
     timeDisplay2.setHorizontalAlignment(SwingConstants.CENTER);
     timeDisplay2.setFont(new Font("DIALOG", Font.BOLD, 28));
