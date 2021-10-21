@@ -85,12 +85,9 @@ public GUI() {
 		        	 if (b.turn_number%2==1) {
 		        		 buttons[o][l].setText("x");
 		        		 b.gameboard[o][l]='x';
-		        		 
-		        		 
-		        		 
+
 		        		 timer1.stop();
-		        		 timer2.start();
-		        		 
+		        		 timer2.start();		    
 		        		 
 		        	 }
 		        	 else {
@@ -193,12 +190,7 @@ public GUI() {
 	
 	
 	
-	//sets panels to be visible
-	TopPanel.setVisible(true);
-	BottomPanel.setVisible(true);
-	StartGamePanel.setVisible(true);
-	TimerPanel.setVisible(true);
-	//adds them to main window, and allows them to take up the whole spot that was allocated to them in f's grid layout
+	//set visible
 	Frame.add(TopPanel);
 	Frame.add(BottomPanel);
 	Frame.setVisible(true);
