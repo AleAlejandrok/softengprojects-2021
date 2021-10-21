@@ -48,11 +48,7 @@ Instant start = Instant.now();
 			          timeDisplay1.setText(player1time+"");
 			          repaint();
 		    	  }
-		    	  // time passes      
-		    	
-		          //timeDisplay1.setText((StartingTime-(int)elapsedTimeInSecond+1)+"");
-		         
-		      }
+		     }
 		  });
 		  
 		  
@@ -67,10 +63,6 @@ Instant start = Instant.now();
 			          timeDisplay2.setText(player2time+"");
 			          repaint();
 		    	  }
-		    	  // time passes      
-		    	
-		          //timeDisplay1.setText((StartingTime-(int)elapsedTimeInSecond+1)+"");
-		         
 		      }
 		  });
 
@@ -120,6 +112,7 @@ public GUI() {
 			ActionListener ButtonAL=new ActionListener() {
 		         public void actionPerformed(ActionEvent e) {
 		        	 //if turn is odd, place an x
+		        	 if (b.gameboard[o][l]==0) {
 		        	 if (b.turn_number%2==1) {
 		        		 buttons[o][l].setText("x");
 		        		 b.gameboard[o][l]='x';
@@ -142,6 +135,7 @@ public GUI() {
 		        	 }
 		         	b.turn_number++;
 		          }
+		         }
 		       };
 			buttons[i][j].addActionListener(ButtonAL);
 	}
@@ -168,9 +162,6 @@ public GUI() {
 	JButton StartButton = new JButton("Start");
 	StartButton.setBackground(new Color(200,200,200));
 	StartButton.setOpaque(true);
-	PlayerList1.setBounds(20, 30, 100, 20);
-	PlayerList2.setBounds(365, 30, 100, 20);
-	StartButton.setBounds(200, 30, 100, 20);
 	BottomPanel.add(PlayerList1);
 	BottomPanel.add(StartButton);
 	BottomPanel.add(PlayerList2);
