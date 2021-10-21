@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class GUI extends JFrame {
 
-JFrame f;
+JFrame Frame;
 JLabel timeDisplay1;
 JLabel timeDisplay2;
 String StartingTime="60";
@@ -32,42 +32,44 @@ String StartingTime="60";
 	  
 
 Timer timer1 = new Timer(Integer.parseInt(StartingTime) , gameEnderAL1);
-
-
-
-
 Timer timer2 = new Timer(Integer.parseInt(StartingTime) , gameEnderAL2);
 
 
 
 
 public GUI() {
-	//the window
-	f=new JFrame();
+	/******************Frame Settings************************/
+	Frame=new JFrame();
+	Frame.setTitle("Tic Tac Toe");
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
 	int height = screenSize.height;
 	int width = screenSize.width;
-	//instantiation of the board object (MxN)
+	Frame.setSize(500,500); // size of app
+	Frame.setResizable(false);
+	Frame.setLayout(new GridLayout(2, 1));
+	/******************End Frame Settings************************/
+	
+	
+	
+	
+	/******************Board Instantiation************************/
 	Board b=new Board(3,3);
-	
-	//array of buttons that will be used to place x's and o's
 	JButton [][] buttons= new JButton[b.row][b.col];
+	/******************End Board Instantiation************************/
 	
-	//this is the array of buttons that makes the visualization of the board 
+	
+	/******************Top Panel************************/
 	JPanel TopPanel = new JPanel();
+	TopPanel.setLayout(new GridLayout(b.row,b.col,10,10));
+	TopPanel.setBackground(new Color(40,40,40));
+	TopPanel.setPreferredSize(new Dimension(100,100));
 	
-	//this sets the frames orientation... 2 rows, 1 column hence (2,1)
-	f.setLayout(new GridLayout(2, 1));
-
-	//sets a grid layout of the panel
-	//a panel is like a small window in a window
-	//set it to mxn size, with small padding in between the buttons
-	TopPanel.setLayout(new GridLayout(b.row,b.col,5,5));
-	
-	//insets buttons into mxn array and puts them in the panel 
 	for (int i = 0; i<b.row; i++) {
 		for (int j = 0; j<b.col;j++) {
 			buttons[i][j]=new JButton();
+			buttons[i][j].setBackground(Color.white);
+			buttons[i][j].setOpaque(true);
+			buttons[i][j].setBorderPainted(false);
 			TopPanel.add(buttons[i][j]);
 			
 			//variables are reassigned to fix scope issue
@@ -100,42 +102,42 @@ public GUI() {
 		         	
 		         	
 		        	 }
-		        	 //turn incrementer
 		         	b.turn_number++;
 		          }
 		       };
-		    //associates the function with the current button in the array 
 			buttons[i][j].addActionListener(ButtonAL);
 	}
 	}
-	//sets border so there is padding at the top and around the sides
-	Border border = TopPanel.getBorder();
-	Border margin = new EmptyBorder(50,10,10,10);
-	TopPanel.setBorder(new CompoundBorder(border, margin));
+	/******************End Top Panel************************/
 	
-	//panel for timer and other accessories
+	/******************Bottom Panel************************/
 	JPanel BottomPanel = new JPanel();
 	BottomPanel.setLayout(new GridLayout(2, 1,50,50));
-	
 	//creates border spacing
 	Border border2 = BottomPanel.getBorder();
 	Border margin2 = new EmptyBorder(10,150,150,150);
 	BottomPanel.setBorder(new CompoundBorder(border2, margin2));
 	
 	
+	
+	/*Start game and player select panel*/
 	JPanel StartGamePanel = new JPanel();
 	StartGamePanel.setLayout(new GridLayout(1, 3, 150,10));
 	
-	//player select 1
-	JComboBox player1type= new JComboBox();
-	StartGamePanel.add(player1type);
+	String[] player_list = {"Human"};
+	JComboBox PlayerList1 = new JComboBox(player_list);
+	JComboBox PlayerList2 = new JComboBox(player_list);
+	JButton StartButton = new JButton("Start");
+	StartButton.setBackground(new Color(200,200,200));
+	StartButton.setOpaque(true);
+	PlayerList1.setBounds(20, 30, 100, 20);
+	PlayerList2.setBounds(365, 30, 100, 20);
+	StartButton.setBounds(200, 30, 100, 20);
+	BottomPanel.add(PlayerList1);
+	BottomPanel.add(StartButton);
+	BottomPanel.add(PlayerList2);
+
 	
-	
-	
-	
-	//used to start timer and reset the board
-	JButton StartGameButton= new JButton("Start Game");	
-	StartGamePanel.add(StartGameButton);
 	 ActionListener StartGameAL = new ActionListener() {
 	        public void actionPerformed(ActionEvent evt) {
 	        	 timer1.start();
@@ -143,54 +145,39 @@ public GUI() {
 	            
 	        }
 		  };
-	
-	
-	
-	
-	//player select 2
-	JComboBox player2type= new JComboBox();
-	StartGamePanel.add(player2type);
-	
+	StartButton.addActionListener(StartGameAL);
+
 	//add the player select and game start buttons to the bottom half of the screen
 	BottomPanel.add(StartGamePanel);
+	/*End start game and player select panel*/
 	
 	
 	
-	
-	
-
-	
-	
-	
-	//add the timer displays to bottom of the second half to the screen
-	//text boxes?
-    
-  //timer panel
+	/*Timer Panel*/
   	JPanel TimerPanel = new JPanel();
   	TimerPanel.setLayout(new GridLayout(1, 2,50,10));
   	
-    timeDisplay1=new JLabel(StartingTime+" Seconds");
+  	//Time display for player 1
+    timeDisplay1=new JLabel(StartingTime);
    
     timeDisplay1.setHorizontalAlignment(SwingConstants.CENTER);
     timeDisplay1.setFont(new Font("DIALOG", Font.BOLD, 28));
-    timeDisplay1.setBorder(BorderFactory.createRaisedBevelBorder());
+    timeDisplay1.setBackground(new Color(200,200,200));
+    timeDisplay1.setOpaque(true);
     
-    timeDisplay2=new JLabel(StartingTime+" Seconds");
+    //Time display for player 2
+    timeDisplay2=new JLabel(StartingTime);
     
     timeDisplay2.setHorizontalAlignment(SwingConstants.CENTER);
     timeDisplay2.setFont(new Font("DIALOG", Font.BOLD, 28));
-    timeDisplay2.setBorder(BorderFactory.createRaisedBevelBorder());
-
-    
-    
-    
-    
-    
+    timeDisplay2.setBackground(new Color(200,200,200));
+    timeDisplay2.setOpaque(true);
     
     TimerPanel.add(timeDisplay1);
     TimerPanel.add(timeDisplay2);
     BottomPanel.add(TimerPanel);
-	
+    /*End Timer Panel*/
+    /******************End Bottom Panel************************/
 	
 	
 	
@@ -209,22 +196,22 @@ public GUI() {
 	StartGamePanel.setVisible(true);
 	TimerPanel.setVisible(true);
 	//adds them to main window, and allows them to take up the whole spot that was allocated to them in f's grid layout
-	f.add(TopPanel,BorderLayout.CENTER);
-	f.add(BottomPanel,BorderLayout.CENTER);
+	Frame.add(TopPanel,BorderLayout.CENTER);
+	Frame.add(BottomPanel,BorderLayout.CENTER);
 	
 	
 	
 	//sets size = to 75% of screen size
-	f.setSize((int)(width*.75),(int)(height*.75));
+	Frame.setSize((int)(width*.75),(int)(height*.75));
 	//spawns frame in center of the page
-	f.setLocationRelativeTo(null);
+	Frame.setLocationRelativeTo(null);
 	
 	//making the frame visible  	
 	
-	f.setVisible(true);
+	Frame.setVisible(true);
 	
 	//end program on close
-	f.addWindowListener(new WindowAdapter() {
+	Frame.addWindowListener(new WindowAdapter() {
         public void windowClosing(WindowEvent windowEvent){
            System.exit(0);
         }

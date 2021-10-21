@@ -10,9 +10,9 @@ public class Board {
 	public static int turn_number=1;
 	
 	public Board (int row, int col) {
-		Board.gameboard = new char [size][size];
-		this.row = size;
-		this.col = size;
+		Board.gameboard = new char [row][col];
+		this.row = row;
+		this.col = col;
 	}
 	
 	public static boolean playerWin(char[][] board, int[] move, char c) { // checks for winning combinations
