@@ -114,7 +114,8 @@ public GUI() {
 		        	 //if turn is odd, place an x
 		        	 if (b.gameboard[o][l]==0) {
 		        	 if (b.turn_number%2==1) {
-		        		 buttons[o][l].setText("x");
+		        		 buttons[o][l].setText("X");
+		        		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 		        		 b.gameboard[o][l]='x';
 
 		        		 timer1.stop();
@@ -122,9 +123,9 @@ public GUI() {
 		        		 
 		        	 }
 		        	 else {
-		         	buttons[o][l].setText("o");
+		         	buttons[o][l].setText("O");
 		         	b.gameboard[o][l]='o';
-		         	
+		         	buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 		         	
 		         	 timer2.stop();
 	        		 timer1.start();
