@@ -44,9 +44,12 @@ public GUI() {
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
 	int height = screenSize.height;
 	int width = screenSize.width;
-	Frame.setSize(500,500); // size of app
 	Frame.setResizable(false);
 	Frame.setLayout(new GridLayout(2, 1));
+	Frame.setSize((int)(width*.75),(int)(height*.75));
+	Frame.setLocationRelativeTo(null);
+	Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
 	/******************End Frame Settings************************/
 	
 	
@@ -196,27 +199,10 @@ public GUI() {
 	StartGamePanel.setVisible(true);
 	TimerPanel.setVisible(true);
 	//adds them to main window, and allows them to take up the whole spot that was allocated to them in f's grid layout
-	Frame.add(TopPanel,BorderLayout.CENTER);
-	Frame.add(BottomPanel,BorderLayout.CENTER);
-	
-	
-	
-	//sets size = to 75% of screen size
-	Frame.setSize((int)(width*.75),(int)(height*.75));
-	//spawns frame in center of the page
-	Frame.setLocationRelativeTo(null);
-	
-	//making the frame visible  	
-	
+	Frame.add(TopPanel);
+	Frame.add(BottomPanel);
 	Frame.setVisible(true);
 	
-	//end program on close
-	Frame.addWindowListener(new WindowAdapter() {
-        public void windowClosing(WindowEvent windowEvent){
-           System.exit(0);
-        }
-	});
-
 	}
 
 
