@@ -51,7 +51,7 @@ public GUI() {
 	Board b=new Board(3,3);
 	
 	//array of buttons that will be used to place x's and o's
-	JButton [][] buttons= new JButton[b.n][b.m];
+	JButton [][] buttons= new JButton[b.row][b.col];
 	
 	//this is the array of buttons that makes the visualization of the board 
 	JPanel TopPanel = new JPanel();
@@ -62,11 +62,11 @@ public GUI() {
 	//sets a grid layout of the panel
 	//a panel is like a small window in a window
 	//set it to mxn size, with small padding in between the buttons
-	TopPanel.setLayout(new GridLayout(b.n,b.m,5,5));
+	TopPanel.setLayout(new GridLayout(b.row,b.col,5,5));
 	
 	//insets buttons into mxn array and puts them in the panel 
-	for (int i = 0; i<b.n; i++) {
-		for (int j = 0; j<b.m;j++) {
+	for (int i = 0; i<b.row; i++) {
+		for (int j = 0; j<b.col;j++) {
 			buttons[i][j]=new JButton();
 			TopPanel.add(buttons[i][j]);
 			
@@ -79,7 +79,7 @@ public GUI() {
 		        	 //if turn is odd, place an x
 		        	 if (b.turn_number%2==1) {
 		        		 buttons[o][l].setText("x");
-		        		 b.boardarray[o][l]='x';
+		        		 b.gameboard[o][l]='x';
 		        		 
 		        		 
 		        		 
@@ -90,7 +90,7 @@ public GUI() {
 		        	 }
 		        	 else {
 		         	buttons[o][l].setText("o");
-		         	b.boardarray[o][l]='o';
+		         	b.gameboard[o][l]='o';
 		         	
 		         	
 		         	 timer2.stop();
