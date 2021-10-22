@@ -10,10 +10,11 @@
 ****Board****
 1. reorgonize board.java to make it more customizable for future
 2. make it so you cannot overwrite a non null square in board
+3. Board clear
 ****Logic****
 1. Create class which handles: wining conditions, box values and etc.
 
 
 ****Testing****
-1. Ask professor how to test gui 
+X. Ask professor how to test gui 
 2. Test everything else

@@ -16,7 +16,11 @@ public class Board {
 	}
 	
 	public static boolean playerWin(char[][] board, int[] move, char c) { // checks for winning combinations
-
+		/*Alejandro's Note: would this method scale upward for later revisions?
+		 * Would it not be prudent to check the for loops vs board.row and board.col now?
+		 * Pardon my ignorance
+		 */
+		
 	    // check rows
 	    for (int i = 0; i < size; i++) {
 	        if (board[i][0] == c) {
