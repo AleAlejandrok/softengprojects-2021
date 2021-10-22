@@ -7,7 +7,17 @@ import org.junit.jupiter.api.Test;
 class BoardTest {
 
 	@Test
-	void test() {
+	void testBoard() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	void testPlayerWin() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	void testGameDraw() {
 		fail("Not yet implemented"); // TODO
 	}
 
