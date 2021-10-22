@@ -120,8 +120,7 @@ public GUI() {
 		        		 b.gameboard[o][l]='x';
 
 		        		 timer1.stop();
-		        		 timer2.start();		    
-		        		 
+		        		 timer2.start();
 		        	 }
 		        	 else {
 		         	buttons[o][l].setText("O");
@@ -130,10 +129,6 @@ public GUI() {
 		         	
 		         	 timer2.stop();
 	        		 timer1.start();
-		         	
-		         	
-		         	
-		         	
 		        	 }
 		         	b.turn_number++;
 		          }
@@ -228,8 +223,40 @@ public GUI() {
 	
 	}
 
-
-	  
+	//****Popup Win Frame****//
+	private void PopupWin(String player) {
+		//****FRAME****//
+		Frame = new JFrame("Congratulations!");
+		Frame.setSize(400,200);
+		Frame.setResizable(false);
+		Frame.setLocationRelativeTo(null);
+		Frame.setLayout(null);
+		
+		//****TEXT LABEL****//
+		JLabel Text = new JLabel();
+		Text.setBounds(0, 0, 400, 100);
+		Text.setHorizontalAlignment(SwingConstants.CENTER);
+		Text.setFont(new Font("DIALOG", Font.BOLD, 20));
+		Text.setText("Congratulation, player \"" + player + "\" has won!");
+		
+		//****RESET BUTTON****//
+		JButton ResetButton = new JButton();
+		ResetButton.setBounds(150, 100, 100, 20);
+		ResetButton.setFont(new Font("DIALOG", Font.BOLD, 15));
+		ResetButton.setText("RESET");
+		ResetButton.setFocusPainted(false);
+		ResetButton.addActionListener(new ActionListener() {
+	         public void actionPerformed(ActionEvent e) {
+	        	 // DO RESET
+	          }
+	       });
+		
+		//****DRAW FRAME****//
+		Frame.add(Text);
+		Frame.add(ResetButton);
+		Frame.setVisible(true);
+	}
+	//**********************//
 }
 
 
