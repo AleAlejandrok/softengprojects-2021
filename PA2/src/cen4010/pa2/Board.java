@@ -33,14 +33,8 @@ public class Board {
 	    // checks if space is available
 	    return (gameboard[x][y] == 0);
 	}
-
-	
-<<<<<<< HEAD
 	public static boolean playerWin(char[][] board, char c) { // checks for winning combinations
 
-=======
-	public static boolean playerWin(char c) { // checks for winning combinations
->>>>>>> branch 'main' of https://github.com/UNF-CEN4010/T4
 	    // check horizontal
 	    for (int i = 0; i < m; i++) {
 	        if (gameboard[i][0] == c) {
