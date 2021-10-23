@@ -88,18 +88,18 @@ public GUI() {
 	
 	/******************Board Instantiation************************/
 	Board b=new Board(3,3);
-	JButton [][] buttons= new JButton[b.row][b.col];
+	JButton [][] buttons= new JButton[b.m][b.n];
 	/******************End Board Instantiation************************/
 	
 	
 	/******************Top Panel************************/
 	JPanel TopPanel = new JPanel();
-	TopPanel.setLayout(new GridLayout(b.row,b.col,10,10));
+	TopPanel.setLayout(new GridLayout(b.m,b.n,10,10));
 	TopPanel.setBackground(new Color(40,40,40));
 	TopPanel.setPreferredSize(new Dimension(100,100));
 	
-	for (int i = 0; i<b.row; i++) {
-		for (int j = 0; j<b.col;j++) {
+	for (int i = 0; i<b.m; i++) {
+		for (int j = 0; j<b.n;j++) {
 			buttons[i][j]=new JButton();
 			buttons[i][j].setBackground(Color.white);
 			buttons[i][j].setOpaque(true);
