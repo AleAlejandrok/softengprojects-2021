@@ -33,6 +33,7 @@ public class Board {
 	    // checks if space is available
 	    return (gameboard[x][y] == 0);
 	}
+	
 	public static boolean playerWin(char c) { // checks for winning combinations
 
 	    // check horizontal
