@@ -291,7 +291,7 @@ public GUI() {
 		ResetButton.addActionListener(new ActionListener() {
 	         public void actionPerformed(ActionEvent e) {
 	        	 Frame.dispose();
-	        	 GUI g= new GUI();
+	        	 //GUI g= new GUI();
 	        	 // DO RESET
 	          }
 	        

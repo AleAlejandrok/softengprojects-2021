@@ -33,7 +33,7 @@ public class Board {
 	    // checks if space is available
 	    return (gameboard[x][y] == 0);
 	}
-	public static boolean playerWin(char[][] board, char c) { // checks for winning combinations
+	public static boolean playerWin(char c) { // checks for winning combinations
 
 	    // check horizontal
 	    for (int i = 0; i < m; i++) {
@@ -70,11 +70,11 @@ public class Board {
 	    }
 	  
 	    //Check diagonals
-	  	if(board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] == c) {
+	  	if(gameboard[0][0] == gameboard[1][1] && gameboard[1][1] == gameboard[2][2] && gameboard[0][0] == c) {
 	  			return true;
 	  	}
 	  	
-	  	if(board[2][0] == board[1][1] && board[1][1] ==  board[0][2] && board[2][0] != c) {
+	  	if(gameboard[2][0] == gameboard[1][1] && gameboard[1][1] ==  gameboard[0][2] && gameboard[2][0] == c) {
 	  			return true;
 	  	}
 	  	
