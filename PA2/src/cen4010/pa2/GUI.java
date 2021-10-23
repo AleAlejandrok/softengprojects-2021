@@ -99,6 +99,7 @@ public GUI() {
 			buttons[i][j].setBackground(Color.white);
 			buttons[i][j].setOpaque(true);
 			buttons[i][j].setBorderPainted(false);
+			buttons[i][j].setFocusPainted(false);
 			TopPanel.add(buttons[i][j]);
 			
 			//variables are reassigned to fix scope issue
@@ -120,16 +121,27 @@ public GUI() {
 		        		 timer2.start();
 		        	 
 		        		 if (Board.playerWin('x')) {
-				         		PopupWin("1");
+		        			 for (int i = 0; i<b.m; i++) {
+					        		for (int j = 0; j<b.n;j++) {
+					        			buttons[i][j].setEnabled(false);
+					        		}
+		        			 }
+		        			 PopupWin("1");
 				         		timer1.stop();
 				        		timer2.stop();
 				         	}
 				         	if (Board.gameDraw()) {				         		
+				         		for (int i = 0; i<b.m; i++) {
+					        		for (int j = 0; j<b.n;j++) {
+					        			buttons[i][j].setEnabled(false);
+					        		}
+				         		}
 				         		PopupWin("0");
 				         		timer1.stop();
 				        		timer2.stop();
 				         	}
-		
+				         	
+				         	
 		        	 
 		        	 }
 		        	 else {
@@ -189,7 +201,9 @@ public GUI() {
 	
 	String[] player_list = {"Human"};
 	JComboBox PlayerList1 = new JComboBox(player_list);
+	PlayerList1.setFocusable(false);
 	JComboBox PlayerList2 = new JComboBox(player_list);
+	PlayerList2.setFocusable(false);
 	JButton StartButton = new JButton("Start");
 	StartButton.setBackground(new Color(200,200,200));
 	StartButton.setOpaque(true);
@@ -265,21 +279,23 @@ public GUI() {
 		Frame.setSize(400,200);
 		Frame.setResizable(false);
 		Frame.setLocationRelativeTo(null);
-		Frame.setLayout(null);
+		Frame.setLayout(new GridLayout(1, 1));
 		
 		//****TEXT LABEL****//
 	
 		JLabel Text = new JLabel();
-		Text.setBounds(0, 0, 400, 100);
+		//Text.setBounds(0, 100, 400, 100);
 		Text.setHorizontalAlignment(SwingConstants.CENTER);
 		Text.setFont(new Font("DIALOG", Font.BOLD, 14));
 		
 		
 		
 		if (player.equals("0")) {
-			Text.setText("The game has drawn!");
+			Frame.setTitle("Game Over...");
+			Text.setText("The game has drawn.");
 		}
 		else {
+			
 		Text.setText("Congratulations, player \"" + player + "\" has won!");
 		}
 		//****RESET BUTTON****//
@@ -299,7 +315,7 @@ public GUI() {
 		
 		//****DRAW FRAME****//
 		Frame.add(Text);
-		Frame.add(ResetButton);
+		//Frame.add(ResetButton);
 		Frame.setVisible(true);
 	}
 	//**********************//
