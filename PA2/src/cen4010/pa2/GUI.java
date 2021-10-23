@@ -323,7 +323,7 @@ public GUI() {
 		else
 		if (player.equals("-1")) {
 			Frame.setTitle("Too slow...");
-			Text.setText("Player 2 ran out of time... PLayer 1 wins!");
+			Text.setText("Player 2 ran out of time... Player 1 wins!");
 		}
 		else
 		if (player.equals("0")) {
