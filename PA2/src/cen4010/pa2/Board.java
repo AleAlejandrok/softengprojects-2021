@@ -6,7 +6,7 @@ public class Board {
 	public static char c; // either x or o mark
 	public static int m; // rows
 	public static int n; // columns
-	public static int k; // score to win
+	public static int k=3; // score to win
 	public static int turn_number=1;
 	
 	public Board (int m, int n) { // board constructor
@@ -35,7 +35,7 @@ public class Board {
 	}
 
 	
-	public static boolean playerWin(char[][] board, int[] move, char c) { // checks for winning combinations
+	public static boolean playerWin(char[][] board, char c) { // checks for winning combinations
 
 	    // check horizontal
 	    for (int i = 0; i < m; i++) {
@@ -70,11 +70,21 @@ public class Board {
 	            }
 	        }
 	    }
-	    checkDiagonals(c);
+	  
+	    //Check diagonals
+	  	if(board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] == c) {
+	  			return true;
+	  	}
+	  	
+	  	if(board[2][0] == board[1][1] && board[1][1] ==  board[0][2] && board[2][0] != c) {
+	  			return true;
+	  	}
+	  	
+	    //checkDiagonals(c);
 	    return false;
 	}
 	
-	
+	/* work in progress
 	public static boolean checkDiagonals(char playerMark) { // checks diagonals for winning condition
 
 		// running down and right
@@ -112,7 +122,7 @@ public class Board {
 		}
 
 		return false;
-		}
+		}*/
 	
 	public static boolean gameDraw() { // checks for draw condition
 	    for (int i = 0; i < m; i++) {
