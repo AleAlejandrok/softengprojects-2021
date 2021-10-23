@@ -6,7 +6,7 @@ public class Board {
 	public static char c; // either x or o mark
 	public static int m; // rows
 	public static int n; // columns
-	public static int k; // score to win
+	public static int k=3; // score to win
 	public static int turn_number=1;
 	
 	public Board (int m, int n) { // board constructor
@@ -35,15 +35,14 @@ public class Board {
 	}
 
 	
-	public static boolean playerWin(char[][] board, int[] move, char c) { // checks for winning combinations
-
+	public static boolean playerWin(char c) { // checks for winning combinations
 	    // check horizontal
 	    for (int i = 0; i < m; i++) {
-	        if (board[i][0] == c) {
+	        if (gameboard[i][0] == c) {
 	            int j;
 
 	            for (j = 1; j < n; j++) {
-	                if (!(board[i][j] == c)) {
+	                if (!(gameboard[i][j] == c)) {
 	                    break;
 	                }
 	            }
@@ -56,11 +55,11 @@ public class Board {
 
 	    // check vertical
 	    for (int i = 0; i < m; i++) {
-	        if (board[0][i] == c) {
+	        if (gameboard[0][i] == c) {
 	            int j;
 
 	            for (j = 1; j < n; j++) {
-	                if (!(board[j][i] == c)) {
+	                if (!(gameboard[j][i] == c)) {
 	                    break;
 	                }
 	            }

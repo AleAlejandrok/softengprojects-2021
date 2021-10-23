@@ -11,7 +11,7 @@ class BoardTest {
 	@Test
 	void testBoard() {
 		Board testBoard1 = new Board (3,3);
-		if(testBoard1.row == 3 && testBoard1.col == 3)
+		if(testBoard1.m == 3 && testBoard1.n == 3)
 			return;
 		else 
 			fail();
