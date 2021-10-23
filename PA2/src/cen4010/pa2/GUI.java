@@ -17,7 +17,7 @@ JFrame Frame;
 JLabel timeDisplay1;
 JLabel timeDisplay2;
 Boolean game_started=false;
-public static int StartingTime=60;
+public static int StartingTime=5;
 public static int player1time=StartingTime;
 public static int player2time=StartingTime;
 
@@ -115,11 +115,23 @@ public GUI() {
 		        		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 		        		 Board.gameboard[o][l]='x';
 		        		 
-		        		
 		        		 
 		        		 timer1.stop();
 		        		 timer2.start();
 		        	 
+		        		 //player 1 timeout
+		        		 if (player1time==0) {
+		        			 for (int i = 0; i<b.m; i++) {
+					        		for (int j = 0; j<b.n;j++) {
+					        			buttons[i][j].setEnabled(false);
+					        		}
+		        			 }
+		        			 PopupWin("-2");
+				         		timer1.stop();
+				        		timer2.stop();
+
+			        		}
+		        		 else
 		        		 if (Board.playerWin('x')) {
 		        			 for (int i = 0; i<b.m; i++) {
 					        		for (int j = 0; j<b.n;j++) {
@@ -150,26 +162,41 @@ public GUI() {
 		         	b.gameboard[o][l]='o';
 		         	buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 		         	
-		         	if (Board.playerWin('o')) {
-		         		PopupWin("2");
-		         	}
-		         	if (Board.gameDraw()) {
-		         		PopupWin("0");
-		         	}
 		         	
 		         	
+		                  	
 		         	
 		         	 timer2.stop();
 	        		 timer1.start();
-	        		 
-	        		 
-	        		 
-	        		 if (Board.playerWin('x')) {
-			         		PopupWin("1");
+	        		 //player 2 timeout
+	        		 if (player2time==0) {
+	        			 for (int i = 0; i<b.m; i++) {
+				        		for (int j = 0; j<b.n;j++) {
+				        			buttons[i][j].setEnabled(false);
+				        		}
+	        			 }
+	        			 PopupWin("-1");
+			         		timer1.stop();
+			        		timer2.stop();
+
+		        		}
+	        		 else //this else is to prevent a player from running out of time, then placing a winning move after.
+	        		 if (Board.playerWin('o')) {
+	        			 for (int i = 0; i<b.m; i++) {
+				        		for (int j = 0; j<b.n;j++) {
+				        			buttons[i][j].setEnabled(false);
+				        		}
+	        			 }
+	        			 PopupWin("2");
 			         		timer1.stop();
 			        		timer2.stop();
 			         	}
 			         	if (Board.gameDraw()) {				         		
+			         		for (int i = 0; i<b.m; i++) {
+				        		for (int j = 0; j<b.n;j++) {
+				        			buttons[i][j].setEnabled(false);
+				        		}
+			         		}
 			         		PopupWin("0");
 			         		timer1.stop();
 			        		timer2.stop();
@@ -289,13 +316,21 @@ public GUI() {
 		Text.setFont(new Font("DIALOG", Font.BOLD, 14));
 		
 		
-		
+		if (player.equals("-2")) {
+			Frame.setTitle("Too slow...");
+			Text.setText("Player 1 ran out of time... Player 2 wins!");
+		}
+		else
+		if (player.equals("-1")) {
+			Frame.setTitle("Too slow...");
+			Text.setText("Player 2 ran out of time... PLayer 1 wins!");
+		}
+		else
 		if (player.equals("0")) {
 			Frame.setTitle("Game Over...");
 			Text.setText("The game has drawn.");
 		}
 		else {
-			
 		Text.setText("Congratulations, player \"" + player + "\" has won!");
 		}
 		//****RESET BUTTON****//
