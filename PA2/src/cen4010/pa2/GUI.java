@@ -20,7 +20,7 @@ Boolean game_started=false;
 public static int StartingTime=60;
 public static int player1time=StartingTime;
 public static int player2time=StartingTime;
-Instant start = Instant.now();
+
 //long start = System.nanoTime();
 //add timer instantiation 
 	
@@ -29,13 +29,7 @@ Instant start = Instant.now();
 	
 	
 	
-	  ActionListener gameEnderAL2 = new ActionListener() {
-	        public void actionPerformed(ActionEvent evt) {
-	            //end the game
-
-	            
-	        }
-		  };
+	  
 	  
 	  
 		  
@@ -61,6 +55,7 @@ Instant start = Instant.now();
 		          {
 		      
 		    		  player2time--;
+		    		  
 			          timeDisplay2.setText(player2time+"");
 			          repaint();
 		    	  }
@@ -113,22 +108,61 @@ public GUI() {
 			ActionListener ButtonAL=new ActionListener() {
 		         public void actionPerformed(ActionEvent e) {
 		        	 //if turn is odd, place an x
-		        	 if (b.gameboard[o][l]==0 && game_started) {
-		        	 if (b.turn_number%2==1) {
+		        	 if (Board.gameboard[o][l]==0 && game_started) {
+		        	 if (Board.turn_number%2==1) {
 		        		 buttons[o][l].setText("X");
 		        		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
-		        		 b.gameboard[o][l]='x';
-
+		        		 Board.gameboard[o][l]='x';
+		        		 
+		        		
+		        		 
 		        		 timer1.stop();
 		        		 timer2.start();
+		        	 
+		        		 if (Board.playerWin('x')) {
+				         		PopupWin("1");
+				         		timer1.stop();
+				        		timer2.stop();
+				         	}
+				         	if (Board.gameDraw()) {				         		
+				         		PopupWin("0");
+				         		timer1.stop();
+				        		timer2.stop();
+				         	}
+		
+		        	 
 		        	 }
 		        	 else {
+		        		 
 		         	buttons[o][l].setText("O");
 		         	b.gameboard[o][l]='o';
 		         	buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 		         	
+		         	if (Board.playerWin('o')) {
+		         		PopupWin("2");
+		         	}
+		         	if (Board.gameDraw()) {
+		         		PopupWin("0");
+		         	}
+		         	
+		         	
+		         	
 		         	 timer2.stop();
 	        		 timer1.start();
+	        		 
+	        		 
+	        		 
+	        		 if (Board.playerWin('x')) {
+			         		PopupWin("1");
+			         		timer1.stop();
+			        		timer2.stop();
+			         	}
+			         	if (Board.gameDraw()) {				         		
+			         		PopupWin("0");
+			         		timer1.stop();
+			        		timer2.stop();
+			         	}
+			         	
 		        	 }
 		         	b.turn_number++;
 		          }
@@ -225,6 +259,7 @@ public GUI() {
 
 	//****Popup Win Frame****//
 	private void PopupWin(String player) {
+		
 		//****FRAME****//
 		Frame = new JFrame("Congratulations!");
 		Frame.setSize(400,200);
@@ -233,12 +268,20 @@ public GUI() {
 		Frame.setLayout(null);
 		
 		//****TEXT LABEL****//
+	
 		JLabel Text = new JLabel();
 		Text.setBounds(0, 0, 400, 100);
 		Text.setHorizontalAlignment(SwingConstants.CENTER);
-		Text.setFont(new Font("DIALOG", Font.BOLD, 20));
-		Text.setText("Congratulation, player \"" + player + "\" has won!");
+		Text.setFont(new Font("DIALOG", Font.BOLD, 14));
 		
+		
+		
+		if (player.equals("0")) {
+			Text.setText("The game has drawn!");
+		}
+		else {
+		Text.setText("Congratulations, player \"" + player + "\" has won!");
+		}
 		//****RESET BUTTON****//
 		JButton ResetButton = new JButton();
 		ResetButton.setBounds(150, 100, 100, 20);
@@ -247,8 +290,11 @@ public GUI() {
 		ResetButton.setFocusPainted(false);
 		ResetButton.addActionListener(new ActionListener() {
 	         public void actionPerformed(ActionEvent e) {
+	        	 Frame.dispose();
+	        	 GUI g= new GUI();
 	        	 // DO RESET
 	          }
+	        
 	       });
 		
 		//****DRAW FRAME****//

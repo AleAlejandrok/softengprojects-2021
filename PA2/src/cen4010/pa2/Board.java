@@ -35,15 +35,19 @@ public class Board {
 	}
 
 	
+<<<<<<< HEAD
 	public static boolean playerWin(char[][] board, char c) { // checks for winning combinations
 
+=======
+	public static boolean playerWin(char c) { // checks for winning combinations
+>>>>>>> branch 'main' of https://github.com/UNF-CEN4010/T4
 	    // check horizontal
 	    for (int i = 0; i < m; i++) {
-	        if (board[i][0] == c) {
+	        if (gameboard[i][0] == c) {
 	            int j;
 
 	            for (j = 1; j < n; j++) {
-	                if (!(board[i][j] == c)) {
+	                if (!(gameboard[i][j] == c)) {
 	                    break;
 	                }
 	            }
@@ -56,11 +60,11 @@ public class Board {
 
 	    // check vertical
 	    for (int i = 0; i < m; i++) {
-	        if (board[0][i] == c) {
+	        if (gameboard[0][i] == c) {
 	            int j;
 
 	            for (j = 1; j < n; j++) {
-	                if (!(board[j][i] == c)) {
+	                if (!(gameboard[j][i] == c)) {
 	                    break;
 	                }
 	            }
