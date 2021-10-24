@@ -20,9 +20,9 @@ class BoardTest {
 	@Test
 	void testPlayerWin() {
 		Board testBoard = new Board(3,3);
-		Board.gameboard [0] [1] = 'x';
-		Board.gameboard [0] [2] = 'x';
-		Board.gameboard [0] [3] = 'x';
+		testBoard.gameboard [0] [0] = 'x';
+		testBoard.gameboard [0] [1] = 'x';
+		testBoard.gameboard [0] [2] = 'x';
 		if(Board.playerWin('x'))
 			return;
 		else 

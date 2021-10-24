@@ -18,7 +18,7 @@ JLabel timeDisplay1;
 JLabel timeDisplay2;
 Boolean game_started=false;
 Boolean game_stopped=false;
-public static int StartingTime=50;
+public static int StartingTime=30;
 public static int player1time=StartingTime;
 public static int player2time=StartingTime;
 
