@@ -22,9 +22,6 @@ public static int StartingTime=30;
 public static int player1time=StartingTime;
 public static int player2time=StartingTime;
 
-//long start = System.nanoTime();
-//add timer instantiation 
-	
 	
 	
 	
@@ -33,7 +30,7 @@ public static int player2time=StartingTime;
 	  
 	  
 	  
-		  
+		  //player 1 timer
 		  Timer timer1 = new Timer(1000, new ActionListener() {
 		      @Override
 		      public void actionPerformed(ActionEvent e) {
@@ -48,7 +45,7 @@ public static int player2time=StartingTime;
 		  });
 		  
 		  
-		  
+		  //player 2 timer
 		  Timer timer2 = new Timer(1000, new ActionListener() {
 		      @Override
 		      public void actionPerformed(ActionEvent e) {
