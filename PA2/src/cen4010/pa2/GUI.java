@@ -142,7 +142,7 @@ public GUI() {
 				         		timer1.stop();
 				        		timer2.stop();
 				         	}
-				         	if (Board.gameDraw()) {				         		
+		        		 	else if (Board.gameDraw()) {				         		
 				         		for (int i = 0; i<b.m; i++) {
 					        		for (int j = 0; j<b.n;j++) {
 					        			buttons[i][j].setEnabled(false);
@@ -191,7 +191,7 @@ public GUI() {
 			         		timer1.stop();
 			        		timer2.stop();
 			         	}
-			         	if (Board.gameDraw()) {				         		
+	        		 	else if (Board.gameDraw()) {				         		
 			         		for (int i = 0; i<b.m; i++) {
 				        		for (int j = 0; j<b.n;j++) {
 				        			buttons[i][j].setEnabled(false);
