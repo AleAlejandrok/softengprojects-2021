@@ -20,9 +20,9 @@ class BoardTest {
 	@Test
 	void testPlayerWin() {
 		Board testBoard = new Board(3,3);
+		Board.gameboard [0] [0] = 'x';
 		Board.gameboard [0] [1] = 'x';
 		Board.gameboard [0] [2] = 'x';
-		Board.gameboard [0] [3] = 'x';
 		if(Board.playerWin('x'))
 			return;
 		else 
@@ -36,7 +36,9 @@ class BoardTest {
 		int j;
 		for(i=0; i < Board.m; i++)
 			for(j= 0; j<Board.n; j++)
-				Board.gameboard[i][j]= 'z';
+				Board.gameboard[i][
+				                   
+				                   j]= 'z';
 		if(Board.gameDraw())
 			return;
 		else
