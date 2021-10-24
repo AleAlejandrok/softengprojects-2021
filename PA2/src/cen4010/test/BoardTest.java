@@ -10,23 +10,45 @@ class BoardTest {
 
 	@Test
 	void testBoard() {
-		Board testBoard1 = new Board (3,3);
-		if(testBoard1.m == 3 && testBoard1.n == 3)
-			return;
-		else 
-			fail();
+		
+	
+		
+	}
+
+	@Test
+	void testSetBoard() {
+		Board testBoard = new Board(3,3);
+		
+		int i = 0;
+		int j = 0;
+		for(i = 0; i < 3; i++);
+			for(j = 0; j < 3; j++) {
+				Board.gameboard [i] [j] = 'x';
+				
+			}
+		Board.setBoard();
+		for(i = 0; i < Board.m; i++);
+			for(j = 0; j < Board.n; j++) {
+				if(Board.gameboard [i] [j] != 0)
+					fail();
+			
+		}
+		return;
+	}
+
+	@Test
+	void testIsValidMove() {
+		fail("Not yet implemented");
 	}
 
 	@Test
 	void testPlayerWin() {
-		//Test cases: set column 1 2 3 to all xs and os, set row 1 2 3 to xs and os, set both diagnals to xs and os,
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented");
 	}
 
 	@Test
 	void testGameDraw() {
-		//Fill the board with non-winnable state, test
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented");
 	}
 
 }
