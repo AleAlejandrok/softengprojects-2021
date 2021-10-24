@@ -17,6 +17,7 @@ JFrame Frame;
 JLabel timeDisplay1;
 JLabel timeDisplay2;
 Boolean game_started=false;
+Boolean game_stopped=false;
 public static int StartingTime=50;
 public static int player1time=StartingTime;
 public static int player2time=StartingTime;
@@ -127,6 +128,7 @@ public GUI() {
 					        		}
 		        			 }
 		        			 PopupWin("-2");
+		        			 	game_stopped=true;
 				         		timer1.stop();
 				        		timer2.stop();
 
@@ -139,6 +141,7 @@ public GUI() {
 					        		}
 		        			 }
 		        			 PopupWin("1");
+		        			 game_stopped=true;
 				         		timer1.stop();
 				        		timer2.stop();
 				         	}
@@ -149,6 +152,7 @@ public GUI() {
 					        		}
 				         		}
 				         		PopupWin("0");
+				         		game_stopped=true;
 				         		timer1.stop();
 				        		timer2.stop();
 				         	}
@@ -176,6 +180,7 @@ public GUI() {
 				        		}
 	        			 }
 	        			 PopupWin("-1");
+	        			 game_stopped=true;
 			         		timer1.stop();
 			        		timer2.stop();
 
@@ -188,6 +193,7 @@ public GUI() {
 				        		}
 	        			 }
 	        			 PopupWin("2");
+	        			 game_stopped=true;
 			         		timer1.stop();
 			        		timer2.stop();
 			         	}
@@ -198,6 +204,7 @@ public GUI() {
 				        		}
 			         		}
 			         		PopupWin("0");
+			         		game_stopped=true;
 			         		timer1.stop();
 			        		timer2.stop();
 			         	}
@@ -241,8 +248,11 @@ public GUI() {
 	
 	 ActionListener StartGameAL = new ActionListener() {
 	        public void actionPerformed(ActionEvent evt) {
-	        	 timer1.start();
-	        	 game_started=true;
+	        	if (!game_stopped)
+	        	 {
+	        		 timer1.start();
+		        	 game_started=true; 
+	        	 }
 	            
 	        }
 		  };
@@ -355,5 +365,4 @@ public GUI() {
 	}
 	//**********************//
 }
-
 
