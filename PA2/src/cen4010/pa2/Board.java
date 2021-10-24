@@ -14,7 +14,7 @@ public class Board {
 		Board.m = m;
 		Board.n = n;
 	}
-	
+	/*
 	public static void setBoard() { // initializes board to 0s
 	    for (int i = 0; i < m; i++) {
 	        for (int j = 0; j < n; j++) {
@@ -22,7 +22,8 @@ public class Board {
 	        }
 	    }
 	}
-	
+	*/
+	/*
 	public static boolean isValidMove(int x, int y) {
 
 	    // checks if in bounds
@@ -33,6 +34,7 @@ public class Board {
 	    // checks if space is available
 	    return (gameboard[x][y] == 0);
 	}
+	*/
 	
 	public static boolean playerWin(char c) { // checks for winning combinations
 
