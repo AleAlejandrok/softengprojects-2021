@@ -36,9 +36,7 @@ class BoardTest {
 		int j;
 		for(i=0; i < Board.m; i++)
 			for(j= 0; j<Board.n; j++)
-				Board.gameboard[i][
-				                   
-				                   j]= 'z';
+				Board.gameboard[i][j]= 'z';
 		if(Board.gameDraw())
 			return;
 		else

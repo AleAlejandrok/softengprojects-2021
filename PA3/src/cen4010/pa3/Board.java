@@ -1,5 +1,6 @@
 package cen4010.pa3;
 
+
 public class Board {
 	
 	public static char gameboard[][]; // 2D array game board
@@ -136,5 +137,5 @@ public class Board {
 
 	    return true;
 	}
-	
 }
+	
