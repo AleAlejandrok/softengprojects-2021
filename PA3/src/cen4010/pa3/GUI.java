@@ -12,7 +12,7 @@ import java.util.Date;
 
 
 public class GUI extends JFrame {
-
+Board b;
 JFrame Frame;
 JLabel timeDisplay1;
 JLabel timeDisplay2;
@@ -40,6 +40,10 @@ public static int player2time=StartingTime;
 		    		  player1time--;
 			          timeDisplay1.setText(player1time+"");
 			          repaint();
+			          
+			           
+			          
+			          
 		    	  }
 		     }
 		  });
@@ -106,8 +110,15 @@ public GUI() {
 			//defines a new function that will be performed when the button is pressed
 			ActionListener ButtonAL=new ActionListener() {
 		         public void actionPerformed(ActionEvent e) {
-		        	 //if turn is odd, place an x
+		        	 
+		        	 
+		        	 
 		        	 if (Board.gameboard[o][l]==0 && game_started) {
+		        		
+		        		 
+		        		 
+		        		 
+		        		//if turn is odd, place an x	 
 		        	 if (Board.turn_number%2==1) {
 		        		 buttons[o][l].setText("X");
 		        		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
@@ -116,7 +127,12 @@ public GUI() {
 		        		 
 		        		 timer1.stop();
 		        		 timer2.start();
-		        	 
+		        		 
+		        		 
+		        		 //if player2 is a robot... do turn... increment turn number
+		        		 
+		        		 
+		        		 
 		        		 //player 1 timeout
 		        		 if (player1time==0) {
 		        			 for (int i = 0; i<b.m; i++) {
@@ -163,8 +179,8 @@ public GUI() {
 		         	b.gameboard[o][l]='o';
 		         	buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 		         	
-		         	
-		         	
+		         	//if player1 is a robot... do turn... increment turn number
+		         	//(harder AI) loop checking all spaces for a winning combo for either player
 		                  	
 		         	
 		         	 timer2.stop();
@@ -230,7 +246,7 @@ public GUI() {
 	JPanel StartGamePanel = new JPanel();
 	StartGamePanel.setLayout(new GridLayout(1, 3, 150,10));
 	
-	String[] player_list = {"Human"};
+	String[] player_list = {"Human", "Computer"};
 	JComboBox PlayerList1 = new JComboBox(player_list);
 	PlayerList1.setFocusable(false);
 	JComboBox PlayerList2 = new JComboBox(player_list);
@@ -242,6 +258,7 @@ public GUI() {
 	BottomPanel.add(StartButton);
 	BottomPanel.add(PlayerList2);
 
+	/*********TODO************/
 	
 	 ActionListener StartGameAL = new ActionListener() {
 	        public void actionPerformed(ActionEvent evt) {
@@ -249,6 +266,24 @@ public GUI() {
 	        	 {
 	        		 timer1.start();
 		        	 game_started=true; 
+		        	 
+		        	 
+		        	 //instantiate the players as robots or real players
+		        	 //player1
+		        	 //player2
+		        	 
+		        	 
+		        	 
+		        	//if (player1 and player 2 are robots){
+		        	 //play the whole game in a loop in this if statement
+		        	 //}
+		        	 
+		        	 
+		        	 
+		        	 
+		        	 
+		        	 
+		        	 
 	        	 }
 	            
 	        }

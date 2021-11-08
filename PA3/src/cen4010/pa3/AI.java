@@ -13,12 +13,16 @@ the one that will be playing in the game or if it is the AI used for training.
 
 */
 /******************************/
-public class AI {
-	
-	
+public class AI extends Player{
 	boolean isMaximizingPlayer;
 	
+	
+	public AI () {
+		this.isRobot=true;			
+	}
+	
 	public AI (boolean ismax) {
+		this.isRobot=true;		
 		this.isMaximizingPlayer=ismax;		
 	}
 	
