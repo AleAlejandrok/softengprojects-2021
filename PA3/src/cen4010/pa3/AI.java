@@ -1,5 +1,8 @@
 package cen4010.pa3;
 
+import java.util.Random;
+
+
 /***************************/
 /*HOW WE ARE IMPLEMENTING THE AI*/
 /*
@@ -24,6 +27,38 @@ public class AI extends Player{
 	public AI (boolean ismax) {
 		this.isRobot=true;		
 		this.isMaximizingPlayer=ismax;		
+	}
+	/**
+	 * Returns set of co-ordinates based on the value of AI.isMax
+	 * if isMax is true minmaxxing will be used otherwise a pseudo-random algorithm picks the next move
+	 * @return coordinate array where [0]=m and [1] = n
+	 */
+	public int[] getMove() {
+		
+		int[] coordinate = new int[2];
+		//if easy
+		if(!this.isMaximizingPlayer) {
+			int maxM = Board.m;
+			int maxN = Board.n;
+			Random rand = new Random();
+			int randM;
+			int randN;
+			do {
+				randM = rand.nextInt(maxM);
+				randN = rand.nextInt(maxN);
+			}while(Board.gameboard[randM][randN] == 0);
+			
+			coordinate[0] = randM;
+			coordinate[1] = randN;
+			return coordinate;
+		}
+		//else use minmaxxing
+		/**TODO**/
+		else {
+			return coordinate;
+		}
+		
+		
 	}
 	
 	
