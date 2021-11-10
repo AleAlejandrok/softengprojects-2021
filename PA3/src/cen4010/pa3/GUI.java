@@ -348,25 +348,41 @@ public GUI() {
 
 	/**
 	 * Creates a scuffed dimmension popup
-	 * @return a 2 long array with dimmensions for the gameboard
+	 * @return a 2 long array with dimmensions for the gameboard and a 3rd position for k
 	 * TODO: check to make sure the textboxes only take integers
 	 */
 	private int[] dimmensionPopup() {
 		int m = 3;
 		int n = 3; 
-		
+		int k = 3;
 		
 		//****FRAME****//
 		JFrame Popup = new JFrame("Select dimmensions");
 		Popup.setSize(400,200);
 		Popup.setResizable(false);
 		Popup.setLocationRelativeTo(null);
-		Popup.setLayout(new GridLayout(1, 3));
+		Popup.setLayout(new GridLayout(4, 2));
 		
 		
 		//****Text Fields****//
 		JTextField mField = new JTextField(1);
 		JTextField nField = new JTextField(1);
+		JTextField kField = new JTextField(1);
+		JLabel mLabel = new JLabel("M:");
+		JLabel nLabel = new JLabel("N:");
+		JLabel kLabel = new JLabel("K:");
+		mLabel.setAlignmentX(1);
+		nLabel.setAlignmentX(1);
+		kLabel.setAlignmentX(1);
+		mLabel.setAlignmentY(0);
+		nLabel.setAlignmentY(50);
+		kLabel.setAlignmentY(100);
+		mField.setAlignmentX(50);
+		nField.setAlignmentX(50);
+		kField.setAlignmentX(50);
+		mField.setAlignmentY(0);
+		nField.setAlignmentY(50);
+		kField.setAlignmentY(100);
 		
 		JButton submitButton = new JButton();
 		submitButton.setBounds(150, 100, 100, 20);
@@ -382,10 +398,18 @@ public GUI() {
 	          }
 	       	        
 	       });
-		
+		 Popup.add(mLabel);
      	 Popup.add(mField);
+     	 
+     	Popup.add(nLabel);
      	 Popup.add(nField);
+     	
+     	 
+    	 
+    	 Popup.add(kLabel);
+    	 Popup.add(kField);
      	 Popup.add(submitButton);
+     	 
      	 Popup.setVisible(true);
      	 while(Popup.isDisplayable()) {
      		 try {
@@ -397,7 +421,8 @@ public GUI() {
      	 }
      	 m = Integer.valueOf(mField.getText());
      	 n = Integer.valueOf(nField.getText());
-		int dimmensionArray[] = {m,n};
+     	 k = Integer.valueOf(kField.getText());
+		int dimmensionArray[] = {m,n,k};
 		return dimmensionArray;
 	}
 	//****Popup Win Frame****//
