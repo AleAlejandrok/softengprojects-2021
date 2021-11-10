@@ -371,7 +371,7 @@ public GUI() {
 		JButton submitButton = new JButton();
 		submitButton.setBounds(150, 100, 100, 20);
 		submitButton.setFont(new Font("DIALOG", Font.BOLD, 15));
-		submitButton.setText("RESET");
+		submitButton.setText("Submit");
 		submitButton.setFocusPainted(false);
 		submitButton.addActionListener(new ActionListener() {
 	         public void actionPerformed(ActionEvent e) {
