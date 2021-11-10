@@ -84,19 +84,27 @@ public GUI() {
 	
 	
 	/******************Board Instantiation************************/
-	Board b=new Board(3,3);
-	JButton [][] buttons= new JButton[b.m][b.n];
+	int m = 3;
+	int n = 3;
+	/******create mxn question popup********/
+	
+	
+	
+	
+	
+	Board b=new Board(m,n);
+	JButton [][] buttons= new JButton[Board.m][Board.n];
 	/******************End Board Instantiation************************/
 	
 	
 	/******************Top Panel************************/
 	JPanel TopPanel = new JPanel();
-	TopPanel.setLayout(new GridLayout(b.m,b.n,10,10));
+	TopPanel.setLayout(new GridLayout(Board.m,Board.n,10,10));
 	TopPanel.setBackground(new Color(40,40,40));
 	TopPanel.setPreferredSize(new Dimension(100,100));
 	
-	for (int i = 0; i<b.m; i++) {
-		for (int j = 0; j<b.n;j++) {
+	for (int i = 0; i<Board.m; i++) {
+		for (int j = 0; j<Board.n;j++) {
 			buttons[i][j]=new JButton();
 			buttons[i][j].setBackground(Color.white);
 			buttons[i][j].setOpaque(true);
@@ -135,8 +143,8 @@ public GUI() {
 		        		 
 		        		 //player 1 timeout
 		        		 if (player1time==0) {
-		        			 for (int i = 0; i<b.m; i++) {
-					        		for (int j = 0; j<b.n;j++) {
+		        			 for (int i = 0; i<Board.m; i++) {
+					        		for (int j = 0; j<Board.n;j++) {
 					        			buttons[i][j].setEnabled(false);
 					        		}
 		        			 }
@@ -148,8 +156,8 @@ public GUI() {
 			        		}
 		        		 else
 		        		 if (Board.playerWin('x')) {
-		        			 for (int i = 0; i<b.m; i++) {
-					        		for (int j = 0; j<b.n;j++) {
+		        			 for (int i = 0; i<Board.m; i++) {
+					        		for (int j = 0; j<Board.n;j++) {
 					        			buttons[i][j].setEnabled(false);
 					        		}
 		        			 }
@@ -159,8 +167,8 @@ public GUI() {
 				        		timer2.stop();
 				         	}
 		        		 	else if (Board.gameDraw()) {				         		
-				         		for (int i = 0; i<b.m; i++) {
-					        		for (int j = 0; j<b.n;j++) {
+				         		for (int i = 0; i<Board.m; i++) {
+					        		for (int j = 0; j<Board.n;j++) {
 					        			buttons[i][j].setEnabled(false);
 					        		}
 				         		}
@@ -176,7 +184,7 @@ public GUI() {
 		        	 else {
 		        		 
 		         	buttons[o][l].setText("O");
-		         	b.gameboard[o][l]='o';
+		         	Board.gameboard[o][l]='o';
 		         	buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 		         	
 		         	//if player1 is a robot... do turn... increment turn number
@@ -187,8 +195,8 @@ public GUI() {
 	        		 timer1.start();
 	        		 //player 2 timeout
 	        		 if (player2time==0) {
-	        			 for (int i = 0; i<b.m; i++) {
-				        		for (int j = 0; j<b.n;j++) {
+	        			 for (int i = 0; i<Board.m; i++) {
+				        		for (int j = 0; j<Board.n;j++) {
 				        			buttons[i][j].setEnabled(false);
 				        		}
 	        			 }
@@ -200,8 +208,8 @@ public GUI() {
 		        		}
 	        		 else //this else is to prevent a player from running out of time, then placing a winning move after.
 	        		 if (Board.playerWin('o')) {
-	        			 for (int i = 0; i<b.m; i++) {
-				        		for (int j = 0; j<b.n;j++) {
+	        			 for (int i = 0; i<Board.m; i++) {
+				        		for (int j = 0; j<Board.n;j++) {
 				        			buttons[i][j].setEnabled(false);
 				        		}
 	        			 }
@@ -211,8 +219,8 @@ public GUI() {
 			        		timer2.stop();
 			         	}
 	        		 	else if (Board.gameDraw()) {				         		
-			         		for (int i = 0; i<b.m; i++) {
-				        		for (int j = 0; j<b.n;j++) {
+			         		for (int i = 0; i<Board.m; i++) {
+				        		for (int j = 0; j<Board.n;j++) {
 				        			buttons[i][j].setEnabled(false);
 				        		}
 			         		}
@@ -223,7 +231,7 @@ public GUI() {
 			         	}
 			         	
 		        	 }
-		         	b.turn_number++;
+		         	Board.turn_number++;
 		          }
 		         }
 		       };
@@ -339,6 +347,8 @@ public GUI() {
 	Frame.setVisible(true);
 	
 	}
+
+
 
 	//****Popup Win Frame****//
 	private void PopupWin(String player) {

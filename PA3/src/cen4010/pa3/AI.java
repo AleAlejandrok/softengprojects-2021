@@ -36,10 +36,12 @@ public class AI extends Player{
 	public int[] getMove() {
 		
 		int[] coordinate = new int[2];
+		//get maximums of the board
+		int maxM = Board.m;
+		int maxN = Board.n;
 		//if easy
 		if(!this.isMaximizingPlayer) {
-			int maxM = Board.m;
-			int maxN = Board.n;
+
 			Random rand = new Random();
 			int randM;
 			int randN;
