@@ -4,13 +4,9 @@ import javax.swing.border.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.Instant;
-import java.util.Date;
 
 
+@SuppressWarnings("serial")
 public class GUI extends JFrame {
 Board b;
 JFrame Frame;
@@ -92,7 +88,7 @@ public GUI() {
 	
 	
 	
-	Board b=new Board(m,n);
+	Board.createBoard(m, n);
 	JButton [][] buttons= new JButton[Board.m][Board.n];
 	/******************End Board Instantiation************************/
 	
@@ -255,9 +251,9 @@ public GUI() {
 	StartGamePanel.setLayout(new GridLayout(1, 3, 150,10));
 	
 	String[] player_list = {"Human", "Computer"};
-	JComboBox PlayerList1 = new JComboBox(player_list);
+	JComboBox<?> PlayerList1 = new JComboBox<Object>(player_list);
 	PlayerList1.setFocusable(false);
-	JComboBox PlayerList2 = new JComboBox(player_list);
+	JComboBox<?> PlayerList2 = new JComboBox<Object>(player_list);
 	PlayerList2.setFocusable(false);
 	JButton StartButton = new JButton("Start");
 	StartButton.setBackground(new Color(200,200,200));

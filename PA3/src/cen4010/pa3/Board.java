@@ -10,8 +10,17 @@ public class Board {
 	public static int k=3; // score to win
 	public static int turn_number=1;
 	
-	public Board (int m, int n) { // board constructor
-		Board.gameboard = new char [m][n];
+	
+	
+	
+	
+	/**
+	 * Instantiates the gameboard with inputs m by n
+	 * @param m
+	 * @param n
+	 */
+	public static void createBoard (int m, int n) { // board constructor
+		gameboard = new char [m][n];
 		Board.m = m;
 		Board.n = n;
 	}
