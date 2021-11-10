@@ -84,7 +84,9 @@ public GUI() {
 	int n = 3;
 	/******create mxn question popup********/
 	
-	
+	int dimmensions[]= dimmensionPopup();
+	m = dimmensions[0];
+	n = dimmensions[1];
 	
 	
 	
@@ -344,8 +346,60 @@ public GUI() {
 	
 	}
 
-
-
+	/**
+	 * Creates a scuffed dimmension popup
+	 * @return a 2 long array with dimmensions for the gameboard
+	 * TODO: check to make sure the textboxes only take integers
+	 */
+	private int[] dimmensionPopup() {
+		int m = 3;
+		int n = 3; 
+		
+		
+		//****FRAME****//
+		JFrame Popup = new JFrame("Select dimmensions");
+		Popup.setSize(400,200);
+		Popup.setResizable(false);
+		Popup.setLocationRelativeTo(null);
+		Popup.setLayout(new GridLayout(1, 3));
+		
+		
+		//****Text Fields****//
+		JTextField mField = new JTextField(1);
+		JTextField nField = new JTextField(1);
+		
+		JButton submitButton = new JButton();
+		submitButton.setBounds(150, 100, 100, 20);
+		submitButton.setFont(new Font("DIALOG", Font.BOLD, 15));
+		submitButton.setText("RESET");
+		submitButton.setFocusPainted(false);
+		submitButton.addActionListener(new ActionListener() {
+	         public void actionPerformed(ActionEvent e) {
+	        	
+	        	 Popup.dispose();
+	        	 //GUI g= new GUI();
+	        	 // DO RESET
+	          }
+	       	        
+	       });
+		
+     	 Popup.add(mField);
+     	 Popup.add(nField);
+     	 Popup.add(submitButton);
+     	 Popup.setVisible(true);
+     	 while(Popup.isDisplayable()) {
+     		 try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+     	 }
+     	 m = Integer.valueOf(mField.getText());
+     	 n = Integer.valueOf(nField.getText());
+		int dimmensionArray[] = {m,n};
+		return dimmensionArray;
+	}
 	//****Popup Win Frame****//
 	private void PopupWin(String player) {
 		
