@@ -4,15 +4,11 @@ import javax.swing.border.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.Instant;
-import java.util.Date;
 
 
+@SuppressWarnings("serial")
 public class GUI extends JFrame {
-
+Board b;
 JFrame Frame;
 JLabel timeDisplay1;
 JLabel timeDisplay2;
@@ -40,6 +36,10 @@ public static int player2time=StartingTime;
 		    		  player1time--;
 			          timeDisplay1.setText(player1time+"");
 			          repaint();
+			          
+			           
+			          
+			          
 		    	  }
 		     }
 		  });
@@ -80,19 +80,29 @@ public GUI() {
 	
 	
 	/******************Board Instantiation************************/
-	Board b=new Board(3,3);
-	JButton [][] buttons= new JButton[b.m][b.n];
+	int m = 3;
+	int n = 3;
+	/******create mxn question popup********/
+	
+	int dimmensions[]= dimmensionPopup();
+	m = dimmensions[0];
+	n = dimmensions[1];
+	
+	
+	
+	Board.createBoard(m, n);
+	JButton [][] buttons= new JButton[Board.m][Board.n];
 	/******************End Board Instantiation************************/
 	
 	
 	/******************Top Panel************************/
 	JPanel TopPanel = new JPanel();
-	TopPanel.setLayout(new GridLayout(b.m,b.n,10,10));
+	TopPanel.setLayout(new GridLayout(Board.m,Board.n,10,10));
 	TopPanel.setBackground(new Color(40,40,40));
 	TopPanel.setPreferredSize(new Dimension(100,100));
 	
-	for (int i = 0; i<b.m; i++) {
-		for (int j = 0; j<b.n;j++) {
+	for (int i = 0; i<Board.m; i++) {
+		for (int j = 0; j<Board.n;j++) {
 			buttons[i][j]=new JButton();
 			buttons[i][j].setBackground(Color.white);
 			buttons[i][j].setOpaque(true);
@@ -106,8 +116,15 @@ public GUI() {
 			//defines a new function that will be performed when the button is pressed
 			ActionListener ButtonAL=new ActionListener() {
 		         public void actionPerformed(ActionEvent e) {
-		        	 //if turn is odd, place an x
+		        	 
+		        	 
+		        	 
 		        	 if (Board.gameboard[o][l]==0 && game_started) {
+		        		
+		        		 
+		        		 
+		        		 
+		        		//if turn is odd, place an x	 
 		        	 if (Board.turn_number%2==1) {
 		        		 buttons[o][l].setText("X");
 		        		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
@@ -116,11 +133,16 @@ public GUI() {
 		        		 
 		        		 timer1.stop();
 		        		 timer2.start();
-		        	 
+		        		 
+		        		 
+		        		 //if player2 is a robot... do turn... increment turn number
+		        		 
+		        		 
+		        		 
 		        		 //player 1 timeout
 		        		 if (player1time==0) {
-		        			 for (int i = 0; i<b.m; i++) {
-					        		for (int j = 0; j<b.n;j++) {
+		        			 for (int i = 0; i<Board.m; i++) {
+					        		for (int j = 0; j<Board.n;j++) {
 					        			buttons[i][j].setEnabled(false);
 					        		}
 		        			 }
@@ -132,8 +154,8 @@ public GUI() {
 			        		}
 		        		 else
 		        		 if (Board.playerWin('x')) {
-		        			 for (int i = 0; i<b.m; i++) {
-					        		for (int j = 0; j<b.n;j++) {
+		        			 for (int i = 0; i<Board.m; i++) {
+					        		for (int j = 0; j<Board.n;j++) {
 					        			buttons[i][j].setEnabled(false);
 					        		}
 		        			 }
@@ -143,8 +165,8 @@ public GUI() {
 				        		timer2.stop();
 				         	}
 		        		 	else if (Board.gameDraw()) {				         		
-				         		for (int i = 0; i<b.m; i++) {
-					        		for (int j = 0; j<b.n;j++) {
+				         		for (int i = 0; i<Board.m; i++) {
+					        		for (int j = 0; j<Board.n;j++) {
 					        			buttons[i][j].setEnabled(false);
 					        		}
 				         		}
@@ -160,19 +182,19 @@ public GUI() {
 		        	 else {
 		        		 
 		         	buttons[o][l].setText("O");
-		         	b.gameboard[o][l]='o';
+		         	Board.gameboard[o][l]='o';
 		         	buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 		         	
-		         	
-		         	
+		         	//if player1 is a robot... do turn... increment turn number
+		         	//(harder AI) loop checking all spaces for a winning combo for either player
 		                  	
 		         	
 		         	 timer2.stop();
 	        		 timer1.start();
 	        		 //player 2 timeout
 	        		 if (player2time==0) {
-	        			 for (int i = 0; i<b.m; i++) {
-				        		for (int j = 0; j<b.n;j++) {
+	        			 for (int i = 0; i<Board.m; i++) {
+				        		for (int j = 0; j<Board.n;j++) {
 				        			buttons[i][j].setEnabled(false);
 				        		}
 	        			 }
@@ -184,8 +206,8 @@ public GUI() {
 		        		}
 	        		 else //this else is to prevent a player from running out of time, then placing a winning move after.
 	        		 if (Board.playerWin('o')) {
-	        			 for (int i = 0; i<b.m; i++) {
-				        		for (int j = 0; j<b.n;j++) {
+	        			 for (int i = 0; i<Board.m; i++) {
+				        		for (int j = 0; j<Board.n;j++) {
 				        			buttons[i][j].setEnabled(false);
 				        		}
 	        			 }
@@ -195,8 +217,8 @@ public GUI() {
 			        		timer2.stop();
 			         	}
 	        		 	else if (Board.gameDraw()) {				         		
-			         		for (int i = 0; i<b.m; i++) {
-				        		for (int j = 0; j<b.n;j++) {
+			         		for (int i = 0; i<Board.m; i++) {
+				        		for (int j = 0; j<Board.n;j++) {
 				        			buttons[i][j].setEnabled(false);
 				        		}
 			         		}
@@ -207,7 +229,7 @@ public GUI() {
 			         	}
 			         	
 		        	 }
-		         	b.turn_number++;
+		         	Board.turn_number++;
 		          }
 		         }
 		       };
@@ -230,10 +252,10 @@ public GUI() {
 	JPanel StartGamePanel = new JPanel();
 	StartGamePanel.setLayout(new GridLayout(1, 3, 150,10));
 	
-	String[] player_list = {"Human"};
-	JComboBox PlayerList1 = new JComboBox(player_list);
+	String[] player_list = {"Human", "Computer"};
+	JComboBox<?> PlayerList1 = new JComboBox<Object>(player_list);
 	PlayerList1.setFocusable(false);
-	JComboBox PlayerList2 = new JComboBox(player_list);
+	JComboBox<?> PlayerList2 = new JComboBox<Object>(player_list);
 	PlayerList2.setFocusable(false);
 	JButton StartButton = new JButton("Start");
 	StartButton.setBackground(new Color(200,200,200));
@@ -242,6 +264,7 @@ public GUI() {
 	BottomPanel.add(StartButton);
 	BottomPanel.add(PlayerList2);
 
+	/*********TODO************/
 	
 	 ActionListener StartGameAL = new ActionListener() {
 	        public void actionPerformed(ActionEvent evt) {
@@ -249,6 +272,24 @@ public GUI() {
 	        	 {
 	        		 timer1.start();
 		        	 game_started=true; 
+		        	 
+		        	 
+		        	 //instantiate the players as robots or real players
+		        	 //player1
+		        	 //player2
+		        	 
+		        	 
+		        	 
+		        	//if (player1 and player 2 are robots){
+		        	 //play the whole game in a loop in this if statement
+		        	 //}
+		        	 
+		        	 
+		        	 
+		        	 
+		        	 
+		        	 
+		        	 
 	        	 }
 	            
 	        }
@@ -305,6 +346,85 @@ public GUI() {
 	
 	}
 
+	/**
+	 * Creates a scuffed dimmension popup
+	 * @return a 2 long array with dimmensions for the gameboard and a 3rd position for k
+	 * TODO: check to make sure the textboxes only take integers
+	 */
+	private int[] dimmensionPopup() {
+		int m = 3;
+		int n = 3; 
+		int k = 3;
+		
+		//****FRAME****//
+		JFrame Popup = new JFrame("Select dimmensions");
+		Popup.setSize(400,200);
+		Popup.setResizable(false);
+		Popup.setLocationRelativeTo(null);
+		Popup.setLayout(new GridLayout(4, 2));
+		
+		
+		//****Text Fields****//
+		JTextField mField = new JTextField(1);
+		JTextField nField = new JTextField(1);
+		JTextField kField = new JTextField(1);
+		JLabel mLabel = new JLabel("M:");
+		JLabel nLabel = new JLabel("N:");
+		JLabel kLabel = new JLabel("K:");
+		mLabel.setAlignmentX(1);
+		nLabel.setAlignmentX(1);
+		kLabel.setAlignmentX(1);
+		mLabel.setAlignmentY(0);
+		nLabel.setAlignmentY(50);
+		kLabel.setAlignmentY(100);
+		mField.setAlignmentX(50);
+		nField.setAlignmentX(50);
+		kField.setAlignmentX(50);
+		mField.setAlignmentY(0);
+		nField.setAlignmentY(50);
+		kField.setAlignmentY(100);
+		
+		JButton submitButton = new JButton();
+		submitButton.setBounds(150, 100, 100, 20);
+		submitButton.setFont(new Font("DIALOG", Font.BOLD, 15));
+		submitButton.setText("Submit");
+		submitButton.setFocusPainted(false);
+		submitButton.addActionListener(new ActionListener() {
+	         public void actionPerformed(ActionEvent e) {
+	        	
+	        	 Popup.dispose();
+	        	 //GUI g= new GUI();
+	        	 // DO RESET
+	          }
+	       	        
+	       });
+		 Popup.add(mLabel);
+     	 Popup.add(mField);
+     	 
+     	Popup.add(nLabel);
+     	 Popup.add(nField);
+     	
+     	 
+    	 
+    	 Popup.add(kLabel);
+    	 Popup.add(kField);
+     	 Popup.add(submitButton);
+     	 
+     	 Popup.setVisible(true);
+     	 while(Popup.isDisplayable()) {
+     		 try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+     	 }
+     	 m = Integer.valueOf(mField.getText());
+     	 n = Integer.valueOf(nField.getText());
+     	 k = Integer.valueOf(kField.getText());
+		int dimmensionArray[] = {m,n,k};
+		return dimmensionArray;
+	}
 	//****Popup Win Frame****//
 	private void PopupWin(String player) {
 		
