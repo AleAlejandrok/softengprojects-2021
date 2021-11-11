@@ -20,6 +20,7 @@ public class Board {
 		Board.m = m;
 		Board.n = n;
 	}
+	
 	/*
 	public static void setBoard() { // initializes board to 0s
 	    for (int i = 0; i < m; i++) {
@@ -29,22 +30,10 @@ public class Board {
 	    }
 	}
 	*/
-	/*
-	public static boolean isValidMove(int x, int y) {
-
-	    // checks if in bounds
-	    if ((x >= m) || (y >= n)) {
-	        return false;
-	    }
-
-	    // checks if space is available
-	    return (gameboard[x][y] == 0);
-	}
-	*/
 	
 	public static boolean playerWin(char c) { // checks for winning combinations
 
-	    // check horizontal
+	    /* check horizontal */
 	    for (int row = 0; row < m; row++) {
 	    	for (int col = 0; col < n; col++) {
 		    	if (gameboard[row][col] == c) {
@@ -61,7 +50,7 @@ public class Board {
 	    	}
 	    }
 
-	    // check vertical
+	    /* check vertical */
 	    for (int col = 0; col < n; col++) {
 	    	for (int row = 0; row < m; row++) {
 		    	if (gameboard[row][col] == c) {
@@ -79,7 +68,7 @@ public class Board {
 	    }
 	    
 	    
-	    // check diagonals up and right
+	    /* check diagonals upwards */
 	    for (int row = 0; row < m; row++) {
 	    	for (int col = 0; col < n; col++) {
 		    	
@@ -89,9 +78,33 @@ public class Board {
 			    	int i = row - 1; // set row index for next point in diagonal		           
 		            int j = col + 1; //  set column index for ext point in diagonal
 		 
-		            /* traverse diagonally upward */
+		            /* traverse diagonally up and to the right */
 		            while (gameboard[i][j] == c) {	              	 
-		                i--;	                	                // move in upright direction
+		                i--;	                	                
+		                j++;
+		                score++;
+		                
+		                if (score >= k) {
+		                	return true;
+		                }
+		            }
+			    }
+	    	}
+	    }
+	    
+	    /* check diagonals downwards */
+	    for (int row = 0; row < m; row++) {
+	    	for (int col = 0; col < n; col++) {
+		    	
+	    		if (gameboard[row][col] == c) {
+	 
+			    	int score = 1; 		            
+			    	int i = row + 1; // set row index for next point in diagonal		           
+		            int j = col + 1; //  set column index for ext point in diagonal
+		 
+		            /* traverse diagonally up and to the right */
+		            while (gameboard[i][j] == c) {	              	 
+		                i++;	                	                
 		                j++;
 		                score++;
 		                
