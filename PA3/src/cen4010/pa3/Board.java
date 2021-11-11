@@ -118,46 +118,6 @@ public class Board {
 	
 	}
 	
-	/* work in progress
-	public static boolean checkDiagonals(char playerMark) { // checks diagonals for winning condition
-
-		// running down and right
-		// don't need to iterate rows that can't be the starting point of a winning diagonal formation, thus can exclude some with row < (size - (sizeToWin - 1))
-		for (int row = 0; row < (m - (k - 1)); row++) {
-		    for (int col = 0; col < n; col++) {
-		        int score = 0;
-
-		        // down and right
-		        for (int i = m; i < m; i++) {
-		            if (gameboard[i][i] == 0 ? playerMark == 0 :
-		                    gameboard[i][i] == (playerMark)) {
-		                score++;
-
-		                if (score >= k) {
-		                    return true;
-		                }
-		            }
-		        }
-
-		        score = 0;
-
-		        // down and left
-		        for (int i = row; i < m; i++) {
-		            if (gameboard[i][m - 1 - i] == 0 ? playerMark == 0 :
-		                    gameboard[i][m - 1 - i] == (playerMark)) {
-		                score++;
-
-		                if (score >= k) {
-		                    return true;
-		                }
-		            }
-		        }
-		    }
-		}
-
-		return false;
-		}*/
-	
 	public static boolean gameDraw() { // checks for draw condition
 	    for (int i = 0; i < m; i++) {
 	        for (int j = 0; j < n; j++) {
