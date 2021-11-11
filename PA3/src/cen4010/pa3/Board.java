@@ -7,12 +7,8 @@ public class Board {
 	public static char c; // either x or o mark
 	public static int m; // rows
 	public static int n; // columns
-	public static int k=3; // score to win
+	public static int k; // score to win
 	public static int turn_number=1;
-	
-	
-	
-	
 	
 	/**
 	 * Instantiates the gameboard with inputs m by n
@@ -58,10 +54,7 @@ public class Board {
 				            score++;
 				            if (score >= k) { // reached required score
 				            	return true;
-				            }		            
-				            else { 
-				            	break;
-				            }
+				            }		            				         
 		    			}
 		    		}
 		    	}
@@ -79,26 +72,37 @@ public class Board {
 				            if (score >= k) { // reached required score
 				            	return true;
 				            }		            
-				            else { 
-				            	break;
-				            }
-		    			}
+				        }
 		    		}
 		    	}
+		    }
+	    }
+	    
+	    
+	    // check diagonals up and right
+	    for (int row = 0; row < m; row++) {
+	    	for (int col = 0; col < n; col++) {
+		    	
+	    		if (gameboard[row][col] == c) {
+	 
+			    	int score = 1; 		            
+			    	int i = row - 1; // set row index for next point in diagonal		           
+		            int j = col + 1; //  set column index for ext point in diagonal
+		 
+		            /* traverse diagonally upward */
+		            while (gameboard[i][j] == c) {	              	 
+		                i--;	                	                // move in upright direction
+		                j++;
+		                score++;
+		                
+		                if (score >= k) {
+		                	return true;
+		                }
+		            }
+			    }
 	    	}
 	    }
-	  
-	    //Check diagonals - in progress
-	  	if(gameboard[0][0] == gameboard[1][1] && gameboard[1][1] == gameboard[2][2] && gameboard[0][0] == c) {
-	  			return true;
-	  	}
-	  	
-	  	if(gameboard[2][0] == gameboard[1][1] && gameboard[1][1] ==  gameboard[0][2] && gameboard[2][0] == c) {
-	  			return true;
-	  	}
-	  	
-	    //checkDiagonals(c);
-	    return false;
+	
 	}
 	
 	/* work in progress
