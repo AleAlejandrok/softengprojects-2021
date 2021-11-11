@@ -40,40 +40,46 @@ public class Board {
 	public static boolean playerWin(char c) { // checks for winning combinations
 
 	    // check horizontal
-	    for (int i = 0; i < m; i++) {
-	        if (gameboard[i][0] == c) {
-	            int j;
-
-	            for (j = 1; j < n; j++) {
-	                if (!(gameboard[i][j] == c)) {
-	                    break;
-	                }
-	            }
-
-	            if (j == k) { // reached required score
-	                return true;
-	            }
-	        }
+	    for (int row = 0; row < m; row++) {
+	    	for (int col = 0; col < n; col++) {
+		    	if (gameboard[row][col] == c) {
+		    		int score = 1;
+		    		for (int i = 1; i < n; i++) {
+		    			if (gameboard[row][col+i] == c) {
+				            score++;
+				            if (score >= k) { // reached required score
+				            	return true;
+				            }		            
+				            else { 
+				            	break;
+				            }
+		    			}
+		    		}
+		    	}
+	    	}
 	    }
 
 	    // check vertical
-	    for (int i = 0; i < m; i++) {
-	        if (gameboard[0][i] == c) {
-	            int j;
-
-	            for (j = 1; j < n; j++) {
-	                if (!(gameboard[j][i] == c)) {
-	                    break;
-	                }
-	            }
-
-	            if (j == k) { // reached required score
-	                return true;
-	            }
-	        }
+	    for (int col = 0; col < n; col++) {
+	    	for (int row = 0; row < m; row++) {
+		    	if (gameboard[row][col] == c) {
+		    		int score = 1;
+		    		for (int i = 1; i < n; i++) {
+		    			if (gameboard[row+i][col] == c) {
+				            score++;
+				            if (score >= k) { // reached required score
+				            	return true;
+				            }		            
+				            else { 
+				            	break;
+				            }
+		    			}
+		    		}
+		    	}
+	    	}
 	    }
 	  
-	    //Check diagonals
+	    //Check diagonals - in progress
 	  	if(gameboard[0][0] == gameboard[1][1] && gameboard[1][1] == gameboard[2][2] && gameboard[0][0] == c) {
 	  			return true;
 	  	}
