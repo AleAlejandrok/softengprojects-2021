@@ -1,10 +1,14 @@
 package cen4010.pa3;
 
-
+/*Board class - PA3
+ * CEN4010
+ * T4
+ * Latest version: 11/11/21
+ */
 public class Board {
 	
 	public static char gameboard[][]; // 2D array game board
-	public static char c; // either x or o mark
+	public static char c; // either x or o
 	public static int m; // rows
 	public static int n; // columns
 	public static int k; // score to win
@@ -66,8 +70,7 @@ public class Board {
 		    	}
 		    }
 	    }
-	    
-	    
+	        
 	    /* check diagonals upwards */
 	    for (int row = 0; row < m; row++) {
 	    	for (int col = 0; col < n; col++) {
@@ -76,10 +79,9 @@ public class Board {
 	 
 			    	int score = 1; 		            
 			    	int i = row - 1; // set row index for next point in diagonal		           
-		            int j = col + 1; //  set column index for ext point in diagonal
-		 
-		            /* traverse diagonally up and to the right */
-		            while (gameboard[i][j] == c) {	              	 
+		            int j = col + 1; // set column index for next point in diagonal
+		 		           
+		            while (gameboard[i][j] == c) { // traverse diagonally up and to the right              	 
 		                i--;	                	                
 		                j++;
 		                score++;
@@ -100,10 +102,9 @@ public class Board {
 	 
 			    	int score = 1; 		            
 			    	int i = row + 1; // set row index for next point in diagonal		           
-		            int j = col + 1; //  set column index for ext point in diagonal
+		            int j = col + 1; // set column index for next point in diagonal
 		 
-		            /* traverse diagonally up and to the right */
-		            while (gameboard[i][j] == c) {	              	 
+		            while (gameboard[i][j] == c) { //traverse diagonally down and to the right            	 
 		                i++;	                	                
 		                j++;
 		                score++;
@@ -115,7 +116,6 @@ public class Board {
 			    }
 	    	}
 	    }
-	
 	}
 	
 	public static boolean gameDraw() { // checks for draw condition
@@ -126,7 +126,6 @@ public class Board {
 	            }
 	        }
 	    }
-
 	    return true;
 	}
 }
