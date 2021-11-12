@@ -82,15 +82,21 @@ public GUI() {
 	/******************Board Instantiation************************/
 	int m = 3;
 	int n = 3;
+	int k = 3;
 	/******create mxn question popup********/
 	
 	int dimmensions[]= dimmensionPopup();
 	m = dimmensions[0];
 	n = dimmensions[1];
+	k = dimmensions[2];
+	//ensure k is doable
+	if(k > m && k > n)
+		k = Math.min(m, n);
 	
 	
 	
-	Board.createBoard(m, n);
+	
+	Board.createBoard(m, n, k);
 	JButton [][] buttons= new JButton[Board.m][Board.n];
 	/******************End Board Instantiation************************/
 	
@@ -419,9 +425,27 @@ public GUI() {
 				e1.printStackTrace();
 			}
      	 }
-     	 m = Integer.valueOf(mField.getText());
-     	 n = Integer.valueOf(nField.getText());
-     	 k = Integer.valueOf(kField.getText());
+     	 try {
+			m = Integer.valueOf(mField.getText());
+		} catch (NumberFormatException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			m =3;
+		}
+     	 try {
+			n = Integer.valueOf(nField.getText());
+		} catch (NumberFormatException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			n = 3;
+		}
+     	 try {
+			k = Integer.valueOf(kField.getText());
+		} catch (NumberFormatException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			k = 3;
+		}
 		int dimmensionArray[] = {m,n,k};
 		return dimmensionArray;
 	}

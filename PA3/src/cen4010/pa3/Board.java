@@ -19,10 +19,11 @@ public class Board {
 	 * @param m
 	 * @param n
 	 */
-	public static void createBoard (int m, int n) { // board constructor
+	public static void createBoard (int m, int n, int k) { // board constructor
 		gameboard = new char [m][n];
 		Board.m = m;
 		Board.n = n;
+		Board.k = k;
 	}
 	
 	/*
@@ -116,6 +117,7 @@ public class Board {
 			    }
 	    	}
 	    }
+		return false;
 	}
 	
 	public static boolean gameDraw() { // checks for draw condition
