@@ -54,10 +54,11 @@ public class Board {
 		    	if (gameboard[row][col] == c) {
 		    		int score = 1;
 		    		int i = col+1;
-	    			while (i<n && gameboard[row][i] == c) {
+	    			while (i<n && gameboard[row][i] == c) { // traverse right
 			            i++;
 	    				score++;
-			            if (score >= k) { // reached required score
+			            
+	    				if (score >= k) { // reached required score
 			            	return true;
 			            }		            				         
 	    			}
@@ -72,9 +73,10 @@ public class Board {
 		    	if (gameboard[row][col] == c) {
 		    		int score = 1;
 		    		int i = row+1;
-	    			while (i<m && gameboard[i][col] == c) {
+	    			while (i<m && gameboard[i][col] == c) { // traverse down
 			            score++;
 			            i++;
+			            
 			            if (score >= k) { // reached required score
 			            	return true;
 			            }		            
@@ -94,12 +96,11 @@ public class Board {
 		            int j = col + 1; // set column index for next point in diagonal
 
 		            while (i >= 0 && j<n && gameboard[i][j] == c) { // traverse diagonally up and to the right   
-		                i--;	
-		            	
+		                i--;			            	
 		                j++;
 		                score++;
 		                
-		                if (score >= k) {
+		                if (score >= k) { // reached required score
 		                	return true;
 		                }		           
 		            }
@@ -122,7 +123,7 @@ public class Board {
 		                j++;
 		                score++;
 		                
-		                if (score >= k) {
+		                if (score >= k) { // reach required score
 		                	return true;
 		                }
 		            }		            
