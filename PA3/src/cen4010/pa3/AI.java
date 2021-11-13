@@ -17,7 +17,7 @@ the one that will be playing in the game or if it is the AI used for training.
 */
 /******************************/
 public class AI extends Player {
-	boolean isMaximizingPlayer;
+	public boolean isMaximizingPlayer = false;
 	
 	
 	public AI () {
