@@ -142,7 +142,15 @@ public GUI() {
 		        		 
 		        		 
 		        		 //if player2 is a robot... do turn... increment turn number
-		        		 
+		        		 if (player2.isRobot()) {
+		        		 int [] xy =player2.getMove();
+		        		 char x= xy[0];
+			     		 char y= xy[1];
+			     		 buttons[x][y].setText("X");
+			     		 Board.gameboard[x][y]='x';
+			     		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
+		        		 Board.turn_number++;
+		        		 }
 		        		 
 		        		 
 		        		 //player 1 timeout
@@ -158,6 +166,7 @@ public GUI() {
 				        		timer2.stop();
 
 			        		}
+		        		 //if game is still going... check if the game is over
 		        		 else
 		        		 if (Board.playerWin('x')) {
 		        			 for (int i = 0; i<Board.m; i++) {
@@ -185,6 +194,7 @@ public GUI() {
 				         	
 		        	 
 		        	 }
+		        	 //player 2 move
 		        	 else {
 		        		 
 		         	buttons[o][l].setText("O");
@@ -192,6 +202,16 @@ public GUI() {
 		         	buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 		         	
 		         	//if player1 is a robot... do turn... increment turn number
+		         	if (player1.isRobot()) {
+		         	 int [] xy = player1.getMove();
+	        		 char x= xy[0];
+		     		 char y= xy[1];
+		     		 buttons[x][y].setText("O");
+		     		 Board.gameboard[x][y]='o';
+		     		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
+		     		 Board.turn_number++;
+		         	}
+		         	
 		         	//(harder AI) loop checking all spaces for a winning combo for either player
 		                  	
 		         	
