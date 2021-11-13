@@ -21,8 +21,6 @@ public static int player2time=StartingTime;
 	
 	
 	
-	
-	
 	  
 	  
 	  
@@ -62,6 +60,7 @@ public static int player2time=StartingTime;
 
 
 public GUI() {
+	
 	/******************Frame Settings************************/
 	Frame=new JFrame();
 	Frame.setTitle("Tic Tac Toe");
@@ -73,7 +72,6 @@ public GUI() {
 	Frame.setSize((int)(width*.75),(int)(height*.75));
 	Frame.setLocationRelativeTo(null);
 	Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	
 	/******************End Frame Settings************************/
 	
 	
@@ -132,9 +130,17 @@ public GUI() {
 		        		 
 		        		//if turn is odd, place an x	 
 		        	 if (Board.turn_number%2==1) {
-		        		 buttons[o][l].setText("X");
-		        		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
-		        		 Board.gameboard[o][l]='x';
+		        		 if(getComputer_1() != null) {
+		        			 int[] temp = getComputer_1().getMove();
+		        			 buttons[temp[0]][temp[1]].setText("X");
+			        		 buttons[temp[0]][temp[1]].setFont(new Font("Montserrat", Font.BOLD, 42));
+			        		 Board.gameboard[temp[0]][temp[1]]='x';
+		        		 }else {
+		        			 buttons[o][l].setText("X");
+			        		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
+			        		 Board.gameboard[o][l]='x';
+		        		 }
+		        		 
 		        		 
 		        		 
 		        		 timer1.stop();
@@ -196,10 +202,16 @@ public GUI() {
 		        	 }
 		        	 //player 2 move
 		        	 else {
-		        		 
-		         	buttons[o][l].setText("O");
-		         	Board.gameboard[o][l]='o';
-		         	buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
+		        		 if(getComputer_2() != null) {
+		        			 int[] temp = getComputer_2().getMove();
+		        			 buttons[temp[0]][temp[1]].setText("O");
+			        		 buttons[temp[0]][temp[1]].setFont(new Font("Montserrat", Font.BOLD, 42));
+			        		 Board.gameboard[temp[0]][temp[1]]='o';
+		        		 }else {
+		        			 buttons[o][l].setText("O");
+			        		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
+			        		 Board.gameboard[o][l]='o';
+		        		 }
 		         	
 		         	//if player1 is a robot... do turn... increment turn number
 		         	
@@ -282,7 +294,9 @@ public GUI() {
 	String[] player_list = {"Human", "Computer"};
 	JComboBox<?> PlayerList1 = new JComboBox<Object>(player_list);
 	PlayerList1.setFocusable(false);
+	PlayerList1.setSelectedIndex(-1);
 	JComboBox<?> PlayerList2 = new JComboBox<Object>(player_list);
+	PlayerList2.setSelectedIndex(-1);
 	PlayerList2.setFocusable(false);
 	JButton StartButton = new JButton("Start");
 	StartButton.setBackground(new Color(200,200,200));
@@ -291,38 +305,38 @@ public GUI() {
 	BottomPanel.add(StartButton);
 	BottomPanel.add(PlayerList2);
 
-	/*********TODO************/
+	ActionListener StartGameAL = new ActionListener() {
+        public void actionPerformed(ActionEvent evt) {
+        	if (!game_stopped)
+        	 {
+        		 timer1.start();
+	        	 game_started=true;
+        	 }
+            
+        }
+	  };
+	  StartButton.addActionListener(StartGameAL);
 	
-	 ActionListener StartGameAL = new ActionListener() {
-	        public void actionPerformed(ActionEvent evt) {
-	        	if (!game_stopped)
-	        	 {
-	        		 timer1.start();
-		        	 game_started=true; 
-		        	 
-		        	 
-		        	 //instantiate the players as robots or real players
-		        	 //player1
-		        	 //player2
-		        	 
-		        	 
-		        	 
-		        	//if (player1 and player 2 are robots){
-		        	 //play the whole game in a loop in this if statement
-		        	 //}
-		        	 
-		        	 
-		        	 
-		        	 
-		        	 
-		        	 
-		        	 
-	        	 }
-	            
-	        }
-		  };
-	StartButton.addActionListener(StartGameAL);
-
+	
+	ActionListener PlayerList1_AL = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == PlayerList1) {
+				AssignPlayer(PlayerList1.getSelectedIndex(), 1);
+			}
+		}
+	};
+	PlayerList1.addActionListener(PlayerList1_AL);
+	
+	ActionListener PlayerList2_AL = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == PlayerList2) {
+				AssignPlayer(PlayerList2.getSelectedIndex(), 2);
+			}
+		}
+	};
+	PlayerList2.addActionListener(PlayerList2_AL);
+	
+	
 	//add the player select and game start buttons to the bottom half of the screen
 	BottomPanel.add(StartGamePanel);
 	/*End start game and player select panel*/
@@ -470,6 +484,64 @@ public GUI() {
 		int dimmensionArray[] = {m,n,k};
 		return dimmensionArray;
 	}
+	
+	//****Players****//
+	private Player Player_1;
+	private Player Player_2;
+	private AI Computer_1;
+	private AI Computer_2;
+	
+	private void setPlayer_1(Player p) {
+		this.Player_1 = p;
+	}
+	private void setPlayer_2(Player p) {
+		this.Player_2 = p;
+	}
+	private void setComputer_1(AI c) {
+		this.Computer_1 = c;
+	}
+	private void setComputer_2(AI c) {
+		this.Computer_2 = c;
+	}
+	private Player getPlayer_1() {
+		return this.Player_1;
+	}
+	private Player getPlayer_2() {
+		return this.Player_2;
+	}
+	private AI getComputer_1() {
+		return this.Computer_1;
+	}
+	private AI getComputer_2() {
+		return this.Computer_2;
+	}
+	
+	private void AssignPlayer(int player_type,int player_index) {
+		if(player_type == 0) {
+			if(player_index == 1) {
+				Player p = new Player();
+				setPlayer_1(p);
+			}
+			if(player_index == 2) {
+				Player p = new Player();
+				setPlayer_2(p);
+			}
+		}
+		else if(player_type == 1) {
+			if(player_index == 1) {
+				AI ai = new AI();
+				setComputer_1(ai);
+			}
+			if(player_index == 2) {
+				AI ai = new AI();
+				setComputer_2(ai);
+			}
+		}
+	}
+	//**********************//
+	
+	
+	
 	//****Popup Win Frame****//
 	private void PopupWin(String player) {
 		
