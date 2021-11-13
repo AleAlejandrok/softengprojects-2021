@@ -53,35 +53,32 @@ public class Board {
 	    	for (int col = 0; col < n; col++) {
 		    	if (gameboard[row][col] == c) {
 		    		int score = 1;
-		    		for (int i = 1; i < n; i++) {
-		    			if (col+i<n) { 
-			    			if (gameboard[row][col+i] == c) {
-					            score++;
-					            if (score >= k) { // reached required score
-					            	return true;
-					            }		            				         
-			    			}
-		    			}
-		    		}
+		    		int i = col+1;
+	    			while (i<n && gameboard[row][i] == c) {
+			            i++;
+	    				score++;
+			            if (score >= k) { // reached required score
+			            	return true;
+			            }		            				         
+	    			}
 		    	}
-	    	}
+		    }
 	    }
+
 
 	    /* check vertical */
 	    for (int col = 0; col < n; col++) {
 	    	for (int row = 0; row < m; row++) {
 		    	if (gameboard[row][col] == c) {
 		    		int score = 1;
-		    		for (int i = 1; i < n; i++) {
-		    			if (row+i<m) { 
-			    			if (gameboard[row+i][col] == c) {
-					            score++;
-					            if (score >= k) { // reached required score
-					            	return true;
-					            }		            
-					        }
-		    			}
-		    		}
+		    		int i = row+1;
+	    			while (i<m && gameboard[i][col] == c) {
+			            score++;
+			            i++;
+			            if (score >= k) { // reached required score
+			            	return true;
+			            }		            
+			        }
 		    	}
 		    }
 	    }
