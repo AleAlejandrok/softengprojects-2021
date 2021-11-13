@@ -44,6 +44,7 @@ public class Board {
 		    	if (gameboard[row][col] == c) {
 		    		int score = 1;
 		    		for (int i = 1; i < n; i++) {
+		    			if (col+i<n)//billy fix
 		    			if (gameboard[row][col+i] == c) {
 				            score++;
 				            if (score >= k) { // reached required score
@@ -61,6 +62,7 @@ public class Board {
 		    	if (gameboard[row][col] == c) {
 		    		int score = 1;
 		    		for (int i = 1; i < n; i++) {
+		    			if (row+i<m) //billy fix
 		    			if (gameboard[row+i][col] == c) {
 				            score++;
 				            if (score >= k) { // reached required score
@@ -82,8 +84,11 @@ public class Board {
 			    	int i = row - 1; // set row index for next point in diagonal		           
 		            int j = col + 1; // set column index for next point in diagonal
 		 		           
-		            while (gameboard[i][j] == c) { // traverse diagonally up and to the right              	 
-		                i--;	                	                
+		            if (i>=0 && j<col) //billy fix
+		            while (gameboard[i][j] == c) { // traverse diagonally up and to the right   
+		            	
+		                i--;	
+		            	
 		                j++;
 		                score++;
 		                
@@ -104,7 +109,7 @@ public class Board {
 			    	int score = 1; 		            
 			    	int i = row + 1; // set row index for next point in diagonal		           
 		            int j = col + 1; // set column index for next point in diagonal
-		 
+		            if (i<row && j<col) //billy fix
 		            while (gameboard[i][j] == c) { //traverse diagonally down and to the right            	 
 		                i++;	                	                
 		                j++;
