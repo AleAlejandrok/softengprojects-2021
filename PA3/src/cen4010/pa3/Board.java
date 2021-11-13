@@ -21,9 +21,19 @@ public class Board {
 	 */
 	public static void createBoard (int m, int n, int k) { // board constructor
 		gameboard = new char [m][n];
+		initBoard(m, n);
 		Board.m = m;
 		Board.n = n;
 		Board.k = k;
+	}
+	
+	private static void initBoard (int m, int n) {
+		for(int i = 0; i < m; i++) {
+			for(int j =0 ; j < n; j++) {
+				gameboard[i][j] = 0;
+			}
+		}
+		return;
 	}
 	
 	/*

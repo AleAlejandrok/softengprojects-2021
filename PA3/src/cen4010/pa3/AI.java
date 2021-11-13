@@ -48,7 +48,7 @@ public class AI extends Player {
 			do {
 				randM = rand.nextInt(maxM);
 				randN = rand.nextInt(maxN);
-			}while(Board.gameboard[randM][randN] == 0);
+			}while(Board.gameboard[randM][randN] != 0);
 			
 			coordinate[0] = randM;
 			coordinate[1] = randN;

@@ -28,7 +28,12 @@ class AItest {
 		else
 			fail();
 	}
-
+	/**
+	 * getMove() is written in such a way to where it should never give the same position twice. If two AI were to go against
+	 * each other the board would fill until the game ends. Without any victory checks though it should work until the board fills.
+	 * This test is set up for the 'easy' mode
+	 * hard mode to follow
+	 */
 	@Test
 	void testGetMove() {
 		AI testAI = new AI(false);
@@ -43,7 +48,7 @@ class AItest {
 			System.out.println("Testing " + moveResult[0] + " "+ moveResult[1]);
 		}
 		for(int i = 0; i < dimM; i++) {
-			for(int j = 0; j < dimN; i++) {
+			for(int j = 0; j < dimN; j++) {
 				if(Board.gameboard[i][j] != 'x')
 					fail();
 			}
