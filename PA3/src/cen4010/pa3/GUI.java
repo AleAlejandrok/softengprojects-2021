@@ -80,9 +80,9 @@ public GUI() {
 	
 	
 	/******************Board Instantiation************************/
-	int m = 3;
-	int n = 3;
-	int k = 3;
+	int m;
+	int n;
+	int k;
 	/******create mxn question popup********/
 	
 	int dimmensions[]= dimmensionPopup();
@@ -142,15 +142,15 @@ public GUI() {
 		        		 
 		        		 
 		        		 //if player2 is a robot... do turn... increment turn number
-		        		 if (player2.isRobot()) {
-		        		 int [] xy =player2.getMove();
-		        		 char x= xy[0];
-			     		 char y= xy[1];
-			     		 buttons[x][y].setText("X");
-			     		 Board.gameboard[x][y]='x';
-			     		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
-		        		 Board.turn_number++;
-		        		 }
+//		        		 if (player2.isRobot()) {
+//			        		 int [] xy =player2.getMove();
+//			        		 char x= xy[0];
+//				     		 char y= xy[1];
+//				     		 buttons[x][y].setText("X");
+//				     		 Board.gameboard[x][y]='x';
+//				     		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
+//			        		 Board.turn_number++;
+//			        		 }
 		        		 
 		        		 
 		        		 //player 1 timeout
@@ -202,15 +202,16 @@ public GUI() {
 		         	buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 		         	
 		         	//if player1 is a robot... do turn... increment turn number
-		         	if (player1.isRobot()) {
-		         	 int [] xy = player1.getMove();
-	        		 char x= xy[0];
-		     		 char y= xy[1];
-		     		 buttons[x][y].setText("O");
-		     		 Board.gameboard[x][y]='o';
-		     		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
-		     		 Board.turn_number++;
-		         	}
+		         	
+//		         	if (player1.isRobot()) {
+//		         	 int [] xy = player1.getMove();
+//	        		 char x= xy[0];
+//		     		 char y= xy[1];
+//		     		 buttons[x][y].setText("O");
+//		     		 Board.gameboard[x][y]='o';
+//		     		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
+//		     		 Board.turn_number++;
+//		         	}
 		         	
 		         	//(harder AI) loop checking all spaces for a winning combo for either player
 		                  	
