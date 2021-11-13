@@ -36,16 +36,6 @@ public class Board {
 		return;
 	}
 	
-	/*
-	public static void setBoard() { // initializes board to 0s
-	    for (int i = 0; i < m; i++) {
-	        for (int j = 0; j < n; j++) {
-	            Board.gameboard[i][j] = 0;
-	        }
-	    }
-	}
-	*/
-	
 	public static boolean playerWin(char c) { // checks for winning combinations
 
 	    /* check horizontal */
@@ -54,10 +44,11 @@ public class Board {
 		    	if (gameboard[row][col] == c) {
 		    		int score = 1;
 		    		int i = col+1;
-	    			while (i<n && gameboard[row][i] == c) {
+	    			while (i<n && gameboard[row][i] == c) { // traverse right
 			            i++;
 	    				score++;
-			            if (score >= k) { // reached required score
+			            
+	    				if (score >= k) { // reached required score
 			            	return true;
 			            }		            				         
 	    			}
@@ -72,9 +63,10 @@ public class Board {
 		    	if (gameboard[row][col] == c) {
 		    		int score = 1;
 		    		int i = row+1;
-	    			while (i<m && gameboard[i][col] == c) {
+	    			while (i<m && gameboard[i][col] == c) { // traverse down
 			            score++;
 			            i++;
+			            
 			            if (score >= k) { // reached required score
 			            	return true;
 			            }		            
@@ -83,10 +75,9 @@ public class Board {
 		    }
 	    }
 	        
-	    /* check diagonals upwards */
+	    /* checks diagonals upwards */
 	    for (int row = 0; row < m; row++) {
-	    	for (int col = 0; col < n; col++) {
-		    	
+	    	for (int col = 0; col < n; col++) {		    	
 	    		if (gameboard[row][col] == c) {
 	 
 			    	int score = 1; 		            
@@ -94,12 +85,11 @@ public class Board {
 		            int j = col + 1; // set column index for next point in diagonal
 
 		            while (i >= 0 && j<n && gameboard[i][j] == c) { // traverse diagonally up and to the right   
-		                i--;	
-		            	
+		                i--;			            	
 		                j++;
 		                score++;
 		                
-		                if (score >= k) {
+		                if (score >= k) { // reached required score
 		                	return true;
 		                }		           
 		            }
@@ -107,10 +97,9 @@ public class Board {
 	    	}
 	    }
 	    
-	    /* check diagonals downwards */
+	    /* checks diagonals downwards */
 	    for (int row = 0; row < m; row++) {
-	    	for (int col = 0; col < n; col++) {
-		    	
+	    	for (int col = 0; col < n; col++) {		    	
 	    		if (gameboard[row][col] == c) {
 	 
 			    	int score = 1; 		            
@@ -122,7 +111,7 @@ public class Board {
 		                j++;
 		                score++;
 		                
-		                if (score >= k) {
+		                if (score >= k) { // reach required score
 		                	return true;
 		                }
 		            }		            
