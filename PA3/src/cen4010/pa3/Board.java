@@ -85,7 +85,7 @@ public class Board {
 		    }
 	    }
 	        
-	    /* check diagonals upwards */
+	    /* checks diagonals upwards */
 	    for (int row = 0; row < m; row++) {
 	    	for (int col = 0; col < n; col++) {
 		    	
@@ -108,7 +108,7 @@ public class Board {
 	    	}
 	    }
 	    
-	    /* check diagonals downwards */
+	    /* checks diagonals downwards */
 	    for (int row = 0; row < m; row++) {
 	    	for (int col = 0; col < n; col++) {
 		    	
