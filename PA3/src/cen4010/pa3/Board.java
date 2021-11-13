@@ -36,16 +36,6 @@ public class Board {
 		return;
 	}
 	
-	/*
-	public static void setBoard() { // initializes board to 0s
-	    for (int i = 0; i < m; i++) {
-	        for (int j = 0; j < n; j++) {
-	            Board.gameboard[i][j] = 0;
-	        }
-	    }
-	}
-	*/
-	
 	public static boolean playerWin(char c) { // checks for winning combinations
 
 	    /* check horizontal */
@@ -87,8 +77,7 @@ public class Board {
 	        
 	    /* checks diagonals upwards */
 	    for (int row = 0; row < m; row++) {
-	    	for (int col = 0; col < n; col++) {
-		    	
+	    	for (int col = 0; col < n; col++) {		    	
 	    		if (gameboard[row][col] == c) {
 	 
 			    	int score = 1; 		            
@@ -110,8 +99,7 @@ public class Board {
 	    
 	    /* checks diagonals downwards */
 	    for (int row = 0; row < m; row++) {
-	    	for (int col = 0; col < n; col++) {
-		    	
+	    	for (int col = 0; col < n; col++) {		    	
 	    		if (gameboard[row][col] == c) {
 	 
 			    	int score = 1; 		            
