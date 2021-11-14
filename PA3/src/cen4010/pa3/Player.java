@@ -3,13 +3,12 @@ package cen4010.pa3;
 import java.util.Random;
 
 public class Player {
-	public boolean isMaximizingPlayer;
+	
 	boolean isRobot;
 	
 	
-	Player(boolean robot, boolean isMax) {
+	Player(boolean robot) {
 		this.isRobot = robot;
-		isMaximizingPlayer= isMax;
 	}
 	
 	public boolean isRobot() {
@@ -23,7 +22,7 @@ public int[] getMove() {
 		int maxM = Board.m;
 		int maxN = Board.n;
 		//if easy
-		if(!this.isMaximizingPlayer) {
+		
 
 			Random rand = new Random();
 			int randM;
@@ -36,12 +35,10 @@ public int[] getMove() {
 			coordinate[0] = randM;
 			coordinate[1] = randN;
 			return coordinate;
-		}
+		
 		//else use minmaxxing
 		/**TODO**/
-		else {
-			return coordinate;
-		}
+		
 		
 		
 	}

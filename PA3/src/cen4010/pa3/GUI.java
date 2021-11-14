@@ -17,8 +17,8 @@ Boolean game_stopped=false;
 public static int StartingTime=60;
 public static int player1time=StartingTime;
 public static int player2time=StartingTime;
-
-	
+JPanel TopPanel = new JPanel();
+JButton [][] buttons;
 	
 	
 	  
@@ -35,8 +35,42 @@ public static int player2time=StartingTime;
 			          timeDisplay1.setText(player1time+"");
 			          repaint();
 			          
-			           
+			           //
+			          if (getPlayer_1().isRobot && Board.turn_number==1)
+			          {
+			        	  if(getPlayer_1().isRobot) {
+			        			 
+			        			 int[] temp = getPlayer_1().getMove();
+			        			 
+				        		
+				        		 Board.gameboard[temp[0]][temp[1]]='x';
+				        		 Board.turn_number++;
+			        		 }
+			          }
 			          
+			          
+			          for (int i = 0; i<Board.m; i++) {
+			      		for (int j = 0; j<Board.n;j++) {
+			      			if(Board.gameboard[i][j]=='x') {
+			      				System.out.print("x");
+			      				 buttons[i][j].setText("X");
+				        		 buttons[i][j].setFont(new Font("Montserrat", Font.BOLD, 42));	
+				        		 buttons[i][j].revalidate();
+				        		 buttons[i][j].repaint();
+			      			}
+			      			if(Board.gameboard[i][j]=='o') {
+			      				System.out.print("o");
+			      				 buttons[i][j].setText("O");
+				        		 buttons[i][j].setFont(new Font("Montserrat", Font.BOLD, 42));
+				        		 buttons[i][j].revalidate();
+				        		 buttons[i][j].repaint();
+			      			}
+			      			
+			      			
+			      			}
+			      		}
+			          TopPanel.revalidate();
+			          TopPanel.repaint();
 			          
 		    	  }
 		     }
@@ -54,6 +88,29 @@ public static int player2time=StartingTime;
 		    		  
 			          timeDisplay2.setText(player2time+"");
 			          repaint();
+			          
+			          for (int i = 0; i<Board.m; i++) {
+				      		for (int j = 0; j<Board.n;j++) {
+				      			if(Board.gameboard[i][j]=='x') {
+				      				System.out.print("x");
+				      				 buttons[i][j].setText("X");
+					        		 buttons[i][j].setFont(new Font("Montserrat", Font.BOLD, 42));	
+					        		 buttons[i][j].revalidate();
+					        		 buttons[i][j].repaint();
+				      			}
+				      			if(Board.gameboard[i][j]=='o') {
+				      				System.out.print("o");
+				      				 buttons[i][j].setText("O");
+					        		 buttons[i][j].setFont(new Font("Montserrat", Font.BOLD, 42));	
+					        		 buttons[i][j].revalidate();
+					        		 buttons[i][j].repaint();
+				      			}
+				      			
+				      			
+				      			}
+				      		}
+				          //TopPanel.revalidate();
+				          //TopPanel.repaint();
 		    	  }
 		      }
 		  });
@@ -95,12 +152,12 @@ public GUI() {
 	
 	
 	Board.createBoard(m, n, k);
-	JButton [][] buttons= new JButton[Board.m][Board.n];
+	buttons= new JButton[Board.m][Board.n];
 	/******************End Board Instantiation************************/
 	
 	
 	/******************Top Panel************************/
-	JPanel TopPanel = new JPanel();
+	
 	TopPanel.setLayout(new GridLayout(Board.m,Board.n,10,10));
 	TopPanel.setBackground(new Color(40,40,40));
 	TopPanel.setPreferredSize(new Dimension(100,100));
@@ -125,38 +182,47 @@ public GUI() {
 		        	 
 		        	 if (Board.gameboard[o][l]==0 && game_started) {
 		        		
-		        		 
+		        		System.out.print(Board.turn_number); 
 		        		 
 		        		 
 		        		//if turn is odd, place an x	 
 		        	 if (Board.turn_number%2==1) {
-		        		 if(getComputer_1() != null) {
-		        			 int[] temp = getComputer_1().getMove();
+		        		 if (getPlayer_1().isRobot && Board.turn_number!=1) {
+		        		 
+		        			 
+		        			 int[] temp = getPlayer_1().getMove();
 		        			 buttons[temp[0]][temp[1]].setText("X");
 			        		 buttons[temp[0]][temp[1]].setFont(new Font("Montserrat", Font.BOLD, 42));
 			        		 Board.gameboard[temp[0]][temp[1]]='x';
+			        		 Board.turn_number++;
 		        		 }else {
 		        			 buttons[o][l].setText("X");
 			        		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 			        		 Board.gameboard[o][l]='x';
-		        		 }
+			        		 Board.turn_number++;
 		        		 
+		        		 }
 		        		 
 		        		 
 		        		 timer1.stop();
 		        		 timer2.start();
 		        		 
 		        		 
-		        		 //if player2 is a robot... do turn... increment turn number
-//		        		 if (player2.isRobot()) {
-//			        		 int [] xy =player2.getMove();
-//			        		 char x= xy[0];
-//				     		 char y= xy[1];
-//				     		 buttons[x][y].setText("X");
-//				     		 Board.gameboard[x][y]='x';
-//				     		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
-//			        		 Board.turn_number++;
-//			        		 }
+		        		// if player2 is a robot... do turn... increment turn number
+		        		 if (!Board.gameDraw()) {				         		
+				         		
+		        		 
+		        		
+				         if (getPlayer_2().isRobot()) {
+			        		 int [] xy =getPlayer_2().getMove();
+			        		 int x= xy[0];
+				     		 int y= xy[1];
+				     		 buttons[x][y].setText("O");
+				     		 Board.gameboard[x][y]='o';
+				     		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
+			        		 Board.turn_number++;
+			        		 }
+		        		 }
 		        		 
 		        		 
 		        		 //player 1 timeout
@@ -174,6 +240,17 @@ public GUI() {
 			        		}
 		        		 //if game is still going... check if the game is over
 		        		 else
+		        			 if (Board.playerWin('o')) {
+			        			 for (int i = 0; i<Board.m; i++) {
+						        		for (int j = 0; j<Board.n;j++) {
+						        			buttons[i][j].setEnabled(false);
+						        		}
+			        			 }
+			        			 PopupWin("2");
+			        			 game_stopped=true;
+					         		timer1.stop();
+					        		timer2.stop();
+					         	}
 		        		 if (Board.playerWin('x')) {
 		        			 for (int i = 0; i<Board.m; i++) {
 					        		for (int j = 0; j<Board.n;j++) {
@@ -202,28 +279,30 @@ public GUI() {
 		        	 }
 		        	 //player 2 move
 		        	 else {
-		        		 if(getComputer_2() != null) {
-		        			 int[] temp = getComputer_2().getMove();
+		        		 if(getPlayer_2().isRobot) {
+		        			 int[] temp = getPlayer_2().getMove();
 		        			 buttons[temp[0]][temp[1]].setText("O");
 			        		 buttons[temp[0]][temp[1]].setFont(new Font("Montserrat", Font.BOLD, 42));
 			        		 Board.gameboard[temp[0]][temp[1]]='o';
+			        		 Board.turn_number++;
 		        		 }else {
 		        			 buttons[o][l].setText("O");
 			        		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 			        		 Board.gameboard[o][l]='o';
+			        		 Board.turn_number++;
 		        		 }
 		         	
 		         	//if player1 is a robot... do turn... increment turn number
 		         	
-//		         	if (player1.isRobot()) {
-//		         	 int [] xy = player1.getMove();
-//	        		 char x= xy[0];
-//		     		 char y= xy[1];
-//		     		 buttons[x][y].setText("O");
-//		     		 Board.gameboard[x][y]='o';
-//		     		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
-//		     		 Board.turn_number++;
-//		         	}
+		         	if (getPlayer_1().isRobot()) {
+		         	 int [] xy = getPlayer_1().getMove();
+	        		 int x= xy[0];
+		     		 int y= xy[1];
+		     		 buttons[x][y].setText("X");
+		     		 Board.gameboard[x][y]='x';
+		     		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
+		     		 Board.turn_number++;
+		         	}
 		         	
 		         	//(harder AI) loop checking all spaces for a winning combo for either player
 		                  	
@@ -268,7 +347,7 @@ public GUI() {
 			         	}
 			         	
 		        	 }
-		         	Board.turn_number++;
+		        	
 		          }
 		         }
 		       };
@@ -488,8 +567,7 @@ public GUI() {
 	//****Players****//
 	private Player Player_1;
 	private Player Player_2;
-	private AI Computer_1;
-	private AI Computer_2;
+	
 	
 	private void setPlayer_1(Player p) {
 		this.Player_1 = p;
@@ -497,44 +575,32 @@ public GUI() {
 	private void setPlayer_2(Player p) {
 		this.Player_2 = p;
 	}
-	private void setComputer_1(AI c) {
-		this.Computer_1 = c;
-	}
-	private void setComputer_2(AI c) {
-		this.Computer_2 = c;
-	}
 	private Player getPlayer_1() {
 		return this.Player_1;
 	}
 	private Player getPlayer_2() {
 		return this.Player_2;
 	}
-	private AI getComputer_1() {
-		return this.Computer_1;
-	}
-	private AI getComputer_2() {
-		return this.Computer_2;
-	}
-	
+	//0 human, 1 computer
 	private void AssignPlayer(int player_type,int player_index) {
 		if(player_type == 0) {
 			if(player_index == 1) {
-				Player p = new Player();
+				Player p = new Player(false);
 				setPlayer_1(p);
 			}
 			if(player_index == 2) {
-				Player p = new Player();
+				Player p = new Player(false);
 				setPlayer_2(p);
 			}
 		}
 		else if(player_type == 1) {
 			if(player_index == 1) {
-				AI ai = new AI();
-				setComputer_1(ai);
+				Player p = new Player(true);
+				setPlayer_1(p);
 			}
 			if(player_index == 2) {
-				AI ai = new AI();
-				setComputer_2(ai);
+				Player p = new Player(true);
+				setPlayer_2(p);
 			}
 		}
 	}
