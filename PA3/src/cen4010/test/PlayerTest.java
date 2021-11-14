@@ -6,37 +6,24 @@ import java.util.Random;
 
 import org.junit.jupiter.api.Test;
 
-import cen4010.pa3.AI;
 import cen4010.pa3.Board;
+import cen4010.pa3.Player;
 
-class AItest {
+class PlayerTest {
 
 	@Test
-	void testAI() {
-		AI testAI = new AI();
-		if(testAI.isRobot())
+	void testIsRobot() {
+		Player testPlayer = new Player(true);
+		if(testPlayer.isRobot())
 			return;
 		else
 			fail();
 	}
 
 	@Test
-	void testAIBoolean() {
-		AI testAI = new AI(true);
-		if(testAI.isMaximizingPlayer)
-			return;
-		else
-			fail();
-	}
-	/**
-	 * getMove() is written in such a way to where it should never give the same position twice. If two AI were to go against
-	 * each other the board would fill until the game ends. Without any victory checks though it should work until the board fills.
-	 * This test is set up for the 'easy' mode
-	 * hard mode to follow
-	 */
-	@Test
+	
 	void testGetMove() {
-		AI testAI = new AI(false);
+		Player testAI = new Player(true);
 		Random rand = new Random();
 		int dimM = rand.nextInt(100);
 		int dimN = rand.nextInt(100);
@@ -56,6 +43,8 @@ class AItest {
 		}
 		return;
 			
+	
 	}
+
 
 }
