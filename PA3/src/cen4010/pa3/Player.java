@@ -7,7 +7,7 @@ public class Player {
 	boolean isRobot;
 	
 	
-	Player(boolean robot) {
+	public Player(boolean robot) {
 		this.isRobot = robot;
 	}
 	
