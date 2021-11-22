@@ -119,7 +119,11 @@ JButton [][] buttons;
 public GUI() {
 	
 	/******************Frame Settings************************/
+	
 	Frame=new JFrame();
+	String pathToFileOnDisk="TicTacToe.png";
+	ImageIcon img = new ImageIcon(pathToFileOnDisk);
+	Frame.setIconImage(img.getImage());
 	Frame.setTitle("Tic Tac Toe");
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
 	int height = screenSize.height;
@@ -478,6 +482,9 @@ public GUI() {
 		
 		//****FRAME****//
 		JFrame Popup = new JFrame("Select dimmensions");
+		String pathToFileOnDisk="TicTacToe.png";
+		ImageIcon img = new ImageIcon(pathToFileOnDisk);
+		Popup.setIconImage(img.getImage());
 		Popup.setSize(400,200);
 		Popup.setResizable(false);
 		Popup.setLocationRelativeTo(null);
@@ -613,11 +620,14 @@ public GUI() {
 		
 		//****FRAME****//
 		Frame = new JFrame("Congratulations!");
+		
 		Frame.setSize(400,200);
 		Frame.setResizable(false);
 		Frame.setLocationRelativeTo(null);
 		Frame.setLayout(new GridLayout(1, 1));
-		
+		String pathToFileOnDisk="TicTacToe.png";
+		ImageIcon img = new ImageIcon(pathToFileOnDisk);
+		Frame.setIconImage(img.getImage());
 		//****TEXT LABEL****//
 	
 		JLabel Text = new JLabel();
