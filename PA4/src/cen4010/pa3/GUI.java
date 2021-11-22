@@ -116,7 +116,23 @@ JButton [][] buttons;
 		  });
 
 
-public GUI() {
+public GUI(int m, int n, int k, int theme) {
+	
+	
+	/******************Theme Switch Case*********************/
+	switch(theme) {
+		case 1:
+			//default
+			break;
+		case 2:
+			//anime
+			break;
+		case 3:
+			//dark theme
+			break;
+	}
+	
+	
 	
 	/******************Frame Settings************************/
 	
@@ -139,15 +155,10 @@ public GUI() {
 	
 	
 	/******************Board Instantiation************************/
-	int m;
-	int n;
-	int k;
+	
 	/******create mxn question popup********/
 	
-	int dimmensions[]= dimmensionPopup();
-	m = dimmensions[0];
-	n = dimmensions[1];
-	k = dimmensions[2];
+	
 	//ensure k is doable
 	if(k > m && k > n)
 		k = Math.min(m, n);
@@ -470,106 +481,13 @@ public GUI() {
 	
 	}
 
+
 	/**
 	 * Creates a scuffed dimmension popup
 	 * @return a 2 long array with dimmensions for the gameboard and a 3rd position for k
 	 * TODO: check to make sure the textboxes only take integers
 	 */
-	private int[] dimmensionPopup() {
-		int m = 3;
-		int n = 3; 
-		int k = 3;
-		
-		//****FRAME****//
-		JFrame Popup = new JFrame("Select dimmensions");
-		String pathToFileOnDisk="TicTacToe.png";
-		ImageIcon img = new ImageIcon(pathToFileOnDisk);
-		Popup.setIconImage(img.getImage());
-		Popup.setSize(400,200);
-		Popup.setResizable(false);
-		Popup.setLocationRelativeTo(null);
-		Popup.setLayout(new GridLayout(4, 2));
-		
-		
-		//****Text Fields****//
-		JTextField mField = new JTextField(1);
-		JTextField nField = new JTextField(1);
-		JTextField kField = new JTextField(1);
-		JLabel mLabel = new JLabel("M:");
-		JLabel nLabel = new JLabel("N:");
-		JLabel kLabel = new JLabel("K:");
-		mLabel.setAlignmentX(1);
-		nLabel.setAlignmentX(1);
-		kLabel.setAlignmentX(1);
-		mLabel.setAlignmentY(0);
-		nLabel.setAlignmentY(50);
-		kLabel.setAlignmentY(100);
-		mField.setAlignmentX(50);
-		nField.setAlignmentX(50);
-		kField.setAlignmentX(50);
-		mField.setAlignmentY(0);
-		nField.setAlignmentY(50);
-		kField.setAlignmentY(100);
-		
-		JButton submitButton = new JButton();
-		submitButton.setBounds(150, 100, 100, 20);
-		submitButton.setFont(new Font("DIALOG", Font.BOLD, 15));
-		submitButton.setText("Submit");
-		submitButton.setFocusPainted(false);
-		submitButton.addActionListener(new ActionListener() {
-	         public void actionPerformed(ActionEvent e) {
-	        	
-	        	 Popup.dispose();
-	        	 //GUI g= new GUI();
-	        	 // DO RESET
-	          }
-	       	        
-	       });
-		 Popup.add(mLabel);
-     	 Popup.add(mField);
-     	 
-     	Popup.add(nLabel);
-     	 Popup.add(nField);
-     	
-     	 
-    	 
-    	 Popup.add(kLabel);
-    	 Popup.add(kField);
-     	 Popup.add(submitButton);
-     	 
-     	 Popup.setVisible(true);
-     	 while(Popup.isDisplayable()) {
-     		 try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-     	 }
-     	 try {
-			m = Integer.valueOf(mField.getText());
-		} catch (NumberFormatException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			m =3;
-		}
-     	 try {
-			n = Integer.valueOf(nField.getText());
-		} catch (NumberFormatException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			n = 3;
-		}
-     	 try {
-			k = Integer.valueOf(kField.getText());
-		} catch (NumberFormatException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			k = 3;
-		}
-		int dimmensionArray[] = {m,n,k};
-		return dimmensionArray;
-	}
+
 	
 	//****Players****//
 	private Player Player_1;
@@ -674,5 +592,117 @@ public GUI() {
 		Frame.setVisible(true);
 	}
 	//**********************//
+	public static int[] setUpPopup() {
+		int m = 3;
+		int n = 3; 
+		int k = 3;
+		
+		//****FRAME****//
+		JFrame Popup = new JFrame("Setup Game!");
+		String pathToFileOnDisk="TicTacToe.png";
+		ImageIcon img = new ImageIcon(pathToFileOnDisk);
+		
+		String[] themeOptions = {"Default", "Hatsune Miku", "Dark Mode"};
+		JComboBox<String> themeDropDown = new JComboBox<>(themeOptions);
+		themeDropDown.setSelectedIndex(0);
+		
+		
+		
+		
+		Popup.setIconImage(img.getImage());
+		Popup.setSize(400,200);
+		Popup.setResizable(false);
+		Popup.setLocationRelativeTo(null);
+		Popup.setLayout(new GridLayout(4, 2));
+		
+		
+		//****Text Fields****//
+		JTextField mField = new JTextField(1);
+		JTextField nField = new JTextField(1);
+		JTextField kField = new JTextField(1);
+		JLabel themeLabel = new JLabel("Theme:");
+		JLabel mLabel = new JLabel("M:");
+		JLabel nLabel = new JLabel("N:");
+		JLabel kLabel = new JLabel("K:");
+		themeLabel.setAlignmentX(1);
+		themeLabel.setAlignmentY(0);
+		themeDropDown.setAlignmentX(1);
+		themeDropDown.setAlignmentY(0);
+		mLabel.setAlignmentX(1);
+		nLabel.setAlignmentX(1);
+		kLabel.setAlignmentX(1);
+		mLabel.setAlignmentY(50);
+		nLabel.setAlignmentY(100);
+		kLabel.setAlignmentY(150);
+		mField.setAlignmentX(50);
+		nField.setAlignmentX(50);
+		kField.setAlignmentX(50);
+		mField.setAlignmentY(50);
+		nField.setAlignmentY(100);
+		kField.setAlignmentY(150);
+		
+		JButton submitButton = new JButton();
+		submitButton.setBounds(150, 100, 100, 20);
+		submitButton.setFont(new Font("DIALOG", Font.BOLD, 15));
+		submitButton.setText("Submit");
+		submitButton.setFocusPainted(false);
+		submitButton.addActionListener(new ActionListener() {
+	         public void actionPerformed(ActionEvent e) {
+	        	
+	        	 Popup.dispose();
+	        	 //GUI g= new GUI();
+	        	 // DO RESET
+	          }
+	       	        
+	       });
+		Popup.add(themeLabel);
+		Popup.add(themeDropDown);
+		
+		 Popup.add(mLabel);
+     	 Popup.add(mField);
+     	 
+     	Popup.add(nLabel);
+     	 Popup.add(nField);
+     	
+     	 
+    	 
+    	 Popup.add(kLabel);
+    	 Popup.add(kField);
+     	 Popup.add(submitButton);
+     	 
+     	 Popup.setVisible(true);
+     	 while(Popup.isDisplayable()) {
+     		 try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+     	 }
+     	 try {
+			m = Integer.valueOf(mField.getText());
+		} catch (NumberFormatException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			m =3;
+		}
+     	 try {
+			n = Integer.valueOf(nField.getText());
+		} catch (NumberFormatException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			n = 3;
+		}
+     	 try {
+			k = Integer.valueOf(kField.getText());
+		} catch (NumberFormatException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			k = 3;
+		}
+     	int theme = themeDropDown.getSelectedIndex();
+		int dimmensionArray[] = {m,n,k,theme};
+		return dimmensionArray;
+	}
 }
 
