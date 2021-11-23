@@ -48,7 +48,7 @@ JButton [][] buttons;
 			        		 }
 			          }
 			          
-			          
+			          //Check to see if board space is occupied and update the board (repaint)
 			          for (int i = 0; i<Board.m; i++) {
 			      		for (int j = 0; j<Board.n;j++) {
 			      			if(Board.gameboard[i][j]=='x') {
@@ -88,7 +88,8 @@ JButton [][] buttons;
 		    		  
 			          timeDisplay2.setText(player2time+"");
 			          repaint();
-			          
+			          //Check to see if board space is occupied and update the board (repaint)
+ 
 			          for (int i = 0; i<Board.m; i++) {
 				      		for (int j = 0; j<Board.n;j++) {
 				      			if(Board.gameboard[i][j]=='x') {
@@ -116,21 +117,9 @@ JButton [][] buttons;
 		  });
 
 
-public GUI(int m, int n, int k, int theme) {
+public GUI(int m, int n, int k) {
 	
-	
-	/******************Theme Switch Case*********************/
-	switch(theme) {
-		case 1:
-			//default
-			break;
-		case 2:
-			//anime
-			break;
-		case 3:
-			//dark theme
-			break;
-	}
+
 	
 	
 	
@@ -156,16 +145,16 @@ public GUI(int m, int n, int k, int theme) {
 	
 	/******************Board Instantiation************************/
 	
-	/******create mxn question popup********/
 	
 	
 	//ensure k is doable
-	if(k > m && k > n)
-		k = Math.min(m, n);
-	
-	
-	
-	
+	try {
+		if(k > m && k > n)
+			k = Math.min(m, n);
+	} catch (Exception e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
 	Board.createBoard(m, n, k);
 	buttons= new JButton[Board.m][Board.n];
 	/******************End Board Instantiation************************/
@@ -479,7 +468,7 @@ public GUI(int m, int n, int k, int theme) {
 	Frame.add(BottomPanel);
 	Frame.setVisible(true);
 	
-	}
+	}//end constructor
 
 
 	/**
@@ -542,7 +531,7 @@ public GUI(int m, int n, int k, int theme) {
 		Frame.setSize(400,200);
 		Frame.setResizable(false);
 		Frame.setLocationRelativeTo(null);
-		Frame.setLayout(new GridLayout(1, 2));
+		Frame.setLayout(new GridLayout(1, 1));
 		String pathToFileOnDisk="TicTacToe.png";
 		ImageIcon img = new ImageIcon(pathToFileOnDisk);
 		Frame.setIconImage(img.getImage());
@@ -571,13 +560,9 @@ public GUI(int m, int n, int k, int theme) {
 		else {
 		Text.setText("Congratulations, player \"" + player + "\" has won!");
 		}
-		
-		
-		
-		
 		//****RESET BUTTON****//
 		JButton ResetButton = new JButton();
-		//ResetButton.setBounds(150, 100, 100, 20);
+		ResetButton.setBounds(150, 100, 100, 20);
 		ResetButton.setFont(new Font("DIALOG", Font.BOLD, 15));
 		ResetButton.setText("RESET");
 		ResetButton.setFocusPainted(false);
@@ -592,10 +577,10 @@ public GUI(int m, int n, int k, int theme) {
 		
 		//****DRAW FRAME****//
 		Frame.add(Text);
-		Frame.add(ResetButton);
+		//Frame.add(ResetButton);
 		Frame.setVisible(true);
 	}
-	//**********************//
+	//**********************// TODO: fix this prompt
 	public static int[] setUpPopup() {
 		int m = 3;
 		int n = 3; 
@@ -630,7 +615,7 @@ public GUI(int m, int n, int k, int theme) {
 		JLabel kLabel = new JLabel("K:");
 		themeLabel.setAlignmentX(1);
 		themeLabel.setAlignmentY(0);
-		themeDropDown.setAlignmentX(1);
+		themeDropDown.setAlignmentX(50);
 		themeDropDown.setAlignmentY(0);
 		mLabel.setAlignmentX(1);
 		nLabel.setAlignmentX(1);

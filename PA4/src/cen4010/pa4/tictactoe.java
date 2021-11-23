@@ -5,9 +5,12 @@ public class tictactoe {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//Board b = new Board(3);
+		
+		FrameGenerator fg = new FrameGenerator(1);
+		
 		int dimmensions[] = null;
 		try {
-			dimmensions = GUI.setUpPopup();
+			dimmensions = fg.setUpPopup();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -15,8 +18,14 @@ public class tictactoe {
 		int m = dimmensions[0];
 		int n = dimmensions[1];
 		int k = dimmensions[2];
-		int theme = dimmensions[3];
-		GUI g= new GUI(m,n,k,theme);
+		fg.setTheme(dimmensions[3]);
+		
+		
+		
+		
+		
+		
+		GUI g= new GUI(m,n,k);
 		g.setDefaultCloseOperation(0);
 		
 		

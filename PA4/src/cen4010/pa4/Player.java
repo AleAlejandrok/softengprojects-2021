@@ -14,7 +14,10 @@ public class Player {
 	public boolean isRobot() {
 		return this.isRobot;
 	}
-	
+/**
+ * Generates a move for an ai player	
+ * @return
+ */
 public int[] getMove() {
 		
 		int[] coordinate = new int[2];
