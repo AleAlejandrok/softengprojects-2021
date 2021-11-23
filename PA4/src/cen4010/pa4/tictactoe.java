@@ -6,7 +6,7 @@ public class tictactoe {
 		// TODO Auto-generated method stub
 		//Board b = new Board(3);
 		
-		FrameGenerator fg = new FrameGenerator(1);
+		FrameGenerator fg = new FrameGenerator(2);
 		
 		int dimmensions[] = null;
 		try {

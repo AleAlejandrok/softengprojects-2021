@@ -1,12 +1,14 @@
 package cen4010.pa4;
 import java.awt.*;
 
+import javax.swing.JPanel;
+
 public abstract class Theme {
 	
 	private int Theme;
 	private Color backgroundColor;
 	private Color elementColor;
-
+	private JPanel Panel = new JPanel();
 	
 	Theme(int themeCode){
 		this.Theme = themeCode;
@@ -30,6 +32,14 @@ public abstract class Theme {
 	
 	Color getElementColor() {
 		return this.elementColor;
+	}
+
+	public JPanel getPanel() {
+		return Panel;
+	}
+
+	public void setPanel(JPanel panel) {
+		Panel = panel;
 	}
 
 	

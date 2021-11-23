@@ -43,7 +43,7 @@ public class FrameGenerator {
 			this.theme= new DarkMode(1);
 			break;
 		case 2: 
-			//add waifu
+			this.theme = new MIKU(2);
 			break;
 		default:
 			break;
@@ -68,7 +68,8 @@ public class FrameGenerator {
 		JComboBox<String> themeDropDown = new JComboBox<>(themeOptions);
 		themeDropDown.setSelectedIndex(0);
 		
-		PopupPanel.setBackground(this.theme.getBackgroundColor());
+		PopupPanel = this.theme.getPanel();
+		
 		
 		
 		
