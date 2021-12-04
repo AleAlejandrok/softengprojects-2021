@@ -14,6 +14,28 @@ public class Board {
 	public static int k; // score to win
 	public static int turn_number=1;
 	
+	public static int XwinningM; //M for X to win
+	public static int XwinningN; //N for X to win 
+	public static int OwinningM; //M for O to win
+	public static int OwinningN; //N for O to win
+	
+	
+	
+	
+	
+	
+	
+	
+	private static void setWinningNumbers (char c, int m, int n) {
+		if (c=='o') {
+			Board.OwinningM=m;
+			Board.OwinningN=n;
+		}
+		if (c=='x') {
+			Board.XwinningM=m;
+			Board.XwinningN=n;
+		}
+	}
 	/**
 	 * Instantiates the gameboard with inputs m by n
 	 * @param m
@@ -35,7 +57,117 @@ public class Board {
 		}
 		return;
 	}
+public static boolean hypotheticalPlayerWin(char c) { // checks for winning combinations
 	
+		
+		
+		for (int outerrow = 0; outerrow < m; outerrow++) {
+	    	for (int outercol = 0; outercol < n; outercol++) {
+	    		
+	    		 char tempgameboard[][]= new char [m][n];
+	    		
+	    		for(int i = 0; i < n; i++) {
+	    			tempgameboard[i]=gameboard[i].clone();
+	    		}
+	    		
+	    		
+	    		tempgameboard[outerrow][outercol]='c';
+	    		
+		
+	    /* check horizontal */
+	    for (int row = 0; row < m; row++) {
+	    	for (int col = 0; col < n; col++) {
+		    	if (tempgameboard[row][col] == c) {
+		    		int score = 1;
+		    		int i = col+1;
+	    			while (i<n && tempgameboard[row][i] == c) { // traverse right
+			            i++;
+	    				score++;
+			            
+	    				if (score >= k) { // reached required score
+	    					setWinningNumbers(c,m,n);
+			            	return true;
+			            }		            				         
+	    			}
+		    	}
+		    }
+	    }
+
+
+	    /* check vertical */
+	    for (int col = 0; col < n; col++) {
+	    	for (int row = 0; row < m; row++) {
+		    	if (tempgameboard[row][col] == c) {
+		    		int score = 1;
+		    		int i = row+1;
+	    			while (i<m && tempgameboard[i][col] == c) { // traverse down
+			            score++;
+			            i++;
+			            
+			            if (score >= k) { // reached required score
+			            	setWinningNumbers(c,m,n);
+			            	return true;
+			            }		            
+			        }
+		    	}
+		    }
+	    }
+	        
+	    /* checks diagonals upwards */
+	    for (int row = 0; row < m; row++) {
+	    	for (int col = 0; col < n; col++) {		    	
+	    		if (tempgameboard[row][col] == c) {
+	 
+			    	int score = 1; 		            
+			    	int i = row - 1; // set row index for next point in diagonal		           
+		            int j = col + 1; // set column index for next point in diagonal
+
+		            while (i >= 0 && j<n && tempgameboard[i][j] == c) { // traverse diagonally up and to the right   
+		                i--;			            	
+		                j++;
+		                score++;
+		                
+		                if (score >= k) { // reached required score
+		                	setWinningNumbers(c,m,n);
+		                	return true;
+		                }		           
+		            }
+			    }
+	    	}
+	    }
+	    
+	    /* checks diagonals downwards */
+	    for (int row = 0; row < m; row++) {
+	    	for (int col = 0; col < n; col++) {		    	
+	    		if (tempgameboard[row][col] == c) {
+	 
+			    	int score = 1; 		            
+			    	int i = row + 1; // set row index for next point in diagonal		           
+		            int j = col + 1; // set column index for next point in diagonal
+		            //if (i<row && j<col) {
+		            while (i<m && j<n && tempgameboard[i][j] == c) { //traverse diagonally down and to the right            	 
+		                i++;	                	                
+		                j++;
+		                score++;
+		                
+		                if (score >= k) { // reach required score
+		                	setWinningNumbers(c,m,n);
+		                	return true;
+		                }
+		            }		            
+			    }
+	    	}
+	    }
+	    
+	    
+	    
+	    tempgameboard[outerrow][outercol]=0;
+	}//end outercol
+	}//end outerrow
+		
+		
+		return false;
+	}
 	public static boolean playerWin(char c) { // checks for winning combinations
 
 	    /* check horizontal */

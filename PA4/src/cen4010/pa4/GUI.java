@@ -39,11 +39,16 @@ JButton [][] buttons;
 			          if (getPlayer_1().isRobot && Board.turn_number==1)
 			          {
 			        	  if(getPlayer_1().isRobot) {
-			        			 
-			        			 int[] temp = getPlayer_1().getMove();
-			        			 
+			        		  int[] temp;
+			        		  	if (!getPlayer_1().isHarderRobot) {
+			        			  temp = getPlayer_1().getMove();
+			        		  	}
+			        		  	else {
+			        		  		  temp = getPlayer_1().getHardMove('x');
+			        		  	}
 				        		
-				        		 Board.gameboard[temp[0]][temp[1]]='x';
+				        		 
+								Board.gameboard[temp[0]][temp[1]]='x';
 				        		 Board.turn_number++;
 			        		 }
 			          }
@@ -194,7 +199,14 @@ public GUI(int m, int n, int k) {
 		        		 if (getPlayer_1().isRobot && Board.turn_number!=1) {
 		        		 
 		        			 
-		        			 int[] temp = getPlayer_1().getMove();
+		        			 int[] temp;
+			        		  	if (!getPlayer_1().isHarderRobot) {
+			        			  temp = getPlayer_1().getMove();
+			        		  	}
+			        		  	else {
+			        		  		  temp = getPlayer_1().getHardMove('x');
+			        		  	}
+				        		
 		        			 buttons[temp[0]][temp[1]].setText("X");
 			        		 buttons[temp[0]][temp[1]].setFont(new Font("Montserrat", Font.BOLD, 42));
 			        		 Board.gameboard[temp[0]][temp[1]]='x';
@@ -218,7 +230,14 @@ public GUI(int m, int n, int k) {
 		        		 
 		        		
 				         if (getPlayer_2().isRobot()) {
-			        		 int [] xy =getPlayer_2().getMove();
+				        	 int[] xy;
+			        		  	if (!getPlayer_2().isHarderRobot) {
+			        			  xy = getPlayer_2().getMove();
+			        		  	}
+			        		  	else {
+			        		  		  xy = getPlayer_2().getHardMove('o');
+			        		  	}
+				        		
 			        		 int x= xy[0];
 				     		 int y= xy[1];
 				     		 buttons[x][y].setText("O");
@@ -284,7 +303,14 @@ public GUI(int m, int n, int k) {
 		        	 //player 2 move
 		        	 else {
 		        		 if(getPlayer_2().isRobot) {
-		        			 int[] temp = getPlayer_2().getMove();
+		        			 int[] temp;
+			        		  	if (!getPlayer_2().isHarderRobot) {
+			        			  temp = getPlayer_2().getMove();
+			        		  	}
+			        		  	else {
+			        		  		  temp = getPlayer_2().getHardMove('o');
+			        		  	}
+				        		
 		        			 buttons[temp[0]][temp[1]].setText("O");
 			        		 buttons[temp[0]][temp[1]].setFont(new Font("Montserrat", Font.BOLD, 42));
 			        		 Board.gameboard[temp[0]][temp[1]]='o';
@@ -299,7 +325,14 @@ public GUI(int m, int n, int k) {
 		         	//if player1 is a robot... do turn... increment turn number
 		         	
 		         	if (getPlayer_1().isRobot()) {
-		         	 int [] xy = getPlayer_1().getMove();
+		         		int[] xy;
+	        		  	if (!getPlayer_1().isHarderRobot) {
+	        			  xy = getPlayer_1().getMove();
+	        		  	}
+	        		  	else {
+	        		  		  xy = getPlayer_1().getHardMove('x');
+	        		  	}
+		        		
 	        		 int x= xy[0];
 		     		 int y= xy[1];
 		     		 buttons[x][y].setText("X");
@@ -374,7 +407,7 @@ public GUI(int m, int n, int k) {
 	JPanel StartGamePanel = new JPanel();
 	StartGamePanel.setLayout(new GridLayout(1, 3, 150,10));
 	
-	String[] player_list = {"Human", "Computer"};
+	String[] player_list = {"Human", "Computer", "Harder Computer"};
 	JComboBox<?> PlayerList1 = new JComboBox<Object>(player_list);
 	PlayerList1.setFocusable(false);
 	PlayerList1.setSelectedIndex(-1);
@@ -495,7 +528,7 @@ public GUI(int m, int n, int k) {
 	private Player getPlayer_2() {
 		return this.Player_2;
 	}
-	//0 human, 1 computer
+	//0 human, 1 computer, 2 harder computer
 	private void AssignPlayer(int player_type,int player_index) {
 		if(player_type == 0) {
 			if(player_index == 1) {
@@ -507,16 +540,22 @@ public GUI(int m, int n, int k) {
 				setPlayer_2(p);
 			}
 		}
-		else if(player_type == 1) {
+		else if(player_type == 1 || player_type==2) {
+			Player p = null;
 			if(player_index == 1) {
-				Player p = new Player(true);
+				 p = new Player(true);
 				setPlayer_1(p);
 			}
 			if(player_index == 2) {
-				Player p = new Player(true);
+				 p = new Player(true);
 				setPlayer_2(p);
 			}
-		}
+		
+			if (player_type==2) {
+				p.setHarderRobot();
+			}
+		
+	}
 	}
 	//**********************//
 	
