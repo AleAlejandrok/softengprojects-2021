@@ -83,29 +83,32 @@ class PlayerTest {
 
 
 
-	//see previous testGetMove() this works on the premise the robot is in "hard" mode
+	//In theory hard player 'x' should always win vs the dumber rng based fake Player
 	@Test
 	void testGetHardMove() {
 		Player testAI = new Player(true);
 		testAI.setHarderRobot();
-		Random rand = new Random();
-		int dimM = rand.nextInt(100);
-		int dimN = rand.nextInt(100);
-		Board.createBoard(dimM, dimN, 5);
+		Player testAI2 = new Player(true);
+		
+		Board.createBoard(3, 3, 3);
 		int[] moveResult = new int[2];
-		for(int i = 0; i < dimM*dimN; i++) {
-			moveResult = testAI.getMove('x');
-			Board.gameboard[moveResult[0]][moveResult[1]] = 'x';
-			System.out.println("Testing " + moveResult[0] + " "+ moveResult[1]);
-		}
-		for(int i = 0; i < dimM; i++) {
-			for(int j = 0; j < dimN; j++) {
-				if(Board.gameboard[i][j] != 'x')
-					fail();
+		boolean xcurrentPlayer = true;
+		for(int i = 0; i < 3*3; i++) {
+			if(xcurrentPlayer) {
+				moveResult = testAI.getMove('x');
+				Board.gameboard[moveResult[0]][moveResult[1]] = 'x';
+				xcurrentPlayer = false;
+			}else {
+				moveResult= testAI2.getMove('o');
+				Board.gameboard[moveResult[0]][moveResult[1]] = 'o';
+				xcurrentPlayer = true;
 			}
-				
 		}
-		return;
+		if(Board.playerWin('x')) {
+			return;
+		}
+		fail();
+		
 			
 	
 	}

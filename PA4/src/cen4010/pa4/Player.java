@@ -47,6 +47,7 @@ public int[] getMove(char player) {
 			return coordinate;
 		}else {
 			//replaces getHardMove()
+			System.out.println("Harder Move Played");
 			if (Board.hypotheticalPlayerWin('x')&&player=='x') 
 			{
 				

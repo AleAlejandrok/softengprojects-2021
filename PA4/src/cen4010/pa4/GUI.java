@@ -282,7 +282,7 @@ public GUI() {
 		        		
 				         if (getPlayer_2().isRobot()) {
 				        	 int[] xy;
-				        	 xy = getPlayer_1().getMove('o');
+				        	 xy = getPlayer_2().getMove('o');
 				        		
 			        		 int x= xy[0];
 				     		 int y= xy[1];
@@ -610,20 +610,21 @@ public GUI() {
 			}
 		}
 		else if(player_type == 1 || player_type==2) {
-			Player p = null;
-			if(player_index == 1) {
-				 p = new Player(true);
-				setPlayer_1(p);
-			}
-			if(player_index == 2) {
-				 p = new Player(true);
-				setPlayer_2(p);
-			}
-		
+			Player p = new Player(true);
 			if (player_type==2) {
 				p.setHarderRobot();
 			}
 		
+			if(player_index == 1) {
+			
+				setPlayer_1(p);
+			}
+			if(player_index == 2) {
+			
+				setPlayer_2(p);
+			}
+		
+			
 	}
 	}
 	//**********************//
