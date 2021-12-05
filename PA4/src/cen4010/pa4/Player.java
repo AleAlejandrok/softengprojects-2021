@@ -92,7 +92,7 @@ public int[] getHardMove(char player) {
 		if (Board.hypotheticalPlayerWin('x')&&(player=='o') ) {
 			System.out.printf("\n\n3"+player + "=o \n\n");
 			
-				System.out.println("X should block");
+				System.out.println("O should block");
 				coordinate[0]=Board.XwinningM;
 				coordinate[1]=Board.XwinningN;
 				return coordinate;
@@ -102,7 +102,7 @@ public int[] getHardMove(char player) {
 		if (Board.hypotheticalPlayerWin('o') &&(player=='x') ) {
 			System.out.printf("\n\n4"+player + "=x \n\n");
 			
-				System.out.println("O should block");
+				System.out.println("X should block");
 				coordinate[0]=Board.OwinningM;
 				coordinate[1]=Board.OwinningN;
 				return coordinate;

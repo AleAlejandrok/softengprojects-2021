@@ -28,14 +28,17 @@ JButton [][] buttons;
 		  Timer timer1 = new Timer(1000, new ActionListener() {
 		      @Override
 		      public void actionPerformed(ActionEvent e) {
+		    	  if (getPlayer_1()!=null&& game_started) { 
 		    	  if (player1time>0)
 		          {
 		      
+		    		  
+		    		
 		    		  player1time--;
 			          timeDisplay1.setText(player1time+"");
 			          repaint();
 			          
-			           //
+			          
 			          if (getPlayer_1().isRobot && Board.turn_number==1)
 			          {
 			        	  if(getPlayer_1().isRobot) {
@@ -78,6 +81,7 @@ JButton [][] buttons;
 			          TopPanel.repaint();
 			          
 		    	  }
+		          }
 		     }
 		  });
 		  
@@ -98,14 +102,14 @@ JButton [][] buttons;
 			          for (int i = 0; i<Board.m; i++) {
 				      		for (int j = 0; j<Board.n;j++) {
 				      			if(Board.gameboard[i][j]=='x') {
-				      				System.out.print("x");
+				      				//System.out.print("x");
 				      				 buttons[i][j].setText("X");
 					        		 buttons[i][j].setFont(new Font("Montserrat", Font.BOLD, 42));	
 					        		 buttons[i][j].revalidate();
 					        		 buttons[i][j].repaint();
 				      			}
 				      			if(Board.gameboard[i][j]=='o') {
-				      				System.out.print("o");
+				      				//System.out.print("o");
 				      				 buttons[i][j].setText("O");
 					        		 buttons[i][j].setFont(new Font("Montserrat", Font.BOLD, 42));	
 					        		 buttons[i][j].revalidate();
@@ -191,7 +195,7 @@ public GUI(int m, int n, int k) {
 		        	 
 		        	 if (Board.gameboard[o][l]==0 && game_started) {
 		        		
-		        		System.out.print(Board.turn_number); 
+		        		System.out.println(Board.turn_number); 
 		        		 
 		        		 
 		        		//if turn is odd, place an x	 
@@ -219,6 +223,25 @@ public GUI(int m, int n, int k) {
 		        		 
 		        		 }
 		        		 Board.turn_number++;
+		        		 
+		        		 
+		        		 
+		          	
+	        		 if (Board.playerWin('x')) {
+	        			 for (int i = 0; i<Board.m; i++) {
+				        		for (int j = 0; j<Board.n;j++) {
+				        			buttons[i][j].setEnabled(false);
+				        		}
+	        			 }
+	        			 PopupWin("1");
+	        			 game_stopped=true;
+			         		timer1.stop();
+			        		timer2.stop();
+			         	}
+		        		 
+		        		 
+		        		 
+		        		 
 		        		 
 		        		 timer1.stop();
 		        		 timer2.start();

@@ -61,8 +61,8 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 	
 		
 	char tempgameboard[][];
-	setWinningNumbers('o',0,0);
-	setWinningNumbers('x',0,0);
+	//setWinningNumbers('o',0,0);
+	//setWinningNumbers('x',0,0);
 		for (int outerrow = 0; outerrow < m; outerrow++) {
 	    	for (int outercol = 0; outercol < n; outercol++) {
 	    		
@@ -71,13 +71,14 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 	    		for(int i = 0; i < n; i++) {
 	    			tempgameboard[i]=gameboard[i].clone();	
 	    		}
-	    		if (tempgameboard.equals(gameboard)) {
-	    			//System.out.print("they are the same");
-	    		}
-	    	
-	    		if (tempgameboard[outerrow][outercol]!=0)
-	    		continue;
 	    		
+	    	
+	    		if (tempgameboard[outerrow][outercol]!=0) {
+	    		continue;
+	    		}
+	    		else {
+	    		tempgameboard[outerrow][outercol]=c;
+	    		}
 		
 	    /* check horizontal */
 	    for (int row = 0; row < m; row++) {
@@ -91,8 +92,9 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 			            
 	    				if (score >= k) { // reached required score
 	    					
-	    					setWinningNumbers(c,row,col);
-	    					System.out.println(OwinningN+ ", "+OwinningM);
+	    					setWinningNumbers(c,row,i-1);
+	    					System.out.println("O's Winning Numbers: "+OwinningM+ ", "+OwinningN);
+	    					System.out.println("X's Winning Numbers: "+XwinningM+ ", "+XwinningN);
 	    					System.out.println(row+ ", "+col);
 			            	return true;
 			            }		            				         
@@ -114,8 +116,9 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 			            
 			            if (score >= k) { // reached required score
 			            	System.out.println("true");
-			            	setWinningNumbers(c,row,col);
-			            	System.out.println(OwinningN+ ", "+OwinningM);
+			            	setWinningNumbers(c,i-1,col);
+			            	System.out.println("O's Winning Numbers: "+OwinningM+ ", "+OwinningN);
+			            	System.out.println("X's Winning Numbers: "+XwinningM+ ", "+XwinningN);
 			            	System.out.println(row+ ", "+col);
 			            	return true;
 			            }		            
@@ -139,8 +142,9 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 		                score++;
 		                
 		                if (score >= k) { // reached required score
-		                	setWinningNumbers(c,row,col);
-		                	System.out.println(OwinningN+ ", "+OwinningM);
+		                	setWinningNumbers(c,i+1,j-1);
+		                	System.out.println("O's Winning Numbers: "+OwinningM+ ", "+OwinningN);
+		                	System.out.println("X's Winning Numbers: "+XwinningM+ ", "+XwinningN);
 		                	System.out.println(row+ ", "+col);
 		                	return true;
 		                }		           
@@ -164,8 +168,9 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 		                score++;
 		                
 		                if (score >= k) { // reach required score
-		                	setWinningNumbers(c,row,col);
-		                	System.out.println(OwinningN+ ", "+OwinningM);
+		                	setWinningNumbers(c,i-1,j-1);
+		                	System.out.println("O's Winning Numbers: "+OwinningM+ ", "+OwinningN);
+		                	System.out.println("X's Winning Numbers: "+XwinningM+ ", "+XwinningN);
 		                	System.out.println(row+ ", "+col);
 		           		 //System.out.println("true");
 		                	return true;
