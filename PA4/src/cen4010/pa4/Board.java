@@ -73,7 +73,7 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 	    			//System.out.print("they are the same");
 	    		}
 	    	
-	    		
+	    		if (tempgameboard[outerrow][outercol]==0)
 	    		tempgameboard[outerrow][outercol]=c;
 	    		
 		
@@ -88,7 +88,8 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 	    				score++;
 			            
 	    				if (score >= k) { // reached required score
-	    					setWinningNumbers(c,m,n);
+	    					
+	    					setWinningNumbers(c,row,col);
 	    					//System.out.println("true");
 			            	return true;
 			            }		            				         
@@ -110,7 +111,7 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 			            
 			            if (score >= k) { // reached required score
 			            	System.out.println("true");
-			            	setWinningNumbers(c,m,n);
+			            	setWinningNumbers(c,row,col);
 			            	return true;
 			            }		            
 			        }
@@ -133,8 +134,7 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 		                score++;
 		                
 		                if (score >= k) { // reached required score
-		                	setWinningNumbers(c,m,n);
-
+		                	setWinningNumbers(c,row,col);
 		           		 System.out.println("true");
 		                	return true;
 		                }		           
@@ -158,7 +158,7 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 		                score++;
 		                
 		                if (score >= k) { // reach required score
-		                	setWinningNumbers(c,m,n);
+		                	setWinningNumbers(c,row,col);
 
 		           		 System.out.println("true");
 		                	return true;

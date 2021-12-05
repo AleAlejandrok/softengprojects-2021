@@ -57,14 +57,14 @@ JButton [][] buttons;
 			          for (int i = 0; i<Board.m; i++) {
 			      		for (int j = 0; j<Board.n;j++) {
 			      			if(Board.gameboard[i][j]=='x') {
-			      				System.out.print("x");
+			      				//System.out.print("x");
 			      				 buttons[i][j].setText("X");
 				        		 buttons[i][j].setFont(new Font("Montserrat", Font.BOLD, 42));	
 				        		 buttons[i][j].revalidate();
 				        		 buttons[i][j].repaint();
 			      			}
 			      			if(Board.gameboard[i][j]=='o') {
-			      				System.out.print("o");
+			      				//System.out.print("o");
 			      				 buttons[i][j].setText("O");
 				        		 buttons[i][j].setFont(new Font("Montserrat", Font.BOLD, 42));
 				        		 buttons[i][j].revalidate();
