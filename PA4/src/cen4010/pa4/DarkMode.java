@@ -2,8 +2,6 @@ package cen4010.pa4;
 
 import java.awt.Color;
 
-import javax.swing.JPanel;
-
 
 public class DarkMode extends Theme {
 	private Color boardBackgroundColor = new Color(30, 30, 30);

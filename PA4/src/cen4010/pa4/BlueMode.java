@@ -6,7 +6,7 @@ public class BlueMode extends Theme {
 	private Color boardBackgroundColor = new Color(0, 37, 108);
 	private Color backgroundColor = new Color(0, 37, 108);
 	private Color elementColor = new Color(0,87,255);
-	private Color textColor = new Color(250,250,250);
+	private Color textColor = new Color(0,0,0);
 	private Color panelColor = new Color(0, 37, 108);
 	
 	public Color getTextColor() {

@@ -489,18 +489,23 @@ public GUI() {
 	JComboBox<?> PlayerList1 = new JComboBox<Object>(player_list);
 	PlayerList1.setFocusable(false);
 	PlayerList1.setSelectedIndex(-1);
+	
 	PlayerList1.setBackground(elementColor);
 	PlayerList1.setForeground(textColor);
 	JComboBox<?> PlayerList2 = new JComboBox<Object>(player_list);
 	PlayerList2.setSelectedIndex(-1);
 	PlayerList2.setFocusable(false);
+	
 	PlayerList2.setBackground(elementColor);
 	PlayerList2.setForeground(textColor);
 	JButton StartButton = new JButton("Start");
 	StartButton.setBackground(elementColor);
+	StartButton.setOpaque(true);
 	StartButton.setForeground(textColor);
 	StartButton.setOpaque(true);
+	StartButton.setBorderPainted(false);
 	StartButton.setFont(new Font("DIALOG", Font.BOLD, 25));
+
 	BottomPanel.add(PlayerList1);
 	BottomPanel.add(StartButton);
 	BottomPanel.add(PlayerList2);
