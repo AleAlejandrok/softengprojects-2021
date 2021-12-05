@@ -60,18 +60,21 @@ public class Board {
 public static boolean hypotheticalPlayerWin(char c) { // checks for winning combinations
 	
 		
-		
+	char tempgameboard[][];
 		for (int outerrow = 0; outerrow < m; outerrow++) {
 	    	for (int outercol = 0; outercol < n; outercol++) {
 	    		
-	    		 char tempgameboard[][]= new char [m][n];
+	    		 tempgameboard= new char [m][n];
 	    		
 	    		for(int i = 0; i < n; i++) {
-	    			tempgameboard[i]=gameboard[i].clone();
+	    			tempgameboard[i]=gameboard[i].clone();	
 	    		}
+	    		if (tempgameboard.equals(gameboard)) {
+	    			//System.out.print("they are the same");
+	    		}
+	    	
 	    		
-	    		
-	    		tempgameboard[outerrow][outercol]='c';
+	    		tempgameboard[outerrow][outercol]=c;
 	    		
 		
 	    /* check horizontal */
@@ -86,6 +89,7 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 			            
 	    				if (score >= k) { // reached required score
 	    					setWinningNumbers(c,m,n);
+	    					//System.out.println("true");
 			            	return true;
 			            }		            				         
 	    			}
@@ -105,6 +109,7 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 			            i++;
 			            
 			            if (score >= k) { // reached required score
+			            	System.out.println("true");
 			            	setWinningNumbers(c,m,n);
 			            	return true;
 			            }		            
@@ -129,6 +134,8 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 		                
 		                if (score >= k) { // reached required score
 		                	setWinningNumbers(c,m,n);
+
+		           		 System.out.println("true");
 		                	return true;
 		                }		           
 		            }
@@ -152,6 +159,8 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 		                
 		                if (score >= k) { // reach required score
 		                	setWinningNumbers(c,m,n);
+
+		           		 System.out.println("true");
 		                	return true;
 		                }
 		            }		            
@@ -165,7 +174,7 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 	}//end outercol
 	}//end outerrow
 		
-		
+		 //System.out.println("false");
 		return false;
 	}
 	public static boolean playerWin(char c) { // checks for winning combinations
@@ -249,7 +258,9 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 		            }		            
 			    }
 	    	}
+	    	
 	    }
+	   
 		return false;
 	}
 	

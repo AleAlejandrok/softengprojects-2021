@@ -210,15 +210,15 @@ public GUI(int m, int n, int k) {
 		        			 buttons[temp[0]][temp[1]].setText("X");
 			        		 buttons[temp[0]][temp[1]].setFont(new Font("Montserrat", Font.BOLD, 42));
 			        		 Board.gameboard[temp[0]][temp[1]]='x';
-			        		 Board.turn_number++;
+			        		 
 		        		 }else {
 		        			 buttons[o][l].setText("X");
 			        		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 			        		 Board.gameboard[o][l]='x';
-			        		 Board.turn_number++;
+			
 		        		 
 		        		 }
-		        		 
+		        		 //Board.turn_number++;
 		        		 
 		        		 timer1.stop();
 		        		 timer2.start();
@@ -245,8 +245,8 @@ public GUI(int m, int n, int k) {
 				     		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 			        		 Board.turn_number++;
 			        		 }
-		        		 }
-		        		 
+		        		 }else
+		        		 Board.turn_number++;
 		        		 
 		        		 //player 1 timeout
 		        		 if (player1time==0) {
@@ -298,7 +298,9 @@ public GUI(int m, int n, int k) {
 				         	}
 				         	
 				         	
-		        	 
+		        		 if (getPlayer_2().isRobot()) {
+			        		    Board.turn_number++;	 
+			        		 }
 		        	 }
 		        	 //player 2 move
 		        	 else {
@@ -314,14 +316,14 @@ public GUI(int m, int n, int k) {
 		        			 buttons[temp[0]][temp[1]].setText("O");
 			        		 buttons[temp[0]][temp[1]].setFont(new Font("Montserrat", Font.BOLD, 42));
 			        		 Board.gameboard[temp[0]][temp[1]]='o';
-			        		 Board.turn_number++;
+			        		 
 		        		 }else {
 		        			 buttons[o][l].setText("O");
 			        		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 			        		 Board.gameboard[o][l]='o';
-			        		 Board.turn_number++;
+			        		 
 		        		 }
-		         	
+		        		 //Board.turn_number++;
 		         	//if player1 is a robot... do turn... increment turn number
 		         	
 		         	if (getPlayer_1().isRobot()) {
@@ -338,8 +340,9 @@ public GUI(int m, int n, int k) {
 		     		 buttons[x][y].setText("X");
 		     		 Board.gameboard[x][y]='x';
 		     		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
-		     		 Board.turn_number++;
+		     		//Board.turn_number++;
 		         	}
+		         	
 		         	
 		         	//(harder AI) loop checking all spaces for a winning combo for either player
 		                  	
@@ -382,9 +385,11 @@ public GUI(int m, int n, int k) {
 			         		timer1.stop();
 			        		timer2.stop();
 			         	}
-			         	
+	        		 	if (getPlayer_1().isRobot()) {
+	        		    Board.turn_number++;	 
+	        		 }
 		        	 }
-		        	
+		        	//Board.turn_number++;
 		          }
 		         }
 		       };
