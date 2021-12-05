@@ -2,15 +2,12 @@ package cen4010.pa4;
 
 import java.awt.Color;
 
-import javax.swing.JPanel;
-
-
-public class DarkMode extends Theme {
-	private Color boardBackgroundColor = new Color(30, 30, 30);
-	private Color backgroundColor = new Color(116, 116, 116);
-	private Color elementColor = new Color(0,0,0);
+public class BlueMode extends Theme {
+	private Color boardBackgroundColor = new Color(0, 37, 108);
+	private Color backgroundColor = new Color(0, 37, 108);
+	private Color elementColor = new Color(0,87,255);
 	private Color textColor = new Color(250,250,250);
-	private Color panelColor = new Color(30, 30, 30);
+	private Color panelColor = new Color(0, 37, 108);
 	
 	public Color getTextColor() {
 		return this.textColor;

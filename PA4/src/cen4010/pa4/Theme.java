@@ -5,42 +5,9 @@ import javax.swing.JPanel;
 
 public abstract class Theme {
 	
-	private int Theme;
-	private Color backgroundColor;
-	private Color elementColor;
-	private JPanel Panel = new JPanel();
+	abstract Color getBoardBackgroundColor();
 	
-	Theme(int themeCode){
-		this.Theme = themeCode;
-	}
+	abstract Color getElementColor();
 	
-	int getTheme() {
-		return this.Theme;
-		};
-	
-	void setBackgroundColor(Color color) {
-		this.backgroundColor = color;
-	}
-	void setElementBackground(Color color) {
-		this.elementColor = color;
-	}
-	
-	Color getBackgroundColor() {
-		
-		return this.backgroundColor;
-	}
-	
-	Color getElementColor() {
-		return this.elementColor;
-	}
-
-	public JPanel getPanel() {
-		return Panel;
-	}
-
-	public void setPanel(JPanel panel) {
-		Panel = panel;
-	}
-
-	
+	abstract Color getPanelBackgroundColor();
 }

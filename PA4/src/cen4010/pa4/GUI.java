@@ -19,8 +19,12 @@ public static int player1time=StartingTime;
 public static int player2time=StartingTime;
 JPanel TopPanel = new JPanel();
 JButton [][] buttons;
-	
-	
+DefaultTheme DTheme = new DefaultTheme();
+DarkMode DarkMode;
+BlueMode BlueMode;
+CursedMode CursedMode;
+String X = "X";
+String O = "O";
 	  
 	  
 	  
@@ -61,14 +65,14 @@ JButton [][] buttons;
 			      		for (int j = 0; j<Board.n;j++) {
 			      			if(Board.gameboard[i][j]=='x') {
 			      				//System.out.print("x");
-			      				 buttons[i][j].setText("X");
+			      				 buttons[i][j].setText(X);
 				        		 buttons[i][j].setFont(new Font("Montserrat", Font.BOLD, 42));	
 				        		 buttons[i][j].revalidate();
 				        		 buttons[i][j].repaint();
 			      			}
 			      			if(Board.gameboard[i][j]=='o') {
 			      				//System.out.print("o");
-			      				 buttons[i][j].setText("O");
+			      				 buttons[i][j].setText(O);
 				        		 buttons[i][j].setFont(new Font("Montserrat", Font.BOLD, 42));
 				        		 buttons[i][j].revalidate();
 				        		 buttons[i][j].repaint();
@@ -103,14 +107,14 @@ JButton [][] buttons;
 				      		for (int j = 0; j<Board.n;j++) {
 				      			if(Board.gameboard[i][j]=='x') {
 				      				//System.out.print("x");
-				      				 buttons[i][j].setText("X");
+				      				 buttons[i][j].setText(X);
 					        		 buttons[i][j].setFont(new Font("Montserrat", Font.BOLD, 42));	
 					        		 buttons[i][j].revalidate();
 					        		 buttons[i][j].repaint();
 				      			}
 				      			if(Board.gameboard[i][j]=='o') {
 				      				//System.out.print("o");
-				      				 buttons[i][j].setText("O");
+				      				 buttons[i][j].setText(O);
 					        		 buttons[i][j].setFont(new Font("Montserrat", Font.BOLD, 42));	
 					        		 buttons[i][j].revalidate();
 					        		 buttons[i][j].repaint();
@@ -126,13 +130,45 @@ JButton [][] buttons;
 		  });
 
 
-public GUI(int m, int n, int k) {
+public GUI() {
+	Color boardBackgroundColor = DTheme.getBoardBackgroundColor();;
+	Color elementColor = DTheme.getElementColor();
+	Color textColor = DTheme.getTextColor();
+	Color paneColor = DTheme.getPanelBackgroundColor();
 	
-
+	int [] dimmensionArray = setUpPopup();
+	int m = dimmensionArray[0];
+	int n = dimmensionArray[1];
+	int k = dimmensionArray[2];
 	
 	
 	
 	/******************Frame Settings************************/
+	if(getDarkMode() != null) {
+		DarkMode DarkMode = getDarkMode();
+		boardBackgroundColor = DarkMode.getBoardBackgroundColor();
+		elementColor = DarkMode.getElementColor();
+		textColor = DarkMode.getTextColor();
+		paneColor = DarkMode.getPanelBackgroundColor();
+	}
+	if(getBlueMode() != null) {
+		BlueMode BlueMode = getBlueMode();
+		boardBackgroundColor = BlueMode.getBoardBackgroundColor();
+		elementColor = BlueMode.getElementColor();
+		textColor = BlueMode.getTextColor();
+		paneColor = BlueMode.getPanelBackgroundColor();
+	}
+
+	if(getCursedMode() != null) {
+		CursedMode CursedMode = getCursedMode();
+		boardBackgroundColor = CursedMode.getBoardBackgroundColor();
+		elementColor = CursedMode.getElementColor();
+		textColor = CursedMode.getTextColor();
+		paneColor = CursedMode.getPanelBackgroundColor();
+		X = CursedMode.getX();
+		O = CursedMode.getO();
+	}
+	
 	
 	Frame=new JFrame();
 	String pathToFileOnDisk="TicTacToe.png";
@@ -155,7 +191,6 @@ public GUI(int m, int n, int k) {
 	/******************Board Instantiation************************/
 	
 	
-	
 	//ensure k is doable
 	try {
 		if(k > m && k > n)
@@ -172,13 +207,15 @@ public GUI(int m, int n, int k) {
 	/******************Top Panel************************/
 	
 	TopPanel.setLayout(new GridLayout(Board.m,Board.n,10,10));
-	TopPanel.setBackground(new Color(40,40,40));
+	TopPanel.setBackground(boardBackgroundColor);
 	TopPanel.setPreferredSize(new Dimension(100,100));
 	
 	for (int i = 0; i<Board.m; i++) {
 		for (int j = 0; j<Board.n;j++) {
 			buttons[i][j]=new JButton();
-			buttons[i][j].setBackground(Color.white);
+			buttons[i][j].setBackground(elementColor);
+			buttons[i][j].setForeground(textColor);
+
 			buttons[i][j].setOpaque(true);
 			buttons[i][j].setBorderPainted(false);
 			buttons[i][j].setFocusPainted(false);
@@ -211,12 +248,12 @@ public GUI(int m, int n, int k) {
 			        		  		  temp = getPlayer_1().getHardMove('x');
 			        		  	}
 				        		
-		        			 buttons[temp[0]][temp[1]].setText("X");
+		        			 buttons[temp[0]][temp[1]].setText(X);
 			        		 buttons[temp[0]][temp[1]].setFont(new Font("Montserrat", Font.BOLD, 42));
 			        		 Board.gameboard[temp[0]][temp[1]]='x';
 			        		 
 		        		 }else {
-		        			 buttons[o][l].setText("X");
+		        			 buttons[o][l].setText(X);
 			        		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 			        		 Board.gameboard[o][l]='x';
 			
@@ -263,7 +300,7 @@ public GUI(int m, int n, int k) {
 				        		
 			        		 int x= xy[0];
 				     		 int y= xy[1];
-				     		 buttons[x][y].setText("O");
+				     		 buttons[x][y].setText(O);
 				     		 Board.gameboard[x][y]='o';
 				     		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 			        		
@@ -337,12 +374,12 @@ public GUI(int m, int n, int k) {
 			        		  		  temp = getPlayer_2().getHardMove('o');
 			        		  	}
 				        		
-		        			 buttons[temp[0]][temp[1]].setText("O");
+		        			 buttons[temp[0]][temp[1]].setText(O);
 			        		 buttons[temp[0]][temp[1]].setFont(new Font("Montserrat", Font.BOLD, 42));
 			        		 Board.gameboard[temp[0]][temp[1]]='o';
 			        		 
 		        		 }else {
-		        			 buttons[o][l].setText("O");
+		        			 buttons[o][l].setText(O);
 			        		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 			        		 Board.gameboard[o][l]='o';
 			        		 
@@ -361,7 +398,7 @@ public GUI(int m, int n, int k) {
 		        		
 	        		 int x= xy[0];
 		     		 int y= xy[1];
-		     		 buttons[x][y].setText("X");
+		     		 buttons[x][y].setText(X);
 		     		 Board.gameboard[x][y]='x';
 		     		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 		     		//Board.turn_number++;
@@ -439,6 +476,8 @@ public GUI(int m, int n, int k) {
 	Border border2 = BottomPanel.getBorder();
 	Border margin2 = new EmptyBorder(10,150,150,150);
 	BottomPanel.setBorder(new CompoundBorder(border2, margin2));
+	BottomPanel.setBackground(paneColor);
+	
 	
 	
 	
@@ -450,12 +489,18 @@ public GUI(int m, int n, int k) {
 	JComboBox<?> PlayerList1 = new JComboBox<Object>(player_list);
 	PlayerList1.setFocusable(false);
 	PlayerList1.setSelectedIndex(-1);
+	PlayerList1.setBackground(elementColor);
+	PlayerList1.setForeground(textColor);
 	JComboBox<?> PlayerList2 = new JComboBox<Object>(player_list);
 	PlayerList2.setSelectedIndex(-1);
 	PlayerList2.setFocusable(false);
+	PlayerList2.setBackground(elementColor);
+	PlayerList2.setForeground(textColor);
 	JButton StartButton = new JButton("Start");
-	StartButton.setBackground(new Color(200,200,200));
+	StartButton.setBackground(elementColor);
+	StartButton.setForeground(textColor);
 	StartButton.setOpaque(true);
+	StartButton.setFont(new Font("DIALOG", Font.BOLD, 25));
 	BottomPanel.add(PlayerList1);
 	BottomPanel.add(StartButton);
 	BottomPanel.add(PlayerList2);
@@ -493,6 +538,7 @@ public GUI(int m, int n, int k) {
 	
 	
 	//add the player select and game start buttons to the bottom half of the screen
+	StartGamePanel.setBackground(paneColor);
 	BottomPanel.add(StartGamePanel);
 	/*End start game and player select panel*/
 	
@@ -501,13 +547,15 @@ public GUI(int m, int n, int k) {
 	/*Timer Panel*/
   	JPanel TimerPanel = new JPanel();
   	TimerPanel.setLayout(new GridLayout(1, 2,50,10));
+  	TimerPanel.setBackground(paneColor);
   	
   	//Time display for player 1
     timeDisplay1=new JLabel(StartingTime+"");
    
     timeDisplay1.setHorizontalAlignment(SwingConstants.CENTER);
     timeDisplay1.setFont(new Font("DIALOG", Font.BOLD, 28));
-    timeDisplay1.setBackground(new Color(200,200,200));
+    timeDisplay1.setForeground(textColor);
+    timeDisplay1.setBackground(elementColor);
     timeDisplay1.setOpaque(true);
     
     //Time display for player 2
@@ -515,7 +563,8 @@ public GUI(int m, int n, int k) {
     
     timeDisplay2.setHorizontalAlignment(SwingConstants.CENTER);
     timeDisplay2.setFont(new Font("DIALOG", Font.BOLD, 28));
-    timeDisplay2.setBackground(new Color(200,200,200));
+    timeDisplay2.setForeground(textColor);
+    timeDisplay2.setBackground(elementColor);
     timeDisplay2.setOpaque(true);
     
     TimerPanel.add(timeDisplay1);
@@ -659,17 +708,18 @@ public GUI(int m, int n, int k) {
 		Frame.setVisible(true);
 	}
 	//**********************// TODO: fix this prompt
-	public static int[] setUpPopup() {
+	public int[] setUpPopup() {
 		int m = 3;
 		int n = 3; 
 		int k = 3;
 		
+		
 		//****FRAME****//
-		JFrame Popup = new JFrame("Setup Game!");
+		JFrame Popup = new JFrame("Game setup");
 		String pathToFileOnDisk="TicTacToe.png";
 		ImageIcon img = new ImageIcon(pathToFileOnDisk);
 		
-		String[] themeOptions = {"Default", "Hatsune Miku", "Dark Mode"};
+		String[] themeOptions = {"Default", "Blue Mode", "Dark Mode", "Cursed Mode"};
 		JComboBox<String> themeDropDown = new JComboBox<>(themeOptions);
 		themeDropDown.setSelectedIndex(0);
 		
@@ -680,7 +730,7 @@ public GUI(int m, int n, int k) {
 		Popup.setSize(400,200);
 		Popup.setResizable(false);
 		Popup.setLocationRelativeTo(null);
-		Popup.setLayout(new GridLayout(4, 2));
+		Popup.setLayout(null);
 		
 		
 		//****Text Fields****//
@@ -691,25 +741,32 @@ public GUI(int m, int n, int k) {
 		JLabel mLabel = new JLabel("M:");
 		JLabel nLabel = new JLabel("N:");
 		JLabel kLabel = new JLabel("K:");
-		themeLabel.setAlignmentX(1);
-		themeLabel.setAlignmentY(0);
-		themeDropDown.setAlignmentX(50);
-		themeDropDown.setAlignmentY(0);
-		mLabel.setAlignmentX(1);
-		nLabel.setAlignmentX(1);
-		kLabel.setAlignmentX(1);
-		mLabel.setAlignmentY(50);
-		nLabel.setAlignmentY(100);
-		kLabel.setAlignmentY(150);
-		mField.setAlignmentX(50);
-		nField.setAlignmentX(50);
-		kField.setAlignmentX(50);
-		mField.setAlignmentY(50);
-		nField.setAlignmentY(100);
-		kField.setAlignmentY(150);
+		themeLabel.setBounds(0, 10, 150, 20);
+		themeLabel.setFont(new Font("DIALOG", Font.BOLD, 15));
+		themeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		mLabel.setBounds(0, 40, 150, 20);
+		mLabel.setFont(new Font("DIALOG", Font.BOLD, 15));
+		mLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		nLabel.setBounds(0, 70, 150, 20);
+		nLabel.setFont(new Font("DIALOG", Font.BOLD, 15));
+		nLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		kLabel.setBounds(0, 100, 150, 20);
+		kLabel.setFont(new Font("DIALOG", Font.BOLD, 15));
+		kLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		themeDropDown.setBounds(160, 10, 200, 20);
+		
+		mField.setBounds(160, 40, 200, 20);
+		
+		nField.setBounds(160, 70, 200, 20);
+		
+		kField.setBounds(160, 100, 200, 20);
 		
 		JButton submitButton = new JButton();
-		submitButton.setBounds(150, 100, 100, 20);
+		submitButton.setBounds(130, 130, 150, 20);
 		submitButton.setFont(new Font("DIALOG", Font.BOLD, 15));
 		submitButton.setText("Submit");
 		submitButton.setFocusPainted(false);
@@ -722,6 +779,42 @@ public GUI(int m, int n, int k) {
 	          }
 	       	        
 	       });
+		
+		
+		themeDropDown.addActionListener(new ActionListener() {
+	         public void actionPerformed(ActionEvent e) {
+	        	if(themeDropDown.getSelectedIndex() == 0 || themeDropDown.getSelectedIndex() == 3) {
+		        		Popup.getContentPane().setBackground(null);
+		        		themeLabel.setForeground(null);
+		        		mLabel.setForeground(null);
+		        		nLabel.setForeground(null);
+		        		kLabel.setForeground(null);
+		        		if(themeDropDown.getSelectedIndex() == 0) {
+		        			submitButton.setText("Submit");
+		        		}
+		        		if(themeDropDown.getSelectedIndex() == 3) {
+		        			submitButton.setText("OH NO...");
+		        		}
+		     	}
+	        	 
+	        	if(themeDropDown.getSelectedIndex() == 1) {
+	        		Popup.getContentPane().setBackground(new Color(0, 37, 108));
+	        		themeLabel.setForeground(new Color(250,250,250));
+	        		mLabel.setForeground(new Color(250,250,250));
+	        		nLabel.setForeground(new Color(250,250,250));
+	        		kLabel.setForeground(new Color(250,250,250));
+	     		}
+	        	if(themeDropDown.getSelectedIndex() == 2) {
+	        		Popup.getContentPane().setBackground(new Color(30, 30, 30));
+	        		themeLabel.setForeground(new Color(250,250,250));
+	        		mLabel.setForeground(new Color(250,250,250));
+	        		nLabel.setForeground(new Color(250,250,250));
+	        		kLabel.setForeground(new Color(250,250,250));
+	     		}
+	          }
+	       	        
+	    });
+		
 		Popup.add(themeLabel);
 		Popup.add(themeDropDown);
 		
@@ -751,7 +844,7 @@ public GUI(int m, int n, int k) {
 		} catch (NumberFormatException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-			m =3;
+			m = 3;
 		}
      	 try {
 			n = Integer.valueOf(nField.getText());
@@ -767,9 +860,42 @@ public GUI(int m, int n, int k) {
 			e1.printStackTrace();
 			k = 3;
 		}
-     	int theme = themeDropDown.getSelectedIndex();
-		int dimmensionArray[] = {m,n,k,theme};
+     	
+		int dimmensionArray[] = {m,n,k};
+		
+		if(themeDropDown.getSelectedIndex() == 1) {
+			createBlueMode();
+		}
+		
+		if(themeDropDown.getSelectedIndex() == 2) {
+			createDarkMode();
+		}
+		if(themeDropDown.getSelectedIndex() == 3) {
+			createCursedMode();
+		}
+		
 		return dimmensionArray;
+	}
+	
+	private void createBlueMode() {
+		this.BlueMode = new BlueMode();
+	}
+	private BlueMode getBlueMode() {
+		return this.BlueMode;
+	}
+	
+	private void createDarkMode() {
+		this.DarkMode = new DarkMode();
+	}
+	private DarkMode getDarkMode() {
+		return this.DarkMode;
+	}
+
+	private void createCursedMode() {
+		this.CursedMode = new CursedMode();
+	}
+	private CursedMode getCursedMode() {
+		return this.CursedMode;
 	}
 }
 
