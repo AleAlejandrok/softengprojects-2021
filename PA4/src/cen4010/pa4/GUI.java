@@ -218,7 +218,7 @@ public GUI(int m, int n, int k) {
 			
 		        		 
 		        		 }
-		        		 //Board.turn_number++;
+		        		 Board.turn_number++;
 		        		 
 		        		 timer1.stop();
 		        		 timer2.start();
@@ -243,10 +243,9 @@ public GUI(int m, int n, int k) {
 				     		 buttons[x][y].setText("O");
 				     		 Board.gameboard[x][y]='o';
 				     		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
-			        		 Board.turn_number++;
+			        		
 			        		 }
-		        		 }else
-		        		 Board.turn_number++;
+		        		 }
 		        		 
 		        		 //player 1 timeout
 		        		 if (player1time==0) {
@@ -302,6 +301,8 @@ public GUI(int m, int n, int k) {
 			        		    Board.turn_number++;	 
 			        		 }
 		        	 }
+		        	 
+		        	 
 		        	 //player 2 move
 		        	 else {
 		        		 if(getPlayer_2().isRobot) {
@@ -323,7 +324,7 @@ public GUI(int m, int n, int k) {
 			        		 Board.gameboard[o][l]='o';
 			        		 
 		        		 }
-		        		 //Board.turn_number++;
+		        		 Board.turn_number++;
 		         	//if player1 is a robot... do turn... increment turn number
 		         	
 		         	if (getPlayer_1().isRobot()) {
