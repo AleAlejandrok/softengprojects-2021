@@ -366,7 +366,17 @@ public GUI(int m, int n, int k) {
 		     		 buttons[o][l].setFont(new Font("Montserrat", Font.BOLD, 42));
 		     		//Board.turn_number++;
 		         	}
-		         	
+		         	if (Board.playerWin('x')) {
+	        			 for (int i = 0; i<Board.m; i++) {
+				        		for (int j = 0; j<Board.n;j++) {
+				        			buttons[i][j].setEnabled(false);
+				        		}
+	        			 }
+	        			 PopupWin("1");
+	        			 game_stopped=true;
+			         		timer1.stop();
+			        		timer2.stop();
+			         	}
 		         	
 		         	//(harder AI) loop checking all spaces for a winning combo for either player
 		                  	

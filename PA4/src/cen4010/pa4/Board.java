@@ -61,8 +61,8 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 	
 		
 	char tempgameboard[][];
-	//setWinningNumbers('o',0,0);
-	//setWinningNumbers('x',0,0);
+	setWinningNumbers('o',0,0);
+	setWinningNumbers('x',0,0);
 		for (int outerrow = 0; outerrow < m; outerrow++) {
 	    	for (int outercol = 0; outercol < n; outercol++) {
 	    		
@@ -92,7 +92,7 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 			            
 	    				if (score >= k) { // reached required score
 	    					
-	    					setWinningNumbers(c,row,i-1);
+	    					setWinningNumbers(c,outerrow,outercol);
 	    					System.out.println("O's Winning Numbers: "+OwinningM+ ", "+OwinningN);
 	    					System.out.println("X's Winning Numbers: "+XwinningM+ ", "+XwinningN);
 	    					System.out.println(row+ ", "+col);
@@ -116,7 +116,7 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 			            
 			            if (score >= k) { // reached required score
 			            	System.out.println("true");
-			            	setWinningNumbers(c,i-1,col);
+			            	setWinningNumbers(c,outerrow,outercol);
 			            	System.out.println("O's Winning Numbers: "+OwinningM+ ", "+OwinningN);
 			            	System.out.println("X's Winning Numbers: "+XwinningM+ ", "+XwinningN);
 			            	System.out.println(row+ ", "+col);
@@ -142,7 +142,7 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 		                score++;
 		                
 		                if (score >= k) { // reached required score
-		                	setWinningNumbers(c,i+1,j-1);
+		                	setWinningNumbers(c,outerrow,outercol);
 		                	System.out.println("O's Winning Numbers: "+OwinningM+ ", "+OwinningN);
 		                	System.out.println("X's Winning Numbers: "+XwinningM+ ", "+XwinningN);
 		                	System.out.println(row+ ", "+col);
@@ -168,7 +168,7 @@ public static boolean hypotheticalPlayerWin(char c) { // checks for winning comb
 		                score++;
 		                
 		                if (score >= k) { // reach required score
-		                	setWinningNumbers(c,i-1,j-1);
+		                	setWinningNumbers(c,outerrow,outercol);
 		                	System.out.println("O's Winning Numbers: "+OwinningM+ ", "+OwinningN);
 		                	System.out.println("X's Winning Numbers: "+XwinningM+ ", "+XwinningN);
 		                	System.out.println(row+ ", "+col);
