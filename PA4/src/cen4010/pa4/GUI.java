@@ -20,6 +20,7 @@ public static int player2time=StartingTime;
 JPanel TopPanel = new JPanel();
 JButton [][] buttons;
 DefaultTheme DTheme = new DefaultTheme();
+
 DarkMode DarkMode;
 BlueMode BlueMode;
 CursedMode CursedMode;
@@ -47,12 +48,7 @@ String O = "O";
 			          {
 			        	  if(getPlayer_1().isRobot) {
 			        		  int[] temp;
-			        		  	if (!getPlayer_1().isHarderRobot) {
-			        			  temp = getPlayer_1().getMove();
-			        		  	}
-			        		  	else {
-			        		  		  temp = getPlayer_1().getHardMove('x');
-			        		  	}
+			        		  temp = getPlayer_1().getMove('x');
 				        		
 				        		 
 								Board.gameboard[temp[0]][temp[1]]='x';
@@ -241,12 +237,7 @@ public GUI() {
 		        		 
 		        			 
 		        			 int[] temp;
-			        		  	if (!getPlayer_1().isHarderRobot) {
-			        			  temp = getPlayer_1().getMove();
-			        		  	}
-			        		  	else {
-			        		  		  temp = getPlayer_1().getHardMove('x');
-			        		  	}
+		        			 temp = getPlayer_1().getMove('x');
 				        		
 		        			 buttons[temp[0]][temp[1]].setText(X);
 			        		 buttons[temp[0]][temp[1]].setFont(new Font("Montserrat", Font.BOLD, 42));
@@ -291,12 +282,7 @@ public GUI() {
 		        		
 				         if (getPlayer_2().isRobot()) {
 				        	 int[] xy;
-			        		  	if (!getPlayer_2().isHarderRobot) {
-			        			  xy = getPlayer_2().getMove();
-			        		  	}
-			        		  	else {
-			        		  		  xy = getPlayer_2().getHardMove('o');
-			        		  	}
+				        	 xy = getPlayer_1().getMove('o');
 				        		
 			        		 int x= xy[0];
 				     		 int y= xy[1];
@@ -367,12 +353,7 @@ public GUI() {
 		        	 else {
 		        		 if(getPlayer_2().isRobot) {
 		        			 int[] temp;
-			        		  	if (!getPlayer_2().isHarderRobot) {
-			        			  temp = getPlayer_2().getMove();
-			        		  	}
-			        		  	else {
-			        		  		  temp = getPlayer_2().getHardMove('o');
-			        		  	}
+		        			 temp = getPlayer_2().getMove('o');
 				        		
 		        			 buttons[temp[0]][temp[1]].setText(O);
 			        		 buttons[temp[0]][temp[1]].setFont(new Font("Montserrat", Font.BOLD, 42));
@@ -389,12 +370,7 @@ public GUI() {
 		         	
 		         	if (getPlayer_1().isRobot()) {
 		         		int[] xy;
-	        		  	if (!getPlayer_1().isHarderRobot) {
-	        			  xy = getPlayer_1().getMove();
-	        		  	}
-	        		  	else {
-	        		  		  xy = getPlayer_1().getHardMove('x');
-	        		  	}
+		         		xy = getPlayer_1().getMove('x');
 		        		
 	        		 int x= xy[0];
 		     		 int y= xy[1];
