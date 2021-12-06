@@ -25,11 +25,7 @@ class BoardTest {
 
 		}
 
-		@Test
-		void testHypotheticalPlayerWin() {
-			fail(); //please explain
-		}
-		
+
 		@Test
 		void testPlayerWin() {
 			

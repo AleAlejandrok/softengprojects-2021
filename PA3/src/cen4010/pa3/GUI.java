@@ -376,12 +376,15 @@ public GUI() {
 	
 	String[] player_list = {"Human", "Computer"};
 	JComboBox<?> PlayerList1 = new JComboBox<Object>(player_list);
+	
 	PlayerList1.setFocusable(false);
 	PlayerList1.setSelectedIndex(-1);
 	JComboBox<?> PlayerList2 = new JComboBox<Object>(player_list);
 	PlayerList2.setSelectedIndex(-1);
 	PlayerList2.setFocusable(false);
 	JButton StartButton = new JButton("Start");
+	//PlayerList1.setSelectedIndex(0);
+	//PlayerList2.setSelectedIndex(0);
 	StartButton.setBackground(new Color(200,200,200));
 	StartButton.setOpaque(true);
 	BottomPanel.add(PlayerList1);
